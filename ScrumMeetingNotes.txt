@@ -1,0 +1,43 @@
+
+
+
+10/20
+
+Agenda:
+  Each person will discuss:
+    1. Work done since last scrum meeting
+    2. Work to complete that day (or until next meeting)
+    3. Any blockers/dependancies?
+
+
+Scott
+  1. Found API for weather data - 14 day forecast
+  2. Interface with weather API, create functions for it, find API for Astro events, and moon phases
+  3. Waiting for the codebase to create functions (not much of a blocker)
+
+Alex
+  1. Strategized the format/structure of the JS & HTML code, got light pollution API key
+  2. Get skeleton for CSS/HTML/JS setup
+  3. None, expecting some soon
+
+Vinay
+  1. Looking into API documentation/organization
+  2. Have an idea of how APIs work, find APIs for park finder and Constellations
+  3. None
+
+Brett
+  1. Got DB & server setup, working on getting backend setup
+  2. working on getting backend setup
+  3. None
+
+Ha
+  1. Was sick, now feeling better
+  2. Look into APIs, work with Alex on html/css/js
+  3. Meeting with Alex
+
+
+
+
+
+
+
