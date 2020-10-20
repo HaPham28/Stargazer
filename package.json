@@ -1,0 +1,15 @@
+{
+  "name": "stargazer",
+  "version": "1.0.0",
+  "description": "Stargazer web application for CSCE 315",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.tamu.edu/CSCE315-902-Project3-B8/Stargazer.git"
+  },
+  "author": "",
+  "license": "ISC"
+}
