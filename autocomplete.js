@@ -55,6 +55,7 @@ function initMap() {
       SearchLocation.latitude = (place.geometry.viewport.Ya.j + place.geometry.viewport.Ya.i) / 2;
       SearchLocation.longitude = (place.geometry.viewport.Sa.j + place.geometry.viewport.Sa.i) / 2;
       SearchLocation.placeName = place.name;
+      getLightPollution();
       //console.log(SearchLocation.placeName + ": " + SearchLocation.latitude + ", " + SearchLocation.longitude);*/
 
       marker.setVisible(true);

@@ -23,10 +23,21 @@ const SecretKey = 'ZclnNemymt1nOKIUsB37ci2U5ydvua6e6OAla33f';
 
 
 //light polution info
-const SecretKey_light = '45pZnF8eF3ak9ixj'
-let latitude = SearchLocation.latitude;
-let longtitude = SearchLocation.longitude;
-request.open('GET', 'https://www.lightpollutionmap.info/QueryRaster/?ql=viirs_2019&qt=point&qd=' + longtitude + ','+ latitude + '&key=45pZnF8eF3ak9ixj', true);
+function getLightPollution() {
+    const apiKey = '45pZnF8eF3ak9ixj'
+    let latitude = SearchLocation.latitude;
+    let longtitude = SearchLocation.longitude;
+    let url = 'https://www.lightpollutionmap.info/QueryRaster/?ql=viirs_2019&qt=point&qd=' + longtitude + ','+ latitude + '&key=' + SecretKey_light;
+    console.log(url);
+
+    let request = new XMLHttpRequest();
+    request.open('GET', url, true);    
+    console.log("Request opened");
+    request.onreadystatechange = function() {
+        console.log("Light level: " + this.response);
+    }
+    request.send();
+}
 
 
 
