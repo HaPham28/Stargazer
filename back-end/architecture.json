@@ -1,0 +1,163 @@
+{
+  "port": 18432,
+  "types": {
+    "Response": "All responses wrapped in general result type which could error for anything from authentication fail to no information found",
+    "AuthToken": {
+      "token": "TokenType",
+      "expires": "Time when token expires and must be re-requested"
+    },
+    "User": {
+      "id": "IdType",
+      "username": "String"
+    },
+    "UserFull": {
+      "user": "User",
+      "email": "String"
+    },
+    "SearchString": "String with % being wildcards and # being match a single character",
+    "Paging": {
+      "limit": "usize",
+      "offset": "usize"
+    }
+  },
+  "requests": {
+    "login": {
+      "description": "Gets an AuthToken for a user",
+      "auth_required": "None",
+      "packets": [
+        {
+          "name": "LoginRequest",
+          "from": "client",
+          "data": {
+            "username": "String",
+            "password": "String"
+          }
+        },
+        {
+          "name": "LoginResponse",
+          "from": "server",
+          "data": {
+            "auth_token": "Token"
+          }
+        }
+      ]
+    },
+    "change_password": {
+      "description": "Changes a user's password, cannot be authed with token",
+      "auth_required": "Full",
+      "packets": [
+        {
+          "name": "ChangePasswordRequest",
+          "from": "client",
+          "data": {
+            "username": "String",
+            "current_password": "String",
+            "new_password": "String"
+          }
+        },
+        {
+          "name": "ChangePasswordResponse",
+          "from": "server",
+          "data": {
+            "auth_token": {
+              "type": "AuthToken",
+              "desc": "A new token for the new password"
+            }
+          }
+        }
+      ]
+    },
+    "get_user_public_info": {
+      "description": "Gets a user's public information from a username or id",
+      "auth_required": "None",
+      "packets": [
+        {
+          "name": "UserPublicRequest",
+          "from": "client",
+          "data option 1": {
+            "username": "String"
+          },
+          "data option 2" : {
+            "id": "IdType"
+          }
+        },
+        {
+          "name": "UserPublicResponse",
+          "from": "server",
+          "data": {
+            "user": "User"
+          }
+        }
+      ]
+    },
+    "get_user_full_info": {
+      "description": "Get's all a user's information from a username or id",
+      "auth_required": "Token",
+      "packets": [
+        {
+          "name": "UserFullRequest",
+          "from": "client",
+          "data option 1": {
+            "token": "TokenType",
+            "username": "String"
+          },
+          "data option 2": {
+            "token": "TokenType",
+            "id": "IdType"
+          }
+        },
+        {
+          "name": "UserFullResponse",
+          "from": "server",
+          "data": {
+            "new_token": "AuthToken",
+            "user": "UserFull"
+          }
+        }
+      ]
+    },
+    "register_user": {
+      "description": "Registers a new user",
+      "auth_required": "None",
+      "packets": [
+        {
+          "name": "RegisterRequest",
+          "from": "client",
+          "data": {
+            "username": "String",
+            "email": "String",
+            "password": "Sting"
+          }
+        },
+        {
+          "name": "RegisterResponse",
+          "from": "server",
+          "data": {
+            "token": "Token"
+          }
+        }
+      ]
+    },
+    "search_user": {
+      "description": "Searches for a user by username with a SearchString",
+      "auth_required": "None",
+      "packets": [
+        {
+          "name": "SearchRequest",
+          "from": "client",
+          "data": {
+            "search_string": "SearchString",
+            "paging": "Paging"
+          }
+        },
+        {
+          "name": "SearchResponse",
+          "from": "server",
+          "data": {
+            "found": "Vec<User>"
+          }
+        }
+      ]
+    }
+  }
+}
