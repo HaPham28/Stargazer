@@ -22,6 +22,16 @@ const SecretKey = 'ZclnNemymt1nOKIUsB37ci2U5ydvua6e6OAla33f';
 
 
 
+//light polution info
+const SecretKey_light = '45pZnF8eF3ak9ixj'
+let latitude = SearchLocation.latitude;
+let longtitude = SearchLocation.longitude;
+request.open('GET', 'https://www.lightpollutionmap.info/QueryRaster/?ql=viirs_2019&qt=point&qd=' + longtitude + ','+ latitude + '&key=45pZnF8eF3ak9ixj', true);
+
+
+
+
+
 
 
 
