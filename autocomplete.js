@@ -1,4 +1,14 @@
 /********* Google Maps Autocomplete ********/
+
+/*
+* Class to store last searched placeName, latitude, and longitude for access elsewhere
+*/
+class SearchLocation {
+    static placeName = null;
+    static latitude = null;
+    static longitude = null;
+}
+
 function initMap() {
     const map = new google.maps.Map(document.getElementById("map"), {
       center: { lat: -33.8688, lng: 151.2195 },
@@ -41,6 +51,12 @@ function initMap() {
         map.setZoom(17); // Why 17? Because it looks good.
       }
       marker.setPosition(place.geometry.location);
+      console.log(place);
+      SearchLocation.latitude = (place.geometry.viewport.Ya.j + place.geometry.viewport.Ya.i) / 2;
+      SearchLocation.longitude = (place.geometry.viewport.Sa.j + place.geometry.viewport.Sa.i) / 2;
+      SearchLocation.placeName = place.name;
+      //console.log(SearchLocation.placeName + ": " + SearchLocation.latitude + ", " + SearchLocation.longitude);*/
+
       marker.setVisible(true);
       let address = "";
   
