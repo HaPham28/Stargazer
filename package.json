@@ -14,8 +14,8 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies (will add in later by removing parenteses, this is a comment)": {
-    "client_side": "file:back-end/client_side/pkg"
+  "dependencies": {
+    "client_side": "file:./back-end/client_side/pkg"
   },
   "devDependencies": {
     "hello-wasm-pack": "^0.1.0",

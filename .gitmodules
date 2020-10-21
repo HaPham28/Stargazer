@@ -1,3 +1,6 @@
 [submodule "back-end/server_side"]
 	path = back-end/server_side
 	url = https://github.tamu.edu/CSCE315-902-Project3-B8/server_side.git
+[submodule "back-end/client_side"]
+	path = back-end/client_side
+	url = https://github.tamu.edu/CSCE315-902-Project3-B8/client_side.git
