@@ -4,8 +4,17 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
+
+    <!-- Google Maps Autocomplete -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <script src="script.js" defer></script>
+    <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6kxrVKGQ0WmQRB393p9Vr12ifrtBDJ_o&callback=initMap&libraries=places&v=weekly"
+    async defer
+    ></script>
 </head>
 <body>
+    <div id="map"></div>
     <div class="container">
         <div class="navigation">
             <div class="title">
@@ -19,7 +28,7 @@
         </div>
         <div class="input-container">
             <a class="material-icons">search</a>
-            <input class="location-input" placeholder="Enter a location..."/>
+            <input id="location-input" class="location-input" placeholder="Enter a location..."/>
         </div>
         <div class="content-container">
 

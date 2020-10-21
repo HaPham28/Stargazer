@@ -69,11 +69,11 @@ body {
     color: rgba(255, 255, 255, 0.6);
     margin-left: 20px;
     font-size: 44px;
-    margin-top: 16px;
+    margin-top: 8px;
 }
 
 .location-input {
-    font-size: 48px;
+    font-size: 32px;
     padding: 10px 80px;
     background-color: #23272a;
     box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.3);
@@ -87,4 +87,25 @@ body {
     border:1px solid rgba(114, 137, 218, 0.3);
     box-shadow: 0px 0px 6px 3px rgba(114, 137, 218, 0.2);
     outline:none;
+}
+
+.pac-item, .pac-container, .pac-container::after {
+    background-color: #23272a;
+}
+
+.pac-item, .pac-container::after, .pac-item-query {
+    color:white;
+}
+
+.pac-item {
+    border: 1px solid #23272a;
+}
+
+.pac-item:hover {
+    background-color: #2c2f33;
+}
+
+.pac-container::after {
+    height:0;
+    opacity: 0;
 }
