@@ -4,6 +4,87 @@
 *
 *********************************/
 
+/* Color Palette
+*  #2c2f33 - Dark gray
+*  #23272a - Darker gray
+*  #7289da - Soft purple
+*
+*
+*/
+
+* {
+    font-family: "Helvetica", "sans-serif";
+    color: white;
+}
+
 body {
-    background-color: darkslategray;
+    background-color: #2c2f33;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*************** Navigation Bar **************/
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+
+    width: 100%;
+    margin-bottom: 100px;
+}
+
+.title h1 {
+    color: #7289da;
+}
+
+.nav-links {
+    margin: 25px 25px;
+}
+
+.nav-link {
+    font-weight: bold;
+    margin-right: 15px;
+    cursor: pointer;
+    transition: all 0.2s ease-out;
+}
+
+.nav-link:hover {
+    color: #7289da;
+}
+
+.active-link {
+    color: #7289da;
+}
+
+/*************** Search Input **************/
+
+.input-container a {
+    cursor: pointer;
+
+    position: absolute;
+    color: rgba(255, 255, 255, 0.6);
+    margin-left: 20px;
+    font-size: 44px;
+    margin-top: 16px;
+}
+
+.location-input {
+    font-size: 48px;
+    padding: 10px 80px;
+    background-color: #23272a;
+    box-shadow: 0px 0px 6px 3px rgba(0, 0, 0, 0.3);
+    color: #7289da;
+    border: none;
+    border-radius: 50px;
+    transition: all 0.2s;
+}
+
+.location-input:focus {
+    border:1px solid rgba(114, 137, 218, 0.3);
+    box-shadow: 0px 0px 6px 3px rgba(114, 137, 218, 0.2);
+    outline:none;
 }
