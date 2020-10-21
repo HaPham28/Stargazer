@@ -2,14 +2,26 @@
   "name": "stargazer",
   "version": "1.0.0",
   "description": "Stargazer web application for CSCE 315",
-  "main": "script.js",
+  "main": "index.js",
   "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "start": "webpack-dev-server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.tamu.edu/CSCE315-902-Project3-B8/Stargazer.git"
+    "url": "git+https://github.tamu.edu/CSCE315-902-Project3-B8/Stargazer.git"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies (will add in later by removing parenteses, this is a comment)": {
+    "client_side": "file:back-end/client_side/pkg"
+  },
+  "devDependencies": {
+    "hello-wasm-pack": "^0.1.0",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5",
+    "copy-webpack-plugin": "^5.0.0"
+  }
 }
