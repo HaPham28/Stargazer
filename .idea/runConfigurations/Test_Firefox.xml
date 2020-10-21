@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Test Firefox" type="WasmPackCommandRunConfiguration" factoryName="wasm-pack">
+    <option name="command" value="test --firefox --headless" />
+    <option name="workingDirectory" value="file://$PROJECT_DIR$/back-end/client_side" />
+    <method v="2" />
+  </configuration>
+</component>
