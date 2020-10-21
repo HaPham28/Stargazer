@@ -1,0 +1,5 @@
+[workspace]
+members = [
+    "client_side",
+    "server_side",
+]
