@@ -66,8 +66,5 @@ function clearWeatherCards() {
  * } weatherData 
  */
 function addWeatherCards(weatherData) {
-    // Placeholders
-    let date = new Date();
-    let temperature = 77;
-    let moonPhase = "New";
+    //Placeholder
 }
