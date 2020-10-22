@@ -4,9 +4,10 @@
 *
 *********************************/
 
-import {greet} from "client_side";
+// Caused error in autocomplete2 -> getLightPollution() not defined
+//import {greet} from "client_side";
 
-greet()
+//greet()
 
 /*********************************
  * 
@@ -31,27 +32,42 @@ function getLightPollution() {
     const apiKey = '45pZnF8eF3ak9ixj'
     let latitude = SearchLocation.latitude;
     let longtitude = SearchLocation.longitude;
-    let url = 'https://www.lightpollutionmap.info/QueryRaster/?ql=viirs_2019&qt=point&qd=' + longtitude + ','+ latitude + '&key=' + SecretKey_light;
+    let url = 'https://www.lightpollutionmap.info/QueryRaster/?ql=viirs_2019&qt=point&qd=' + longtitude + ','+ latitude + '&key=' + apiKey;
     console.log(url);
 
     let request = new XMLHttpRequest();
     request.open('GET', url, true);    
     console.log("Request opened");
-    request.onreadystatechange = function() {
+    request.onload = function() {
         console.log("Light level: " + this.response);
     }
     request.send();
 }
-
-
-
-
-
-
-
 
 /*********************************
  * 
  *   HTML template updates
  * 
 *********************************/
+
+/**
+ * Clears all weather cards from the HTML
+ */
+function clearWeatherCards() {
+    let cards = document.querySelector(".weather-container");
+    cards.innerHTML = '';
+}
+
+/**
+ * Adds weather cards to DOM based on data returned from weather query
+ * @param {
+ * 
+ * 
+ * } weatherData 
+ */
+function addWeatherCards(weatherData) {
+    // Placeholders
+    let date = new Date();
+    let temperature = 77;
+    let moonPhase = "New";
+}

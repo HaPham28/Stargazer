@@ -2,14 +2,16 @@
 <head>
     <title>Stargazer</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="weatherCards.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
 
     <!-- Google Maps Autocomplete -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-    <script src="bootstrap.js"></script>
-    <script src="autocomplete.js" defer></script>
+    <!--script src="bootstrap.js"></script> error in autocomplete.js -> getLightPollution() not defined; not sure how this works -->
+    <script src="index.js"></script>
+    <script src="autocomplete.js"></script>
     <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6kxrVKGQ0WmQRB393p9Vr12ifrtBDJ_o&callback=initMap&libraries=places&v=weekly"
     async defer
@@ -29,11 +31,31 @@
             </div>
         </div>
         <div class="input-container">
-            <a class="material-icons">search</a>
+            <a class="material-icons" onclick="clearWeatherCards()">search</a>
             <input id="location-input" class="location-input" placeholder="Enter a location..."/>
         </div>
         <div class="content-container">
-
+            
+            <!-- Contains all weather cards (added in index.js) -->
+            <div class="weather-container">
+                <div class="weather-card">
+                    <div class="weather-top">
+                        <!-- Show moon phase icon, temperature -->
+                        <div class="weather-top-left">
+                            <img title="Waxing Gibbous" class="weather-moon" src="./assets/gibbous_waxing.png"/>
+                            <p class="weather-temperature">77&#176;F</p>
+                        </div>
+                        <!-- Show day/date, sunset time, precip chance -->
+                        <div class="weather-top-right">
+                            <p class="weather-day">Monday</p>
+                            <p class="weather-date">Sep 22, 2020</p>
+                            <div title="Sunset time" class="weather-sunset"><i class="material-icons">brightness_7</i><p> 6:45 PM</p></div>
+                            <div class="weather-precipitation"><i class="material-icons">opacity</i><p> 65%</p></div>
+                        </div>
+                    </div>
+                    <div class="weather-bottom"></div>
+                </div>
+            </div>
         </div>
     </div>
 </body>
