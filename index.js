@@ -24,6 +24,8 @@ const SecretKey = 'ZclnNemymt1nOKIUsB37ci2U5ydvua6e6OAla33f';
 
 // Aeris Weather Info (weather forecast)
 // Same API ID & Key as above
+// Example request: https://api.aerisapi.com/forecasts/42.25,-95.25?limit=14&client_id=cruQcmMBbu2IWxTzBpQxF&client_secret=ZclnNemymt1nOKIUsB37ci2U5ydvua6e6OAla33f
+// more info: https://www.aerisweather.com/support/docs/api/reference/endpoints/forecasts/
 
 
 
