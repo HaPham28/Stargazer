@@ -116,3 +116,7 @@ body {
     display: flex;
     flex-wrap: wrap;
 }
+.location-container {
+    display: flex;
+    flex-wrap: wrap;
+}
