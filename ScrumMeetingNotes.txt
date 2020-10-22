@@ -8,6 +8,7 @@ Agenda:
     1. Work done since last scrum meeting
     2. Work to complete that day (or until next meeting)
     3. Any blockers/dependancies?
+  We will update the Sprint backlog as we go
 
 
 Scott
@@ -37,7 +38,73 @@ Ha
 
 
 
+10/22
+
+Agenda:
+  Each person will discuss:
+    1. Work done since last scrum meeting
+    2. Work to complete that day (or until next meeting)
+    3. Any blockers/dependancies?
+  We will update the Sprint backlog as we go
+
+Scott
+  1. Got weather & moon APIs working
+  2. Implement ^ APIs in JS, find astro API
+  3. having trouble finding Astronomical events API
+
+Alex
+  1. Built basic template for search API, got Google places auto complete working, looked at LP api w/ Ha, built template for weather cards
+  2. Working on weather templates
+  3. Formatting for weather cards
+
+Vinay
+  1. Downloading Postman, trying to figure out Parks API
+  2. Wants to find API with all parks instead of just National parks, Alex has idea for this (Google places API)
+  3. Going to check out API from Alex
+
+Brett
+  1. 
+  2. 
+  3. 
+
+Ha
+  1. Looked at LP api w/ Alex, looking at Aeris weather API
+  2. Wants to incorporate into weather template
+  3. Still learning about APIs, wants to learn more about how stuff works.
 
 
 
+x/x
+
+Agenda:
+  Each person will discuss:
+    1. Work done since last scrum meeting
+    2. Work to complete that day (or until next meeting)
+    3. Any blockers/dependancies?
+  We will update the Sprint backlog as we go
+
+Scott
+  1. 
+  2. 
+  3. 
+
+Alex
+  1. 
+  2. 
+  3. 
+
+Vinay
+  1. 
+  2. 
+  3. 
+
+Brett
+  1. 
+  2. 
+  3. 
+
+Ha
+  1. 
+  2. 
+  3. 
 

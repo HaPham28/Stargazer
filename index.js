@@ -20,7 +20,8 @@ const SecretKey = 'ZclnNemymt1nOKIUsB37ci2U5ydvua6e6OAla33f';
 // request format: https://api.aerisapi.com//sunmoon/moonphases?limit={NUMDAYS}&client_id=cruQcmMBbu2IWxTzBpQxF&client_secret=ZclnNemymt1nOKIUsB37ci2U5ydvua6e6OAla33f
 // replace {NUMDAYS} with number of days we want moon phases (should be 7 in our case..)
 // more info: https://www.aerisweather.com/support/docs/api/reference/endpoints/sunmoon-moonphases/
-
+// Example request: https://api.aerisapi.com/forecasts/42.25,-95.25?limit=14&client_id=cruQcmMBbu2IWxTzBpQxF&client_secret=ZclnNemymt1nOKIUsB37ci2U5ydvua6e6OAla33f
+// more info: https://www.aerisweather.com/support/docs/api/reference/endpoints/forecasts/
 
 // Aeris Weather Info (weather forecast)
 // Same API ID & Key as above
@@ -92,10 +93,6 @@ function getWeatherForecast(){
     }
 
 }
-
-
-
-
 
 
 
