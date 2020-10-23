@@ -58,7 +58,22 @@
                             <div class="weather-precipitation"><i class="material-icons">opacity</i><p> 65%</p></div>
                         </div>
                     </div>
-                    <div class="weather-bottom"></div>
+
+                    <!-- Show rating bars -->
+                    <div class="weather-bottom">
+                        <div class="weather-rating cloud-rating"><div class="material-icons weather-marker marker-8" title="Cloud Cover">wb_cloudy</div></div>
+                        <div class="weather-rating visibility-rating"><div class="material-icons weather-marker marker-6" title="Visibility">visibility</div></div>
+
+                        <div class="weather-separator"></div>
+
+                        <!-- Overall weather rating -->
+                        <h3 class="weather-rating-title">Rating</h3>
+                        <div style="width: 90%" class="rating-bar weather-rating-bar">
+                            <div class="rate-8">
+                                <span class="animate blue"></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             
@@ -96,7 +111,7 @@
                         </div>                        <!-- Show light pollution -->
                         <div class ="location-card-right-bottom">
                             <div class="pollution" >
-                                <div class="pollution-title">pollution</div>
+                                <div class="pollution-title">Light Pollution</div>
                                 <p class="pollution-value">123 lpc</p>
                                 <div class="rating-bar">
                                     <div class="rate-8">

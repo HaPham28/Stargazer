@@ -25,6 +25,14 @@ const SecretKey = 'ZclnNemymt1nOKIUsB37ci2U5ydvua6e6OAla33f';
 
 // Aeris Weather Info (weather forecast)
 // Same API ID & Key as above
+
+/*
+CL	Clear	            Cloud coverage is 0-7% of the sky.
+FW	Fair/Mostly sunny	Cloud coverage is 7-32% of the sky.
+SC	Partly cloudy	    Cloud coverage is 32-70% of the sky.
+BK	Mostly Cloudy	    Cloud coverage is 70-95% of the sky.
+OV	Cloudy/Overcast	    Cloud coverage is 95-100% of the sky.
+*/
 function getWeatherForecast(){
     const AccessID = 'cruQcmMBbu2IWxTzBpQxF';
     const SecretKey = 'ZclnNemymt1nOKIUsB37ci2U5ydvua6e6OAla33f';
@@ -44,15 +52,8 @@ function getWeatherForecast(){
                 const forecastsResults = apiResults[1].data;
                 const placesResults = apiResults[2].data;
  
-                // document.getElementById('location').innerHTML = formatPlaceName(placesResults);
                 console.log(apiResults)
-                // renderForecastDays(forecastsResults[0].periods);
             });
-
-    // function formatPlaceName(obj) {
-    //     const stateOrCountry = (obj.place.state) ? obj.place.state : obj.place.country;
-    //     return `${obj.place.name}, ${stateOrCountry}`;
-    // }
      
     function renderForecastDays(periods) {
         periods.reverse();
