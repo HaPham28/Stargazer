@@ -74,6 +74,41 @@ Ha
 
 
 
+10/23
+
+Agenda:
+  Each person will discuss:
+    1. Work done since last scrum meeting
+    2. Work to complete that day (or until next meeting)
+    3. Any blockers/dependancies?
+  We will update the Sprint backlog as we go
+
+Scott
+  1. Looked more into Astro APIs
+  2. Connect UI to weather & moon APIs
+  3. None
+
+Alex
+  1. Looked at weather API w/ Ha
+  2. Finish weather card
+  3. None, maybe APIs format
+
+Vinay
+  1. Got postman working, looking at NPS & Google places
+  2. Figure out how to get google places API key
+  3. API key for google places
+
+Brett
+  1. Finished whole server side for logging in
+  2. Running tests on server, work on client-side functions
+  3. Google API Login (OAuth stuff)
+
+Ha
+  1. Looked at Moon & weather APIs, got them working in JS. Finished location card on landing page
+  2. Work on landing page
+  3. None
+
+
 x/x
 
 Agenda:
