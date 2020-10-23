@@ -96,7 +96,7 @@ function getWeatherForecast(){
 
 
 
-//light polution info
+//light pollution info
 function getLightPollution() {
     const apiKey = '45pZnF8eF3ak9ixj'
     let latitude = SearchLocation.latitude;
@@ -111,6 +111,7 @@ function getLightPollution() {
         console.log("Light level: " + this.response);
     }
     request.send();
+    document.querySelector(".animate").classList.toggle("rate-8");
 }
 
 /*********************************

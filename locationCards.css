@@ -45,7 +45,7 @@
 }
 span.location-name{
     font-size: 30px;
-    color: blue;
+    color: #7289da;
     height: 20px;
     width: 200px;
     font-weight: bold;
@@ -97,27 +97,33 @@ span.location-address{
 .rating-star-0 i {
     font-size: 25px;
     color: white;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    -webkit-text-stroke: 1px #2c2f33c2;
 }
 .rating-star-25 i{
     font-size: 25px;
-    background: linear-gradient(to right, blue 25%, white 75%);
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    background: linear-gradient(to right, #7289da 40%, white 0%);
+    -webkit-text-stroke: 1px #2c2f33c2;
+    -webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 .rating-star-50 i{
     font-size: 25px;
-    color: -webkit-linear-gradient(to right, blue 50%, white 50%);
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    background: linear-gradient(to right, #7289da 50%, white 0%);
+    -webkit-text-stroke: 1px #2c2f33c2;
+    -webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 .rating-star-75 i{
     font-size: 25px;
-    background: linear-gradient(to right, blue 75%, white 25%);
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    background: linear-gradient(to right, #7289da 60%, white 0%);
+    -webkit-text-stroke: 1px #2c2f33c2;
+    -webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 .rating-star-100 i{
     font-size: 25px;
-    color: blue;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    color: #7289da;
+    -webkit-text-stroke: 1px #2c2f33c2;
 }
 
 
@@ -129,19 +135,19 @@ span.location-address{
     height: 80px;
 }
 
-.polution-title{
+.pollution-title{
     font-size: 20px;
     color: rgba(150, 150, 150);
     font-weight: bold;
 
 }
-.polution-value{
+.pollution-value{
     font-size: 15px;
     color: rgba(150, 150, 150);
 
 }
 .rating-bar{
-    background:grey;
+    background:#2c2f33c2;
     padding: 3px;
   }
 
@@ -166,7 +172,7 @@ span.location-address{
 .rate-10{ width:100%; }
 
 /* Used to color the bars */
-.blue{ background:blue; }
+.blue{ background:#7289da; }
 .red{ background:red; }
 
 .animate{
