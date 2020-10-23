@@ -38,6 +38,7 @@
             <a class="material-icons" onclick="clearWeatherCards()">search</a>
             <input id="location-input" class="location-input" placeholder="Enter a location..."/>
         </div>
+        
         <div class="content-container">
             
             <!-- Contains all weather cards (added in index.js) -->
@@ -82,7 +83,7 @@
                             <div class="location-icon"><i class="material-icons">place</i></div>
                         </div>
 
-                        <!-- Show desciption of location -->
+                        <!-- Show desciption of location & rating star-->
                         <div class="location-card-right-middle">
                             <div class="location-description"> This is for descriptions....</div>
                             <div class="location-rating-stars-group">
@@ -91,11 +92,22 @@
                                 <span class="rating-star-100"><i class="material-icons">grade</i></span>
                                 <span class="rating-star-0"><i class="material-icons">grade</i></span>
                                 <span class="rating-star-0"><i class="material-icons">grade</i></span>
-
-
-
                             </div>
+                        </div>                        <!-- Show light polution -->
+                        <div class ="location-card-right-bottom">
+                            <div class="polution" >
+                                <div class="polution-title">Polution</div>
+                                <p class="polution-value">123 lpc</p>
+                                <div class="rating-bar">
+                                    <div class="rate-8">
+                                        <span class="animate blue"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            
                         </div>
+
+
                     </div>
                 </div>
             </div>

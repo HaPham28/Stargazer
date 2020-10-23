@@ -15,7 +15,7 @@
     align-items: center;
 
     background-image: url("./assets/central-park.jpg");
-
+    background-size: cover;
     height: 250px;
     width: 25%;
 }
@@ -26,14 +26,13 @@
     flex-direction: row;
     /* align-items: left; */
     height: 250px;
-    padding: 5px;
+    padding: 20px;
     width: 75%;
 }
     /***RIGHT-TOP***/
 .location-card-right-top{
     display: inline-flex;
     flex-direction: row;
-    margin: 5px 0;
     color: rgba(150, 150, 150);
     height: 40px;
     box-shadow: 0px 4px 4px -4px rgba(0, 0, 0, 0.3);
@@ -81,7 +80,7 @@ span.location-address{
 .location-card-right-middle{
     display: flex;
     margin: 5px;
-    height: 100px;
+    height: 65px;
 }
 
 .location-description {
@@ -98,26 +97,85 @@ span.location-address{
 .rating-star-0 i {
     font-size: 25px;
     color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
-.rating-star-25{
-
+.rating-star-25 i{
+    font-size: 25px;
+    background: linear-gradient(to right, blue 25%, white 75%);
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
-.rating-star-75{
-
+.rating-star-50 i{
+    font-size: 25px;
+    color: -webkit-linear-gradient(to right, blue 50%, white 50%);
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+.rating-star-75 i{
+    font-size: 25px;
+    background: linear-gradient(to right, blue 75%, white 25%);
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 .rating-star-100 i{
     font-size: 25px;
     color: blue;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
 
 
     /***RIGHT-BOTTOM***/
-.location-card-right-top-bottom{
+.location-card-right-bottom{
     margin: 5px 0;
     color: rgba(150, 150, 150);
+    height: 80px;
 }
 
+.polution-title{
+    font-size: 20px;
+    color: rgba(150, 150, 150);
+    font-weight: bold;
+
+}
+.polution-value{
+    font-size: 15px;
+    color: rgba(150, 150, 150);
+
+}
+.rating-bar{
+    background:grey;
+    padding: 3px;
+  }
+
+  .rating-bar span{
+    display:block;
+    height:15px;
+  }
+  .rating-bar, .rating-bar span {
+    border-radius:4px; 
+  }
+
+  /* .rate-n, n being the rating from 1 to 10 */
+.rate-1{ width:10%; }
+.rate-2{ width:20%; }
+.rate-3{ width:30%; }
+.rate-4{ width:40%; }
+.rate-5{ width:50%; }
+.rate-6{ width:60%; }
+.rate-7{ width:70%; }
+.rate-8{ width:80%; }
+.rate-9{ width:90%; }
+.rate-10{ width:100%; }
+
+/* Used to color the bars */
+.blue{ background:blue; }
+.red{ background:red; }
+
+.animate{
+    animation: progress 2s linear;
+    -moz-animation: progress 2s linear;
+    -webkit-animation: progress 2s linear;
+    -ms-animation: progress 2s linear;
+    -o-animation: progress 2s linear;
+  }
 
 
 
