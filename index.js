@@ -133,7 +133,7 @@ function addWeatherCards(weatherData, moonData) {
         const dayName = weekdayNames[JSDate.getDay()];
         const date = monthNames[JSDate.getMonth()] + " " + JSDate.getDate() + ", " + JSDate.getFullYear();
         const maxTempF = period.maxTempF || 'N/A';
-        const moonPhase = getMoonPhase(moonPhaseResults, JSDate);
+        const moonPhase = getMoonPhase(moonData, JSDate);
 
 
         const template = (`
