@@ -53,46 +53,8 @@ function getWeatherForecast(){
                 const placesResults = apiResults[2].data;
  
                 console.log(apiResults)
+                addWeatherCards(forecastsResults, moonphaseResults);
             });
-     
-    function renderForecastDays(periods) {
-        periods.reverse();
-
-        const weekdayNames = [
-            'Sunday',
-            'Monday',
-            'Tuesday',
-            'Wednesday',
-            'Thursday',
-            'Friday',
-            'Saturday'
-        ];
-
-        periods.forEach(period => {
-            const dayName = weekdayNames[new Date(period.dateTimeISO).getDay()];
-            const iconSrc = `https://cdn.aerisapi.com/wxblox/icons/${period.icon || 'na.png'}`;
-            const maxTempF = period.maxTempF || 'N/A';
-
-            console.log("Temperature: " + maxTempF
-            );
-            const minTempF = period.minTempF || 'N/A';
-            const weather = period.weatherPrimary || 'N/A';
-
-            const template = (`
-            <div class="card" style="width: 20%">
-                <div class="card-body">
-                    <h4 class="card-title text-center">${dayName}</h4>
-                    <p><img class="card-img mx-auto d-block" style="max-width: 100px;" src="${iconSrc}"></p>
-                    <h6 class="card-title text-center">${weather}</h6>
-                    <p class="card-text text-center">High: ${maxTempF} Low: ${minTempF}</p>
-                </div>
-            </div>
-        `);
-
-            document.getElementById('forecast-items').insertAdjacentHTML('afterbegin', template);
-        });
-    }
-
 }
 
 
@@ -136,6 +98,83 @@ function clearWeatherCards() {
  * 
  * } weatherData 
  */
-function addWeatherCards(weatherData) {
-    //Placeholder
+function addWeatherCards(weatherData, moonData) {
+    clearWeatherCards();
+    weatherData[0].periods.reverse();
+    console.log(weatherData);
+    console.log(moonData);
+    const weekdayNames = [
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednes...',
+        'Thursday',
+        'Friday',
+        'Saturday'
+    ];
+
+    const monthNames = [
+        'Jan',
+        'Feb',
+        'Mar',
+        'Apr',
+        'May',
+        'Jun',
+        'Jul',
+        'Aug',
+        'Sep',
+        'Oct',
+        'Nov',
+        'Dec'
+    ];
+
+    weatherData[0].periods.forEach(period => {
+        const JSDate = new Date(period.dateTimeISO);
+        const dayName = weekdayNames[JSDate.getDay()];
+        const date = monthNames[JSDate.getMonth()] + " " + JSDate.getDate() + ", " + JSDate.getFullYear();
+        const maxTempF = period.maxTempF || 'N/A';
+        const moonPhase = getMoonPhase(moonPhaseResults, JSDate);
+
+
+        const template = (`
+        <div class="weather-card">
+            <div class="weather-top">
+                <!-- Show moon phase icon, temperature -->
+                <div class="weather-top-left">
+                    <img title="Waxing Gibbous" class="weather-moon" src="./assets/gibbous_waxing.png"/>
+                    <p class="weather-temperature">${maxTempF}&#176;F</p>
+                </div>
+                <!-- Show day/date, sunset time, precip chance -->
+                <div class="weather-top-right">
+                    <p class="weather-day">${dayName}</p>
+                    <p class="weather-date">${date}</p>
+                    <div title="Sunset time" class="weather-sunset"><i class="material-icons">brightness_7</i><p> 6:45 PM</p></div>
+                    <div class="weather-precipitation"><i class="material-icons">opacity</i><p> 65%</p></div>
+                </div>
+            </div>
+
+            <!-- Show rating bars -->
+            <div class="weather-bottom">
+                <div class="weather-rating cloud-rating"><div class="material-icons weather-marker marker-8" title="Cloud Cover">wb_cloudy</div></div>
+                <div class="weather-rating visibility-rating"><div class="material-icons weather-marker marker-6" title="Visibility">visibility</div></div>
+
+                <div class="weather-separator"></div>
+
+                <!-- Overall weather rating -->
+                <div class="weather-rating-title"><h3>Rating</h3><h3>8/10</h3></div>
+                <div style="width: 90%" class="rating-bar weather-rating-bar">
+                    <div class="rate-8">
+                        <span class="animate blue"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `);
+
+        document.querySelector('.weather-container').insertAdjacentHTML('afterbegin', template);
+    });
+}
+
+function getMoonPhase(moonPhaseData, date) {
+    // TODO
 }
