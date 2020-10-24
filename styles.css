@@ -27,6 +27,10 @@ body {
     align-items: center;
 }
 
+.content-container {
+    width: 80%;
+}
+
 /*************** Navigation Bar **************/
 
 .navigation {
@@ -111,9 +115,25 @@ body {
     opacity: 0;
 }
 
+/**************** General Content *****************/
+
+.place-title {
+    color: #7289da;
+    padding: 10px 0;
+    border-bottom: 3px solid #23272a50;
+}
+
+.section-title, .section-title * {
+    color: rgba(150, 150, 150, 1);
+    font-size: 24px;
+    vertical-align: middle;
+}
+
 /**************** Weather **************/
+
 .weather-container {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
 }
 .location-container {

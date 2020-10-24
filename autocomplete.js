@@ -57,6 +57,9 @@ function initMap() {
       SearchLocation.placeName = place.name;
       getWeatherForecast();
       getLightPollution();
+      // Set place title
+      document.querySelector('.place-title').innerHTML = place.name;
+
       //console.log(SearchLocation.placeName + ": " + SearchLocation.latitude + ", " + SearchLocation.longitude);*/
 
       marker.setVisible(true);
