@@ -163,7 +163,7 @@ function getNearbyParks() {
     
     let request = {
         location: new google.maps.LatLng(SearchLocation.latitude, SearchLocation.longitude),
-        radius: '10000',
+        radius: '50000',
         type: ['park']
     };
 
