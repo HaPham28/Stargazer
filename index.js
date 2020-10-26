@@ -138,7 +138,7 @@ function getConstellationData() {
         let request = new XMLHttpRequest();
         request.open('GET', url, true);    
         request.onload = function() {
-            console.log(this.response);
+            //console.log(this.response);
             if(constellationIsVisible(this.response)) {
                 visibleConstellations.push(this.response);
             }
@@ -152,6 +152,26 @@ function getConstellationData() {
 // TODO
 function constellationIsVisible(constellationData) {
     return false;
+}
+
+// get 20 most relevant nearby parks (as ranked by google)
+function getNearbyParks() {
+    const map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: SearchLocation.latitude, lng: SearchLocation.longitude },
+        zoom: 15,
+    });
+    
+    let request = {
+        location: new google.maps.LatLng(SearchLocation.latitude, SearchLocation.longitude),
+        radius: '10000',
+        type: ['park']
+    };
+
+    let service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, function(results, status) {
+        console.log(results);
+    });
+
 }
 
 /*********************************

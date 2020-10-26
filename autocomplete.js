@@ -52,12 +52,14 @@ function initMap() {
       }
       marker.setPosition(place.geometry.location);
       console.log(place);
-      SearchLocation.latitude = (place.geometry.viewport.Ya.j + place.geometry.viewport.Ya.i) / 2;
-      SearchLocation.longitude = (place.geometry.viewport.Sa.j + place.geometry.viewport.Sa.i) / 2;
+      SearchLocation.latitude = place.geometry.location.lat();
+      SearchLocation.longitude = place.geometry.location.lng();
       SearchLocation.placeName = place.name;
       getWeatherForecast();
       getLightPollution();
       getConstellationData();
+      getNearbyParks();
+
       // Set place title
       document.querySelector('.place-title').innerHTML = place.name;
 
