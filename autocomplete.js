@@ -81,5 +81,18 @@ function initMap() {
             "",
         ].join(" ");
       }
+
+      let heat_src = 'https://www.lightpollutionmap.info/#zoom=10.00&lat=' + SearchLocation.latitude + '&lon=' + SearchLocation.longitude + '&layers=B0FFFFFTFFFFFFFFFF';
+      // document.querySelector('#light-pollution-map-iframe').attributes('src', heat_src);
+      document.querySelector('.light-pollution-map-container').innerHTML = '';
+      document.querySelector('.light-pollution-map-container').insertAdjacentHTML('afterbegin','<iframe id="light-pollution-map-iframe" src="' + heat_src + '"></iframe>');
+      
+      //document.getElementById('light-pollution-map-iframe').src = heat_src;
+      //document.getElementById('​light-pollution-map-iframe').contentDocument.location.reload(true);
+
+
+
+      console.log(heat_src);
+  
     });
   }
