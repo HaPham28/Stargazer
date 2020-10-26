@@ -113,6 +113,47 @@ function getLightPollution() {
     document.querySelector(".animate").classList.toggle("rate-8");
 }
 
+function getConstellationData() {
+    const constellationNames = [
+        "Aquarius",
+        "Aquila",
+        "Aries",
+        "Canis Major",
+        "Cassiopeia",
+        "Cygnus",
+        "Gemini",
+        "Leo",
+        "Lyra",
+        "Orion",
+        "Pisces",
+        "Scorpius",
+        "Taurus",
+        "Ursa Major",
+        "Ursa Minor"
+    ];
+
+    let visibleConstellations = [];
+    for(constellation in constellationNames) {
+        let url = 'https://www.strudel.org.uk/lookUP/json/?name=' + constellationNames[constellation].replace(' ', '+');
+        let request = new XMLHttpRequest();
+        request.open('GET', url, true);    
+        request.onload = function() {
+            console.log(this.response);
+            if(constellationIsVisible(this.response)) {
+                visibleConstellations.push(this.response);
+            }
+        }
+        request.send();
+    }
+
+    //TODO: Show constellations in UI
+}
+
+// TODO
+function constellationIsVisible(constellationData) {
+    return false;
+}
+
 /*********************************
  * 
  *   HTML template updates
@@ -264,7 +305,6 @@ function addWeatherCards(weatherData, moonData) {
         // Get overall rating
         const overallRating = getOverallWeatherRating(moonPhase, cloudRatingClass, visibilityRatingClass);
         const overallRatingClass = 'rate-' + Math.max(1, overallRating);
-        //console.log(overallRatingClass);
 
         const template = (`
         <div class="weather-card">
@@ -375,68 +415,53 @@ function getMoonPhase(moonPhaseData, date) {
 
 function getOverallWeatherRating(moonPhase, cloudRatingClass, visibilityRatingClass, precipitationPercentage) {
     let score = 0;
-    //console.log(cloudRatingClass);
     switch(moonPhase) {
         case moonPhases.NEW_MOON:
-            //console.log("MOON: 4");
             score += 4;
             break;
         case moonPhases.WANING_CRESCENT || moonPhases.WAXING_CRESCENT:
-            //console.log("MOON: 3");
             score += 3;
             break;
         case moonPhases.FIRST_QUARTER || moonPhases.THIRD_QUARTER:
-            //console.log("MOON: 2");
             score += 2;
             break;
         case moonPhases.WAXING_GIBBOUS || moonPhases.WANING_GIBBOUS:
-            //console.log("MOON: 1");
             score += 1;
             break;
     }
 
     switch(cloudRatingClass) {
         case 'marker-4':
-            //console.log("CLOUD: 1");
             score += 1;
             break;
         case 'marker-5':
-            //console.log("CLOUD: 1");
             score += 1;
             break;
         case 'marker-6':
-            //console.log("CLOUD: 2");
             score += 2;
             break;
         case 'marker-7':
-            //console.log("CLOUD: 3");
             score += 3;
             break;
         case 'marker-8':
-            //console.log("CLOUD: 3");
             score += 3;
             break;
         case 'marker-9':
-            //console.log("CLOUD: 3.5");
             score += 3.5;
             break;
         case 'marker-10':
-            //console.log("CLOUD: 4");
             score += 4;
             break;
     }
 
     switch(visibilityRatingClass) {
         case 'marker-4' || 'marker-5' || 'marker-6':
-            //console.log("VIS: 1");
             score += 1;
             break;
         case 'marker-7' || 'marker-8' || 'marker-9':
-            //console.log("VIS: 1.5");
             score += 1.5;
             break;
         case 'marker-10':
-            //console.log("VIS: 2");
             score += 2;
             break;
     }

@@ -57,6 +57,7 @@ function initMap() {
       SearchLocation.placeName = place.name;
       getWeatherForecast();
       getLightPollution();
+      getConstellationData();
       // Set place title
       document.querySelector('.place-title').innerHTML = place.name;
 
