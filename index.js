@@ -84,6 +84,18 @@ var events = [{"date":"10/21/2020", "event_name":"Orionid Meteor Shower", "event
 {"date":"05/5/2021", "event_name":"Eta Aquarid Meteors", "event_description":"Use our handy Interactive Meteor Shower Sky Map to increase your chances of seeing shooting stars from the Eta Aquarids.", "event_link":"https://www.timeanddate.com/astronomy/meteor-shower/eta-aquarids.html"}
 ];
 
+function getNextAstronomicalEvent(){
+    for (i = 0; i < events.length; i++){
+        var curEvent = events[i];
+        var curDate = new Date(curEvent["date"]);
+        var todaysDate = new Date();
+        if (curDate > todaysDate){
+            return curEvent;
+        }
+    }
+    return null;
+}
+
 //light pollution info
 function getLightPollution() {
     const apiKey = '45pZnF8eF3ak9ixj'
