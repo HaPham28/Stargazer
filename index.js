@@ -100,15 +100,16 @@ function getNextAstronomicalEvent(){
 function getLightPollution(lat, long) {
     const apiKey = '45pZnF8eF3ak9ixj'
     let url = 'https://www.lightpollutionmap.info/QueryRaster/?ql=viirs_2019&qt=point&qd=' + long + ','+ lat + '&key=' + apiKey;
-
+    // console.log(url);
     let request = new XMLHttpRequest();
     request.open('GET', url, true);    
-    //console.log("Request opened");
+    // console.log("Request opened");
     request.onload = function() {
-        //console.log("Light level: " + this.response);
+         console.log("Light level: " + this.response);
     }
     request.send();
     document.querySelector(".animate").classList.toggle("rate-8");
+    return this.response;
 }
 
 function getConstellationData() {
@@ -164,11 +165,35 @@ function getNearbyParks() {
         radius: '50000',
         type: ['park']
     };
-
+    console.log("long lat" + SearchLocation.latitude + ", " + SearchLocation.longitude);
     let service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, function(results, status) {
+    let Parks = service.nearbySearch(request, function(results, status) {
         console.log(results);
     });
+
+    // Get top 10 of parks (the first 10 parks in the list)
+    let top10Parks = Parks.slice(0,10);
+
+    // console.log("lpt " + a_LightPollution);
+    
+
+    // add light pollution element to each Park
+    top10Parks.forEach( park => {
+        let lightPollution = getLightPollution(park.geometry.location.lat() , park.geometry.location.lng() );
+        park.myMap.put("Light_Polution" , lightPollution);
+    });
+
+    // sort the list of Parks by light pollution level
+    top10Parks.sort(function(a,b) 
+    {
+        // let a_LightPollution = getLightPollution(a.geometry.location.lat() , a.geometry.location.lng() );
+        // let b_LightPollution = getLightPollution(b.geometry.location.lat() , b.geometry.location.lng() );
+        // console.log("lpt " +  a_LightPollution + " " + b_LightPollution);
+        return a.Light_Pollution - b.Light_Pollution;
+    });
+
+    console.log(top10Parks);
+
 
 }
 
