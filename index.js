@@ -4,10 +4,17 @@
 *
 *********************************/
 
-// Caused error in autocomplete2 -> getLightPollution() not defined
-//import {greet} from "client_side";
+import {init, login} from "client_side";
 
-//greet()
+init()
+    .then(() => {
+        console.log("Initialized");
+        return login("hello", "cool");
+    })
+    .then(val => {
+        console.log("Login result: " + val);
+    })
+    .catch(reason => console.log(reason));
 
 /*********************************
  * 

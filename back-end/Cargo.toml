@@ -4,6 +4,3 @@ members = [
     "packet",
     "server_side",
 ]
-
-[patch."https://github.tamu.edu/CSCE315-902-Project3-B8/packet.git"]
-packet = { path = "packet" }
