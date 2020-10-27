@@ -56,7 +56,7 @@ function initMap() {
       SearchLocation.longitude = place.geometry.location.lng();
       SearchLocation.placeName = place.name;
       getWeatherForecast();
-      getLightPollution();
+      getLightPollution(SearchLocation.latitude, SearchLocation.longtitude);
       getConstellationData();
       getNearbyParks();
 

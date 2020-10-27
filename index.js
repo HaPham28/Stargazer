@@ -97,11 +97,9 @@ function getNextAstronomicalEvent(){
 }
 
 //light pollution info
-function getLightPollution() {
+function getLightPollution(lat, long) {
     const apiKey = '45pZnF8eF3ak9ixj'
-    let latitude = SearchLocation.latitude;
-    let longtitude = SearchLocation.longitude;
-    let url = 'https://www.lightpollutionmap.info/QueryRaster/?ql=viirs_2019&qt=point&qd=' + longtitude + ','+ latitude + '&key=' + apiKey;
+    let url = 'https://www.lightpollutionmap.info/QueryRaster/?ql=viirs_2019&qt=point&qd=' + long + ','+ lat + '&key=' + apiKey;
 
     let request = new XMLHttpRequest();
     request.open('GET', url, true);    
