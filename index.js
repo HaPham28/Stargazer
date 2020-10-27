@@ -172,7 +172,8 @@ function getNearbyParks() {
     });
 
     // Get top 10 of parks (the first 10 parks in the list)
-    let top10Parks = Parks.slice(0,10);
+    const num_Location = 3;  // 3 is just for debug, maybe 10 for demo
+    let top10Parks = Parks.slice(0,3);
 
     // console.log("lpt " + a_LightPollution);
     
