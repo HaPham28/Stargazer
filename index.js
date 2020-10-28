@@ -96,20 +96,25 @@ function getNextAstronomicalEvent(){
     return null;
 }
 
-//light pollution info
-function getLightPollution(lat, long) {
+//light pollution info --- return a STRING
+function getLightPollution(lat , lng) {
     const apiKey = '45pZnF8eF3ak9ixj'
-    let url = 'https://www.lightpollutionmap.info/QueryRaster/?ql=viirs_2019&qt=point&qd=' + long + ','+ lat + '&key=' + apiKey;
-    // console.log(url);
+    let url = 'https://www.lightpollutionmap.info/QueryRaster/?ql=viirs_2019&qt=point&qd=' + lng + ','+ lat + '&key=' + apiKey;
+    console.log(url);
     let request = new XMLHttpRequest();
-    request.open('GET', url, true);    
-    // console.log("Request opened");
-    request.onload = function() {
-         console.log("Light level: " + this.response);
+    request.open('GET', url, false);    
+    console.log("Request opened");
+
+    request.onload = function () {
+        if (request.readyState == 4 && request.status == 200) {
+            return request.response;
+        }
     }
+
     request.send();
     document.querySelector(".animate").classList.toggle("rate-8");
-    return this.response;
+
+    return request.onload();
 }
 
 function getConstellationData() {
@@ -165,39 +170,105 @@ function getNearbyParks() {
         radius: '50000',
         type: ['park']
     };
-    console.log("long lat" + SearchLocation.latitude + ", " + SearchLocation.longitude);
     let service = new google.maps.places.PlacesService(map);
-    let Parks = service.nearbySearch(request, function(results, status) {
+    service.nearbySearch(request, function(results, status) {
         console.log(results);
+
+        // Get top # of parks (the first # parks in the list)
+        const num_Location = 3;  // 3 is just for debug, maybe 10 for demo
+        let top10Parks = results.slice(0,num_Location);
+
+        // add light pollution element to each Park
+        top10Parks.forEach( park => {
+            let lat = park.geometry.location.lat();
+            let lng = park.geometry.location.lng();
+            let lightPollution = parseFloat(getLightPollution(lat, lng));
+
+            park.Light_Pollution = lightPollution;
+        });
+
+        // sort the list of Parks by light pollution level from low to high
+        top10Parks.sort(function(a,b) 
+        {
+            return a.Light_Pollution - b.Light_Pollution;
+        });
+
+        //add location cards
+        clearLocationCards();
+        makeLocationTemplate (top10Parks[0] , 'top-location-container');
+        top10Parks.slice(1,).forEach( park => {
+            makeLocationTemplate (park, 'location-container');
+        });
+        console.log(top10Parks);
+
+        
     });
-
-    // Get top 10 of parks (the first 10 parks in the list)
-    const num_Location = 3;  // 3 is just for debug, maybe 10 for demo
-    let top10Parks = Parks.slice(0,3);
-
-    // console.log("lpt " + a_LightPollution);
-    
-
-    // add light pollution element to each Park
-    top10Parks.forEach( park => {
-        let lightPollution = getLightPollution(park.geometry.location.lat() , park.geometry.location.lng() );
-        park.myMap.put("Light_Polution" , lightPollution);
-    });
-
-    // sort the list of Parks by light pollution level
-    top10Parks.sort(function(a,b) 
-    {
-        // let a_LightPollution = getLightPollution(a.geometry.location.lat() , a.geometry.location.lng() );
-        // let b_LightPollution = getLightPollution(b.geometry.location.lat() , b.geometry.location.lng() );
-        // console.log("lpt " +  a_LightPollution + " " + b_LightPollution);
-        return a.Light_Pollution - b.Light_Pollution;
-    });
-
-    console.log(top10Parks);
-
 
 }
 
+/**
+ * Clears all weather cards from the HTML
+ */
+function clearLocationCards() {
+    let top_location = document.querySelector(".top-location-container");
+    top_location.innerHTML = '';
+    let cards = document.querySelector(".location-container");
+    cards.innerHTML = '';
+}
+function makeLocationTemplate (park, position) {
+    let name = park.name;
+    let address = park.vicinity;
+    let rating = park.rating;
+    let lightPollution = park.Light_Pollution.toFixed(2);
+    let imgLink = " ";
+    let description = " ";
+
+
+    const template = (`
+    <div class="location-card">
+        <!-- Show picture of location -->
+        <div class="location-card-left"></div>
+
+        <div class="location-card-right">
+
+            <!-- Show name, address, and location icon -->
+            <div class="location-card-right-top">
+                <div class="location-location">
+                    <span class="location-name"> ${name},</span>
+                    <span class="location-address"> ${address} </span>
+                </div>
+                <div class="location-icon" title="Open in Maps"><i class="material-icons">place</i></div>
+            </div>
+
+            <!-- Show desciption of location & rating star-->
+            <div class="location-card-right-middle">
+                <div class="location-description"> This is for descriptions....</div>
+                <div class="location-rating-stars-group">
+                    <span class="rating-star-100"><i class="material-icons">grade</i></span>
+                    <span class="rating-star-100"><i class="material-icons">grade</i></span>
+                    <span class="rating-star-100"><i class="material-icons">grade</i></span>
+                    <span class="rating-star-75"><i class="material-icons">grade</i></span>
+                    <span class="rating-star-0"><i class="material-icons">grade</i></span>
+                </div>
+            </div>                        
+            <!-- Show light pollution -->
+            <div class ="location-card-right-bottom">
+                <div class="pollution" >
+                    <div class="pollution-title">Light Pollution</div>
+                    <p class="pollution-value">${lightPollution} lpc</p>
+                    <div class="rating-bar">
+                        <div class="rate-8">
+                            <span class="animate blue"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    `);
+
+    document.querySelector('.' + position).insertAdjacentHTML('beforeend', template);
+}
 /*********************************
  * 
  *   HTML template updates

@@ -52,11 +52,15 @@ function initMap() {
       }
       marker.setPosition(place.geometry.location);
       console.log(place);
+  
       SearchLocation.latitude = place.geometry.location.lat();
       SearchLocation.longitude = place.geometry.location.lng();
       SearchLocation.placeName = place.name;
+
+      
       getWeatherForecast();
-      getLightPollution(SearchLocation.latitude, SearchLocation.longtitude);
+      getLightPollution(SearchLocation.latitude , SearchLocation.longitude);
+
       getConstellationData();
       getNearbyParks();
 
