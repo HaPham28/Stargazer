@@ -109,37 +109,18 @@ Ha
   3. None
 
 
-x/x
+10/29 - Project meeting
 
-Agenda:
-  Each person will discuss:
-    1. Work done since last scrum meeting
-    2. Work to complete that day (or until next meeting)
-    3. Any blockers/dependancies?
-  We will update the Sprint backlog as we go
+Intro - illustrate need for Stargazing planner (2 min)
+Discuss:
+•	Product backlog. (2 min)
+•	Sprint backlog and burn down charts. (2 min)
+•	Brief LiveMache explanation. (2 min)
+•	Current status (2 min)
+•	Overall outlook for the project (2 min)
+•	Outstanding concerns (2 min)
 
-Scott
-  1. 
-  2. 
-  3. 
 
-Alex
-  1. 
-  2. 
-  3. 
 
-Vinay
-  1. 
-  2. 
-  3. 
 
-Brett
-  1. 
-  2. 
-  3. 
-
-Ha
-  1. 
-  2. 
-  3. 
 
