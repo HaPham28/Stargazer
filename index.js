@@ -225,6 +225,7 @@ function clearLocationCards() {
 function makeLocationTemplate (park, position) {
     let name = park.name;
     let address = park.vicinity;
+    let place_id = park.place_id;
     let rating = park.rating;
     let lightPollution = park.Light_Pollution.toFixed(2);
     let imgLink = park.photos[0].getUrl();
@@ -244,7 +245,7 @@ function makeLocationTemplate (park, position) {
                     <span class="location-name"> ${name},</span>
                     <span class="location-address"> ${address} </span>
                 </div>
-                <div class="location-icon" title="Open in Maps"><i class="material-icons">place</i></div>
+                <div class="location-icon" title="Open in Maps"><a href="https://www.google.com/maps/place/?q=place_id:${place_id}" target="_blank" class="material-icons">place</a></div>
             </div>
 
             <!-- Show desciption of location & rating star-->

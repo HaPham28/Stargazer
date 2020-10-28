@@ -68,7 +68,8 @@ span.location-address{
 }
 
 
-.location-icon i {
+.location-icon a {
+    text-decoration: none;
     cursor: pointer;
     justify-content: flex-end;
     float: right;
@@ -79,7 +80,7 @@ span.location-address{
     transition: 0.2s all;
 }
 
-.location-icon i:hover {
+.location-icon a:hover {
     color: red;
 }
 
