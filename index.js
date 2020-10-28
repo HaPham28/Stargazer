@@ -4,17 +4,17 @@
 *
 *********************************/
 
-import {init, login} from "client_side";
+// import {init, login} from "client_side";
 
-init()
-    .then(() => {
-        console.log("Initialized");
-        return login("hello", "cool");
-    })
-    .then(val => {
-        console.log("Login result: " + val);
-    })
-    .catch(reason => console.log(reason));
+// init()
+//     .then(() => {
+//         console.log("Initialized");
+//         return login("hello", "cool");
+//     })
+//     .then(val => {
+//         console.log("Login result: " + val);
+//     })
+//     .catch(reason => console.log(reason));
 
 /*********************************
  * 
