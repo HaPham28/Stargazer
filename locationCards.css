@@ -1,6 +1,7 @@
 .location-card {
     display: flex;
     flex-direction: row;
+    margin: 15px 0;
 
     width: 100%;
     height: 250px;
@@ -9,12 +10,12 @@
 }
 
 /*********LEFT*********/
-.location-card-left {
+.location-card-left, .location-card-left img {
     outline: none;
     flex-direction: column;
     align-items: center;
 
-    background-image: url("./assets/central-park.jpg");
+    /*background-image: url("./assets/central-park.jpg");*/
     background-size: cover;
     height: 250px;
     width: 250px;
@@ -50,6 +51,7 @@ span.location-name{
     height: 20px;
     width: 200px;
     font-weight: bold;
+    overflow: hidden;
 }
 
 span.location-address{
@@ -57,12 +59,12 @@ span.location-address{
     color: rgba(150, 150, 150);
     height: 20px;
     font-weight: bold;
-    
-    
+    overflow: hidden;
 }
 
 .location-address p{
     color: black;
+    overflow: hidden;
 }
 
 

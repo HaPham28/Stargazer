@@ -227,14 +227,14 @@ function makeLocationTemplate (park, position) {
     let address = park.vicinity;
     let rating = park.rating;
     let lightPollution = park.Light_Pollution.toFixed(2);
-    let imgLink = " ";
+    let imgLink = park.photos[0].getUrl();
     let description = " ";
 
 
     const template = (`
     <div class="location-card">
         <!-- Show picture of location -->
-        <div class="location-card-left"></div>
+        <div class="location-card-left"><img src='${imgLink}'/></div>
 
         <div class="location-card-right">
 
