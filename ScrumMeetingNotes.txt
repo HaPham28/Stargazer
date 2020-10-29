@@ -111,14 +111,14 @@ Ha
 
 10/29 - Project meeting
 
-Intro - illustrate need for Stargazing planner (2 min)
+Intro - illustrate need for Stargazing planner (Scott - 2 min)
 Discuss:
-•	Product backlog. (2 min)
-•	Sprint backlog and burn down charts. (2 min)
-•	Brief LiveMache explanation. (2 min)
-•	Current status (2 min)
-•	Overall outlook for the project (2 min)
-•	Outstanding concerns (2 min)
+•	Product backlog. (Scott - 1 min)
+•	Sprint backlog and burn down charts. (Scott - 1 min)
+•	Brief LiveMache explanation. (Vinay - 2 min)
+•	Current status (Frontend - Alex/Backend - Brett - 2 min)
+•	Overall outlook for the project (Brett - 2 min)
+•	Outstanding concerns (Scott - 2 min)
 
 
 
