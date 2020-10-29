@@ -1,4 +1,5 @@
 import {login} from "./modules/back_end";
+import {real_promise} from "./modules/real_promise";
 
 /********************************
 *
@@ -14,18 +15,13 @@ async function test2(val){
     console.log("Login result: " + val);
     return 5;
 }
-new Promise(async (resolve, reject) => {
-    try {
-        console.log("PRINT ME");
-        const out = await test();
-        console.log("out: " + out);
-        const out2 = await test2(out);
-        console.log("out2: " + out2);
-        resolve(out2);
-    }
-    catch (e) {
-        reject(e);
-    }
+real_promise(async () => {
+    console.log("PRINT ME");
+    const out = await test();
+    console.log("out: " + out);
+    const out2 = await test2(out);
+    console.log("out2: " + out2);
+    return out2;
 }).then(() => {
     console.log("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 }).catch(r => {
