@@ -113,9 +113,9 @@ Ha
 
 Intro - illustrate need for Stargazing planner (Scott - 2 min)
 Discuss:
+•	Brief LiveMache explanation. (Vinay - 2 min)
 •	Product backlog. (Scott - 1 min)
 •	Sprint backlog and burn down charts. (Scott - 1 min)
-•	Brief LiveMache explanation. (Vinay - 2 min)
 •	Current status (Frontend - Alex & Ha/Backend - Brett - 2 min)
 •	Overall outlook for the project (Brett - 2 min)
 •	Outstanding concerns (Scott - 2 min)
