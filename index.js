@@ -208,7 +208,7 @@ function getNearbyParks() {
         console.log("place id " + place_id);
         let request = {
             placeId: place_id,
-            fields: ['name', 'opening_hours', 'formatted_address','rating', 'photo', 'url', 'types', 'formatted_phone_number', 'website', 'business_status'],
+            fields: ['name', 'place_id', 'opening_hours', 'formatted_address','rating', 'photo', 'url', 'types', 'formatted_phone_number', 'website', 'business_status'],
         };
         let service = new google.maps.places.PlacesService(map);
         service.getDetails(request, function(place, status) {
@@ -222,7 +222,7 @@ function getNearbyParks() {
             let place_id = park.place_id;
             let request = {
                 placeId: place_id,
-                fields: ['name', 'formatted_address', 'rating', 'photo', 'url', 'types', 'formatted_phone_number', 'opening_hours', 'website', 'business_status'],
+                fields: ['name', 'place_id', 'formatted_address', 'rating', 'photo', 'url', 'types', 'formatted_phone_number', 'opening_hours', 'website', 'business_status'],
             };
             let service = new google.maps.places.PlacesService(map);
             service.getDetails(request, function(place, status) {
@@ -262,7 +262,10 @@ function makeLocationTemplate (park, lpt, position) {
     
 
     //description variable
-    let status = park.business_status;
+    let status = "N/A";
+    if (typeof park.business_status !== 'undefined') {
+        status = park.business_status.toLowerCase();
+    }
     let hours = [];
     if (typeof park.opening_hours !== 'undefined') {
         park.opening_hours.weekday_text.forEach(day => {
@@ -331,14 +334,7 @@ function makeLocationTemplate (park, lpt, position) {
 
             <!-- Show desciption of location & rating star-->
             <div class="location-card-right-middle">
-                <div class="location-description">
-                    Hours: ${hours}<br> <br>
-                    Contact: ${phone_number} <br> <br>
-                    Business status: ${status} <br> <br>
-                    Types: ${types}
-
-                
-                </div>
+                <div class="location-description">Hours: ${hours}<br><br>Contact: ${phone_number}<br><br>Business status: ${status}<br><br>Types: ${types}</div>
                 <div class="location-rating-stars-group">
                     <span class="rating-star-100"><i class="material-icons">grade</i></span>
                     <span class="rating-star-100"><i class="material-icons">grade</i></span>
