@@ -23,18 +23,23 @@ function getConstellationData() {
         let request = new XMLHttpRequest();
         request.open('GET', url, true);
         request.onload = function() {
-            //console.log(this.response);
+            console.log(this.response);
             if(constellationIsVisible(this.response)) {
                 visibleConstellations.push(this.response);
             }
+            showConstellations();
         }
         request.send();
     }
 
-    //TODO: Show constellations in UI
 }
 
 // TODO
 function constellationIsVisible(constellationData) {
     return false;
+}
+
+//TODO: Show constellations in UI
+function showConstellations() {
+
 }
