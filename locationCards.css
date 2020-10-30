@@ -206,6 +206,13 @@ a{
     color: #7289da;
 }
 
+/*
+@media only screen and (max-width: 768px) {
+    .location-card {
+        flex-direction: column;
+    }
+}
+*/
 
 
 
