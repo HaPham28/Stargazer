@@ -1,32 +1,39 @@
-import {login} from "./modules/back_end";
-import {real_promise} from "./modules/real_promise";
+// import {login} from "./modules/back_end";
+// import {real_promise} from "./modules/real_promise";
 
 /********************************
 *
 *   Main JS file for landing page
 *
 *********************************/
-async function test(){
-    console.log("Hello!");
-    return await login("hello", "cool");
+
+let back_end = null;
+let real_promise = null;
+async function handle_imports() {
+    back_end = await import('./modules/back_end');
+    real_promise = await import('./modules/real_promise');
 }
 
-async function test2(val){
-    console.log("Login result: " + val);
-    return 5;
-}
-real_promise(async () => {
-    console.log("PRINT ME");
-    const out = await test();
-    console.log("out: " + out);
-    const out2 = await test2(out);
-    console.log("out2: " + out2);
-    return out2;
-}).then(() => {
-    console.log("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-}).catch(r => {
-    console.log(r)
-});
+handle_imports();
+
+window.login = async function(user_name, password) {
+    console.log("LOGGING IN");
+    if(back_end == null || real_promise == null) {
+        console.log("AWAIT IMPORT");
+        await handle_imports();
+        console.log("FINISHED IMPORT");
+    }
+
+    real_promise.real_promise(async () => {
+        console.log("PRINT ME");
+        const out = await back_end.login(user_name, password);
+        return out;
+    }).then(() => {
+        console.log("DONE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    }).catch(r => {
+        console.log(r);
+    }); 
+};
 
 
 // /*********************************
@@ -42,10 +49,10 @@ real_promise(async () => {
 // // more info: https://www.aerisweather.com/support/docs/api/reference/endpoints/sunmoon-moonphases/
 // // Example request: https://api.aerisapi.com/forecasts/42.25,-95.25?limit=14&client_id=cruQcmMBbu2IWxTzBpQxF&client_secret=ZclnNemymt1nOKIUsB37ci2U5ydvua6e6OAla33f
 // // more info: https://www.aerisweather.com/support/docs/api/reference/endpoints/forecasts/
-//
+
 // // Aeris Weather Info (weather forecast)
 // // Same API ID & Key as above
-//
+
 // /*
 // CL	Clear	            Cloud coverage is 0-7% of the sky.
 // FW	Fair/Mostly sunny	Cloud coverage is 7-32% of the sky.
@@ -56,27 +63,27 @@ real_promise(async () => {
 // function getWeatherForecast(){
 //     const AccessID = 'cruQcmMBbu2IWxTzBpQxF';
 //     const SecretKey = 'ZclnNemymt1nOKIUsB37ci2U5ydvua6e6OAla33f';
-//
+
 //     const aeris = new AerisWeather(AccessID, SecretKey)
 //     const loc = SearchLocation.latitude + ',' + SearchLocation.longitude
-//
+
 //     const moonphaseRequest = aeris.api().endpoint('sunmoon/moonphases').place(loc).limit(7).get();
 //     const forecastRequest = aeris.api().endpoint('forecasts').place(loc).limit(7).get();
 //     const placesRequest = aeris.api().endpoint('places').place(loc).get();
-//
+
 //     const aerisResults = Promise.all([moonphaseRequest, forecastRequest, placesRequest]);
-//
+
 //     aerisResults
 //             .then((apiResults) => {
 //                 const moonphaseResults = apiResults[0].data;
 //                 const forecastsResults = apiResults[1].data;
 //                 const placesResults = apiResults[2].data;
-//
+
 //                 //console.log(apiResults)
 //                 addWeatherCards(forecastsResults, moonphaseResults);
 //             });
 // }
-//
+
 // // Upcoming Astronomical events
 // var events = [{"date":"10/21/2020", "event_name":"Orionid Meteor Shower", "event_description":"The Orionids are the second meteor shower in October. The shower peaks on October 21-22 but usually remains active between October 2 and November 7. The best time to see these shooting stars is just after midnight and before the Sun rises.", "event_link":"https://www.timeanddate.com/astronomy/meteor-shower/orionid.html"},
 // {"date":"10/31/2020", "event_name":"Blue Moon", "event_description":"October has two Full Moons, which makes this Full Moon a Blue Moon. This Blue Moon is also a Micro Full Moon.", "event_link":"https://www.timeanddate.com/astronomy/moon/blue-moon.html"},
@@ -103,7 +110,7 @@ real_promise(async () => {
 // {"date":"04/27/2021", "event_name":"Super Full Moon", "event_description":"April's Pink Full Moon is also a Super Moon. Because the Full Moon takes place when the Moon is at its perigee, it will look a little larger than a usual Full Moon.", "event_link":"https://www.timeanddate.com/astronomy/moon/super-full-moon.html"},
 // {"date":"05/5/2021", "event_name":"Eta Aquarid Meteors", "event_description":"Use our handy Interactive Meteor Shower Sky Map to increase your chances of seeing shooting stars from the Eta Aquarids.", "event_link":"https://www.timeanddate.com/astronomy/meteor-shower/eta-aquarids.html"}
 // ];
-//
+
 // function getNextAstronomicalEvent(){
 //     for (let i = 0; i < events.length; i++){
 //         var curEvent = events[i];
@@ -115,7 +122,7 @@ real_promise(async () => {
 //     }
 //     return null;
 // }
-//
+
 // //light pollution info --- return a STRING
 // function getLightPollution(lat , lng) {
 //     const apiKey = '45pZnF8eF3ak9ixj'
@@ -124,19 +131,19 @@ real_promise(async () => {
 //     let request = new XMLHttpRequest();
 //     request.open('GET', url, false);
 //     console.log("Request opened");
-//
+
 //     request.onload = function () {
 //         if (request.readyState == 4 && request.status == 200) {
 //             return request.response;
 //         }
 //     }
-//
+
 //     request.send();
 //     document.querySelector(".animate").classList.toggle("rate-8");
-//
+
 //     return request.onload();
 // }
-//
+
 // function getConstellationData() {
 //     const constellationNames = [
 //         "Aquarius",
@@ -155,7 +162,7 @@ real_promise(async () => {
 //         "Ursa Major",
 //         "Ursa Minor"
 //     ];
-//
+
 //     let visibleConstellations = [];
 //     for(constellation in constellationNames) {
 //         let url = 'https://www.strudel.org.uk/lookUP/json/?name=' + constellationNames[constellation].replace(' ', '+');
@@ -169,22 +176,22 @@ real_promise(async () => {
 //         }
 //         request.send();
 //     }
-//
+
 //     //TODO: Show constellations in UI
 // }
-//
+
 // // TODO
 // function constellationIsVisible(constellationData) {
 //     return false;
 // }
-//
+
 // // get 20 most relevant nearby parks (as ranked by google)
 // function getNearbyParks() {
 //     const map = new google.maps.Map(document.getElementById("map"), {
 //         center: { lat: SearchLocation.latitude, lng: SearchLocation.longitude },
 //         zoom: 15,
 //     });
-//
+
 //     let request = {
 //         location: new google.maps.LatLng(SearchLocation.latitude, SearchLocation.longitude),
 //         radius: '50000',
@@ -193,29 +200,29 @@ real_promise(async () => {
 //     let service = new google.maps.places.PlacesService(map);
 //     service.nearbySearch(request, function(results, status) {
 //         console.log(results);
-//
+
 //         // Get top # of parks (the first # parks in the list)
 //         const num_Location = 3;  // 3 is just for debug, maybe 10 for demo
 //         let top10Parks = results.slice(0,num_Location);
-//
+
 //         // add light pollution element to each Park
 //         top10Parks.forEach(park => {
-//
+
 //             let lat = park.geometry.location.lat();
 //             let lng = park.geometry.location.lng();
 //             let lightPollution = parseFloat(getLightPollution(lat, lng));
-//
+
 //             park.Light_Pollution = lightPollution;
 //         });
-//
+
 //         // sort the list of Parks by light pollution level from low to high
 //         top10Parks.sort(function(a,b)
 //         {
 //             return a.Light_Pollution - b.Light_Pollution;
 //         });
-//
+
 //         clearLocationCards();
-//
+
 //         //get more details
 //         let place_id = top10Parks[0].place_id;
 //         console.log("place id " + place_id);
@@ -228,8 +235,8 @@ real_promise(async () => {
 //             console.log(place);
 //             makeLocationTemplate (place, top10Parks[0].Light_Pollution, 'top-location-container');
 //         });
-//
-//
+
+
 //         //add location cards
 //         top10Parks.slice(1,).forEach( park => {
 //             let place_id = park.place_id;
@@ -244,12 +251,12 @@ real_promise(async () => {
 //             });
 //         });
 //         console.log(top10Parks);
-//
-//
+
+
 //     });
-//
+
 // }
-//
+
 // /**
 //  * Clears all weather cards from the HTML
 //  */
@@ -264,16 +271,16 @@ real_promise(async () => {
 //     let address = park.formatted_address;
 //     let website = park.website;
 //     let place_id = park.place_id;
-//
+
 //     let rating = park.rating;
 //     let lightPollution = lpt.toFixed(2);
-//
+
 //     let imgLink = "./assets/central-park.jpg";
 //     if (typeof park.photos !== 'undefined') {
 //         imgLink = park.photos[0].getUrl();
 //     }
-//
-//
+
+
 //     //description variable
 //     let status = "N/A";
 //     if (typeof park.business_status !== 'undefined') {
@@ -296,11 +303,11 @@ real_promise(async () => {
 //     park.types.forEach( type => {
 //         types.push(" " + type);
 //     });
-//
-//
+
+
 //     let color_rating = "";
 //     let width_rating = "";
-//
+
 //     //light pollution bar
 //     if (lightPollution > 100) {
 //         color_rating = "dark_red";
@@ -326,16 +333,16 @@ real_promise(async () => {
 //         color_rating = "dark_green";
 //         width_rating = String(lightPollution) + "%";
 //     }
-//
+
 //     console.log("width" + width_rating);
-//
+
 //     const template = (`
 //     <div class="location-card">
 //         <!-- Show picture of location -->
 //         <div class="location-card-left"><img src='${imgLink}'/></div>
-//
+
 //         <div class="location-card-right">
-//
+
 //             <!-- Show name, address, and location icon -->
 //             <div class="location-card-right-top">
 //                 <div class="location-location">
@@ -344,7 +351,7 @@ real_promise(async () => {
 //                 </div>
 //                 <div class="location-icon" title="Open in Maps"><a href="https://www.google.com/maps/place/?q=place_id:${place_id}" target="_blank" class="material-icons">place</a></div>
 //             </div>
-//
+
 //             <!-- Show desciption of location & rating star-->
 //             <div class="location-card-right-middle">
 //                 <div class="location-description">Hours: ${hours}<br><br>Contact: ${phone_number}<br><br>Business status: ${status}<br><br>Types: ${types}</div>
@@ -371,7 +378,7 @@ real_promise(async () => {
 //         </div>
 //     </div>
 //     `);
-//
+
 //     document.querySelector('.' + position).insertAdjacentHTML('beforeend', template);
 // }
 // /*********************************
@@ -379,7 +386,7 @@ real_promise(async () => {
 //  *   HTML template updates
 //  *
 // *********************************/
-//
+
 // const moonPhases = {
 //     'NEW_MOON': 0,
 //     'WAXING_CRESCENT': 1,
@@ -390,7 +397,7 @@ real_promise(async () => {
 //     'THIRD_QUARTER': 6,
 //     'WANING_CRESCENT': 7,
 // };
-//
+
 // /**
 //  * Clears all weather cards from the HTML
 //  */
@@ -398,7 +405,7 @@ real_promise(async () => {
 //     let cards = document.querySelector(".weather-container");
 //     cards.innerHTML = '';
 // }
-//
+
 // /**
 //  * Adds weather cards to DOM based on data returned from weather query
 //  */
@@ -414,7 +421,7 @@ real_promise(async () => {
 //         'Friday',
 //         'Saturday'
 //     ];
-//
+
 //     const monthNames = [
 //         'Jan',
 //         'Feb',
@@ -429,7 +436,7 @@ real_promise(async () => {
 //         'Nov',
 //         'Dec'
 //     ];
-//
+
 //     weatherData[0].periods.forEach(period => {
 //         const JSDate = new Date(period.dateTimeISO);
 //         const JSSunset = new Date(period.sunsetISO);
@@ -439,7 +446,7 @@ real_promise(async () => {
 //         const sunset = (JSSunset.getHours()) % 12 + ":" + (JSSunset.getMinutes() >= 10 ? JSSunset.getMinutes() : '0' + JSSunset.getMinutes());
 //         const sunsetSuffix = JSSunset.getHours() > 12 ? 'PM' : 'AM'; // Probably safe to say always PM, but just to be sure
 //         const precip = period.pop || 'N/A';
-//
+
 //         // Get moonphase picture/title
 //         const moonPhase = getMoonPhase(moonData, JSDate);
 //         let moonPhaseImage = './assets/';
@@ -478,7 +485,7 @@ real_promise(async () => {
 //                 moonPhaseTitle = "Waning Crescent";
 //                 break;
 //         }
-//
+
 //         // Get cloud and visibility rating
 //         // CL	Clear	            Cloud coverage is 0-7% of the sky.
 //         // FW	Fair/Mostly sunny	Cloud coverage is 7-32% of the sky.
@@ -504,7 +511,7 @@ real_promise(async () => {
 //                 cloudRatingClass += '1'
 //                 break;
 //         }
-//
+
 //         const visibilityKM = period.visibilityKM;
 //         let visibilityRatingClass = 'marker-';
 //         if(visibilityKM > 20)
@@ -521,11 +528,11 @@ real_promise(async () => {
 //             visibilityRatingClass += '3';
 //         else
 //             visibilityRatingClass += '1';
-//
+
 //         // Get overall rating
 //         const overallRating = getOverallWeatherRating(moonPhase, cloudRatingClass, visibilityRatingClass);
 //         const overallRatingClass = 'rate-' + Math.max(1, overallRating);
-//
+
 //         const template = (`
 //         <div class="weather-card">
 //             <div class="weather-top">
@@ -542,14 +549,14 @@ real_promise(async () => {
 //                     <div class="weather-precipitation"><i class="material-icons">opacity</i><p> ${precip}%</p></div>
 //                 </div>
 //             </div>
-//
+
 //             <!-- Show rating bars -->
 //             <div class="weather-bottom">
 //                 <div class="weather-rating cloud-rating"><div class="material-icons weather-marker ${cloudRatingClass}" title="Cloud Cover">wb_cloudy</div></div>
 //                 <div class="weather-rating visibility-rating"><div class="material-icons weather-marker ${visibilityRatingClass}" title="Visibility">visibility</div></div>
-//
+
 //                 <div class="weather-separator"></div>
-//
+
 //                 <!-- Overall weather rating -->
 //                 <div class="weather-rating-title"><h3>Rating</h3><h3>${overallRating}/10</h3></div>
 //                 <div style="width: 90%" class="rating-bar weather-rating-bar">
@@ -560,11 +567,11 @@ real_promise(async () => {
 //             </div>
 //         </div>
 //         `);
-//
+
 //         document.querySelector('.weather-container').insertAdjacentHTML('afterbegin', template);
 //     });
 // }
-//
+
 // /**
 //  *
 //  * Returned moon phase codes:
@@ -586,7 +593,7 @@ real_promise(async () => {
 //         Takes ~ 1 week for each quarter, so between 2 - 4 days after start of quarter, we use intermediate phases
 //     */
 //     const dayS = 60 * 60 * 24;
-//
+
 //     let PassedDateMs = date.getTime() / 1000;
 //     for(let i = 0; i < moonPhaseData.length - 1; i++) {
 //         let phaseDateMs = moonPhaseData[i].timestamp;
@@ -603,7 +610,7 @@ real_promise(async () => {
 //                 case 'third quarter':
 //                     return moonPhases.WANING_GIBBOUS;
 //             }
-//
+
 //         // Quarter has just started
 //         } else if(timeDifference >= 0 && timeDifference < 2 * dayS) {
 //             switch(moonPhaseData[i].name) {
@@ -616,7 +623,7 @@ real_promise(async () => {
 //                 case 'third quarter':
 //                     return moonPhases.THIRD_QUARTER;
 //             }
-//
+
 //         // About to enter next quarter
 //         } else if(timeDifference < moonPhaseData[i + 1].timestamp && timeDifference > 4 * dayS) {
 //             switch(moonPhaseData[i].name) {
@@ -632,7 +639,7 @@ real_promise(async () => {
 //         }
 //     }
 // }
-//
+
 // function getOverallWeatherRating(moonPhase, cloudRatingClass, visibilityRatingClass, precipitationPercentage) {
 //     let score = 0;
 //     switch(moonPhase) {
@@ -649,7 +656,7 @@ real_promise(async () => {
 //             score += 1;
 //             break;
 //     }
-//
+
 //     switch(cloudRatingClass) {
 //         case 'marker-4':
 //             score += 1;
@@ -673,7 +680,7 @@ real_promise(async () => {
 //             score += 4;
 //             break;
 //     }
-//
+
 //     switch(visibilityRatingClass) {
 //         case 'marker-4' || 'marker-5' || 'marker-6':
 //             score += 1;
@@ -685,6 +692,6 @@ real_promise(async () => {
 //             score += 2;
 //             break;
 //     }
-//
+
 //     return Math.floor(score);
 // }

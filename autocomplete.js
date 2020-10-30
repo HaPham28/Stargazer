@@ -9,7 +9,8 @@ class SearchLocation {
     static longitude = null;
 }
 
-function initMap() {
+async function initMap() {
+
     const map = new google.maps.Map(document.getElementById("map"), {
       center: { lat: -33.8688, lng: 151.2195 },
       zoom: 13,
@@ -32,6 +33,7 @@ function initMap() {
       anchorPoint: new google.maps.Point(0, -29),
     });
     autocomplete.addListener("place_changed", () => {
+      window.login("user", "pass");
       infowindow.close();
       marker.setVisible(false);
       const place = autocomplete.getPlace();
