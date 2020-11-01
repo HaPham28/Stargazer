@@ -1,9 +1,11 @@
 <!DOCTYPE html>
+<html>
 <head>
     <title>Stargazer</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="weatherCards.css">
     <link rel="stylesheet" href="locationCards.css">
+    <link rel="stylesheet" href="astroTimeline.css">
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600&display=swap" rel="stylesheet">
@@ -19,6 +21,7 @@
     <script src="astronomical_event.js"></script>
     <script src="constellation.js"></script>
     <script src="light_pollution.js"></script>
+    <script src="astroTimeline.js"></script>
 
     <!-- Front-end search module (driver) -->
     <script src="autocomplete.js"></script>
@@ -27,6 +30,7 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6kxrVKGQ0WmQRB393p9Vr12ifrtBDJ_o&callback=initMap&libraries=places&v=weekly"
     async defer
     ></script>
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
     <script defer src="https://cdn.aerisapi.com/sdk/js/latest/aerisweather.min.js"></script>
 
@@ -92,8 +96,19 @@
             <!-- Contains other location cards (added in index.js) -->
             <div class="location-container">
             </div>
-
-            <h3 class="section-title">Constellations</h3>
+            <div class="constellations-container">
+                <h3 class="section-title">Constellations</h3>
+            </div>
+            <!-- Contains Astro event timeline(WIP) -->
+                <h3 class="section-title">Upcoming Astronomical Events</h3>
+                <div id="astro-lineCont"> 
+                    <div id="astro-line"></div>
+                    <div id="astro-span">Date Placeholder</div>
+                    <div id="astro-span2">Date Placeholder 2</div>
+                  </div>
+                  <div id="astro-mainCont">
+                  </div>
         </div>
     </div>
 </body>
+</html>
