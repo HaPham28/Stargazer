@@ -1,6 +1,7 @@
 /** get 20 most relevant nearby parks (as ranked by google) **/
 import {latitude, longitude} from "./autocomplete";
 import {getLightPollution} from "./light_pollution";
+import {central_park} from "../assets/assets";
 
 // get 20 most relevant nearby parks (as ranked by google)
 export function getNearbyParks() {
@@ -109,7 +110,7 @@ export function makeLocationTemplate(park, lpt, position) {
     let place_id = park.place_id;
     let rating = 0;
     let lightPollution = lpt.toFixed(2);
-    let imgLink = "./assets/central-park.jpg";
+    let imgLink = central_park;
     let status = "N/A";
     let hours = [];
     let phone_number = "N/A";

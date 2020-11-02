@@ -1,4 +1,6 @@
 import {init_google_map} from "./modules/autocomplete";
+import './styles'
+import {clearWeatherCards} from "./modules/weather";
 
 /********************************
 *
@@ -7,10 +9,17 @@ import {init_google_map} from "./modules/autocomplete";
 *********************************/
 
 function initMap(){
-    init_google_map(google, document);
+    init_google_map(google, document)
+        .then(() => console.log("Maps loaded"))
+        .catch(e => console.error(e));
 }
 
-initMap();
+window.init_index = () => {
+    console.log("Index Loading...");
+    document.getElementById("search-button").addEventListener("click", () => clearWeatherCards());
+    initMap();
+    console.log("Index Loaded");
+}
 
 // real_promise(initMap)
 //     .then(
