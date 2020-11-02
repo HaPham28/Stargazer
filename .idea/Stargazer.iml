@@ -6,9 +6,11 @@
       <sourceFolder url="file://$MODULE_DIR$/back-end/client_side/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/back-end/server_side/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/back-end/packet/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
       <excludeFolder url="file://$MODULE_DIR$/back-end/client_side/target" />
       <excludeFolder url="file://$MODULE_DIR$/back-end/target" />
+      <excludeFolder url="file://$MODULE_DIR$/dist_prod" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
     </content>
