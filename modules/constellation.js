@@ -1,4 +1,4 @@
-function getConstellationData() {
+export function getConstellationData() {
     const constellationNames = [
         "Aquarius",
         "Aquila",
@@ -18,7 +18,7 @@ function getConstellationData() {
     ];
 
     let visibleConstellations = [];
-    for(constellation in constellationNames) {
+    for(const constellation in constellationNames) {
         let url = 'https://www.strudel.org.uk/lookUP/json/?name=' + constellationNames[constellation].replace(' ', '+');
         let request = new XMLHttpRequest();
         request.open('GET', url, true);
@@ -35,11 +35,11 @@ function getConstellationData() {
 }
 
 // TODO
-function constellationIsVisible(constellationData) {
+export function constellationIsVisible(constellationData) {
     return false;
 }
 
 //TODO: Show constellations in UI
-function showConstellations() {
+export function showConstellations() {
 
 }
