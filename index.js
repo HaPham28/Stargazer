@@ -1,5 +1,4 @@
-import {real_promise} from "./modules/real_promise";
-import {init_google_maps} from "./modules/autocomplete";
+import {init_google_map} from "./modules/autocomplete";
 
 /********************************
 *
@@ -7,18 +6,20 @@ import {init_google_maps} from "./modules/autocomplete";
 *
 *********************************/
 
-async function initMap(){
-    return await init_google_maps(document);
+function initMap(){
+    init_google_map(document);
 }
 
-real_promise(initMap)
-    .then(
-        () => console.log("Maps loaded")
-    )
-    .catch(e => {
-        console.log("Error loading maps: " + e);
-        console.error(e);
-    });
+initMap();
+
+// real_promise(initMap)
+//     .then(
+//         () => console.log("Maps loaded")
+//     )
+//     .catch(e => {
+//         console.log("Error loading maps: " + e);
+//         console.error(e);
+//     });
 // window.login = async function(user_name, password) {
 //     console.log("LOGGING IN");
 //

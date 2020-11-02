@@ -1,71 +1,77 @@
 /** get 20 most relevant nearby parks (as ranked by google) **/
 import {latitude, longitude} from "./autocomplete";
 import {getLightPollution} from "./light_pollution";
-import Places from "google-places-web"
 
-Places.apiKey = "AIzaSyD6kxrVKGQ0WmQRB393p9Vr12ifrtBDJ_o";
-Places.debug = true;
-
-export async function getNearbyParks(google) {
-    const map = new google.Map(document.getElementById("map"), {
-        center: {lat: latitude, lng: longitude},
+// get 20 most relevant nearby parks (as ranked by google)
+export function getNearbyParks() {
+    const map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: latitude, lng: longitude },
         zoom: 15,
     });
 
-    let results = await Places.nearbysearch({
-        location: new google.LatLng(latitude, longitude),
+    let request = {
+        location: new google.maps.LatLng(latitude, longitude),
         radius: '50000',
         type: ['park'],
-    });
-    console.log(results);
+    };
+    let service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, function(results, status) {
+        console.log(results);
 
-    // Get top # of parks (the first # parks in the list)
-    const num_Location = 3;  // 3 is just for debug, maybe 10 for demo
-    let top10Parks = results.slice(0, num_Location);
+        // Get top # of parks (the first # parks in the list)
+        const num_Location = 3;  // 3 is just for debug, maybe 10 for demo
+        let top10Parks = results.slice(0,num_Location);
 
-    // add light pollution element to each Park
-    top10Parks.forEach(park => {
+        // add light pollution element to each Park
+        top10Parks.forEach(park => {
 
-        let lat = park.geometry.location.lat();
-        let lng = park.geometry.location.lng();
-        let lightPollution = parseFloat(getLightPollution(lat, lng));
+            let lat = park.geometry.location.lat();
+            let lng = park.geometry.location.lng();
+            let lightPollution = parseFloat(getLightPollution(lat, lng));
 
-        park.Light_Pollution = lightPollution;
-    });
+            park.Light_Pollution = lightPollution;
+        });
 
-    // sort the list of Parks by light pollution level from low to high
-    top10Parks.sort(function (a, b) {
-        return a.Light_Pollution - b.Light_Pollution;
-    });
+        // sort the list of Parks by light pollution level from low to high
+        top10Parks.sort(function(a,b)
+        {
+            return a.Light_Pollution - b.Light_Pollution;
+        });
 
-    clearLocationCards();
+        clearLocationCards();
 
-    //get more details
-    let place_id = top10Parks[0].place_id;
-    console.log("place id " + place_id);
-
-    const place = await Places.details({
-        placeId: place_id,
-        fields: ['name', 'place_id', 'opening_hours', 'formatted_address','rating', 'photo', 'url', 'types', 'formatted_phone_number', 'website', 'business_status'],
-    });
-    console.log(place);
-    makeLocationTemplate(place, top10Parks[0].Light_Pollution, 'top-location-container');
-
-
-    //add location cards
-    top10Parks.slice(1,).forEach(park => {
-        let place_id = park.place_id;
+        //get more details
+        let place_id = top10Parks[0].place_id;
+        console.log("place id " + place_id);
         let request = {
             placeId: place_id,
-            fields: ['name', 'place_id', 'formatted_address', 'rating', 'photo', 'url', 'types', 'formatted_phone_number', 'opening_hours', 'website', 'business_status'],
+            fields: ['name', 'place_id', 'opening_hours', 'formatted_address','rating', 'photo', 'url', 'types', 'formatted_phone_number', 'website', 'business_status'],
         };
         let service = new google.maps.places.PlacesService(map);
-        service.getDetails(request, function (place, status) {
+        service.getDetails(request, function(place, status) {
             console.log(place);
-            makeLocationTemplate(place, park.Light_Pollution, 'location-container');
+            makeLocationTemplate (place, top10Parks[0].Light_Pollution, 'top-location-container');
         });
+
+
+        //add location cards
+        top10Parks.slice(1,).forEach( park => {
+            let place_id = park.place_id;
+            let request = {
+                placeId: place_id,
+                fields: ['name', 'place_id', 'formatted_address', 'rating', 'photo', 'url', 'types', 'formatted_phone_number', 'opening_hours', 'website', 'business_status'],
+            };
+            let service = new google.maps.places.PlacesService(map);
+            service.getDetails(request, function(place, status) {
+                console.log(place);
+                makeLocationTemplate (place, park.Light_Pollution, 'location-container');
+            });
+        });
+        console.log(top10Parks);
+
+
     });
-    console.log(top10Parks);
+
 }
 
 /**

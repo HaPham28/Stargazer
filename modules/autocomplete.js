@@ -3,46 +3,33 @@ import {getLightPollution} from "./light_pollution";
 import {getConstellationData} from "./constellation";
 import {getNearbyParks} from "./location";
 
-const load_google_maps = require('load-google-maps-api');
-
 /********* Google Maps Autocomplete ********/
 
 export let placeName = null;
 export let latitude = null;
 export let longitude = null;
 
-export async function init_google_maps(document){
-    await load_google_maps({
-        key: "AIzaSyD6kxrVKGQ0WmQRB393p9Vr12ifrtBDJ_o",
-        libraries: ["places"],
-        v: "weekly",
-    })
-        .then(google => initMap(google, document))
-        .catch(e => console.error(e))
-}
-
-async function initMap(google, document) {
-
-    const map = new google.Map(document.getElementById("map"), {
+export async function init_google_map(document) {
+    const map = new google.maps.Map(document.getElementById("map"), {
       center: { lat: -33.8688, lng: 151.2195 },
       zoom: 13,
     });
     const card = document.getElementById("pac-card");
     const input = document.getElementById("location-input");
-    map.controls[google.ControlPosition.TOP_RIGHT].push(card);
-    const autocomplete = new google.places.Autocomplete(input);
+    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(card);
+    const autocomplete = new google.maps.places.Autocomplete(input);
     // Bind the map's bounds (viewport) property to the autocomplete object,
     // so that the autocomplete requests use the current map bounds for the
     // bounds option in the request.
     autocomplete.bindTo("bounds", map);
     // Set the data fields to return when the user selects a place.
     autocomplete.setFields(["address_components", "geometry", "icon", "name"]);
-    const infowindow = new google.InfoWindow();
+    const infowindow = new google.maps.InfoWindow();
     const infowindowContent = document.getElementById("infowindow-content");
     infowindow.setContent(infowindowContent);
-    const marker = new google.Marker({
+    const marker = new google.maps.Marker({
       map,
-      anchorPoint: new google.Point(0, -29),
+      anchorPoint: new google.maps.Point(0, -29),
     });
     autocomplete.addListener("place_changed", () => {
       // window.login("user", "pass");
