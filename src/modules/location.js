@@ -48,9 +48,9 @@ export function getNearbyParks() {
             fields: ['name', 'place_id', 'opening_hours', 'formatted_address','rating', 'photo', 'url', 'types', 'formatted_phone_number', 'website', 'business_status'],
         };
         let service = new google.maps.places.PlacesService(map);
-        service.getDetails(request, function(place, status) {
+        service.getDetails(request, async function(place, status) {
             console.log(place);
-            makeLocationTemplate (place, top10Parks[0].Light_Pollution, 'top-location-container');
+            await makeLocationTemplate (place, top10Parks[0].Light_Pollution, 'top-location-container');
         });
 
 
@@ -62,9 +62,9 @@ export function getNearbyParks() {
                 fields: ['name', 'place_id', 'formatted_address', 'rating', 'photo', 'url', 'types', 'formatted_phone_number', 'opening_hours', 'website', 'business_status'],
             };
             let service = new google.maps.places.PlacesService(map);
-            service.getDetails(request, function(place, status) {
+            service.getDetails(request, async function(place, status) {
                 console.log(place);
-                makeLocationTemplate (place, park.Light_Pollution, 'location-container');
+                await makeLocationTemplate (place, park.Light_Pollution, 'location-container');
             });
         });
 
@@ -101,7 +101,7 @@ export function clearLocationCards() {
     cards.innerHTML = '';
 }
 
-export function makeLocationTemplate(park, lpt, position) {
+export async function makeLocationTemplate(park, lpt, position) {
 
     console.log("level of polution ", lpt);
     let name = park.name;
@@ -213,7 +213,7 @@ export function makeLocationTemplate(park, lpt, position) {
     const template = (`
     <div class="location-card">
         <!-- Show picture of location -->
-        <div class="location-card-left"><img src='${imgLink}'/></div>
+        <div class="location-card-left"><img src='${await imgLink}'/></div>
 
         <div class="location-card-right">
 

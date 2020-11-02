@@ -81,7 +81,7 @@ export function clearWeatherCards() {
 /**
  * Adds weather cards to DOM based on data returned from weather query
  */
-export function addWeatherCards(weatherData, moonData) {
+export async function addWeatherCards(weatherData, moonData) {
     clearWeatherCards();
     weatherData[0].periods.reverse();
     const weekdayNames = [
@@ -109,7 +109,7 @@ export function addWeatherCards(weatherData, moonData) {
         'Dec'
     ];
 
-    weatherData[0].periods.forEach(period => {
+    for (const period of weatherData[0].periods){
         const JSDate = new Date(period.dateTimeISO);
         const JSSunset = new Date(period.sunsetISO);
         const dayName = weekdayNames[JSDate.getDay()];
@@ -156,6 +156,9 @@ export function addWeatherCards(weatherData, moonData) {
                 moonPhaseImage = crescent_waning;
                 moonPhaseTitle = "Waning Crescent";
                 break;
+        }
+        if (moonPhaseImage == null){
+            throw "Unknown Moon phase " + moonPhase + "!";
         }
 
         // Get cloud and visibility rating
@@ -205,12 +208,13 @@ export function addWeatherCards(weatherData, moonData) {
         const overallRating = getOverallWeatherRating(moonPhase, cloudRatingClass, visibilityRatingClass);
         const overallRatingClass = 'rate-' + Math.max(1, overallRating);
 
+
         const template = (`
         <div class="weather-card">
             <div class="weather-top">
                 <!-- Show moon phase icon, temperature -->
                 <div class="weather-top-left">
-                    <img title="${moonPhaseTitle}" class="weather-moon" src="${moonPhaseImage}"/>
+                    <img title="${moonPhaseTitle}" class="weather-moon" src="${await moonPhaseImage}"/>
                     <p class="weather-temperature">${maxTempF}&#176;F</p>
                 </div>
                 <!-- Show day/date, sunset time, precip chance -->
@@ -241,7 +245,7 @@ export function addWeatherCards(weatherData, moonData) {
         `);
 
         document.querySelector('.weather-container').insertAdjacentHTML('afterbegin', template);
-    });
+    }
 }
 
 /**

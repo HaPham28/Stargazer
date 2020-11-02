@@ -10,23 +10,13 @@ module.exports = {
     },
     output: {
         filename: "[name].bundle.js",
-        path: path.resolve(__dirname, "dist_prod"),
+        path: path.resolve(__dirname, "dist"),
+        publicPath: path.resolve(__dirname, "dist", "assets"),
     },
     module: {
         rules: [
-            {
-                test: /\.css$/,
-                use: [
-                    "style-loader",
-                    "css-loader",
-                ]
-            },
-            {
-                test: /\.(png|svg|jpg|gif)$/,
-                use: [
-                    'file-loader',
-                ],
-            },
+            {test: /\.css$/, use: ["style-loader", "css-loader"]},
+            {test: /\.(png|svg|jpe?g|gif)$/i, loader: 'file-loader', options: {name: "assets/[hash].[ext]"}},
         ]
     },
     plugins: [
