@@ -1,5 +1,4 @@
 import {real_promise} from "./real_promise";
-import {JsAuthToken} from "client_side";
 
 // @ts-ignore
 const loaded = real_promise(async () => {
