@@ -96,6 +96,7 @@ export function makeLocationTemplate(park, lpt, position) {
     let imgLink = "./assets/central-park.jpg";
     if (typeof park.photos !== 'undefined') {
         imgLink = park.photos[0].getUrl();
+        console.log("IMG: " + imgLink);
     }
 
 
