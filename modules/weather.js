@@ -17,7 +17,7 @@ SC	Partly cloudy	    Cloud coverage is 32-70% of the sky.
 BK	Mostly Cloudy	    Cloud coverage is 70-95% of the sky.
 OV	Cloudy/Overcast	    Cloud coverage is 95-100% of the sky.
 */
-function getWeatherForecast(){
+export function getWeatherForecast(){
     const AccessID = 'cruQcmMBbu2IWxTzBpQxF';
     const SecretKey = 'ZclnNemymt1nOKIUsB37ci2U5ydvua6e6OAla33f';
 
@@ -62,7 +62,7 @@ const moonPhases = {
 /**
  * Clears all weather cards from the HTML
  */
-function clearWeatherCards() {
+export function clearWeatherCards() {
     let cards = document.querySelector(".weather-container");
     cards.innerHTML = '';
 }
@@ -70,7 +70,7 @@ function clearWeatherCards() {
 /**
  * Adds weather cards to DOM based on data returned from weather query
  */
-function addWeatherCards(weatherData, moonData) {
+export function addWeatherCards(weatherData, moonData) {
     clearWeatherCards();
     weatherData[0].periods.reverse();
     const weekdayNames = [
@@ -249,7 +249,7 @@ function addWeatherCards(weatherData, moonData) {
  * @param {*} date
  * @return {number} phaseCode
  */
-function getMoonPhase(moonPhaseData, date) {
+export function getMoonPhase(moonPhaseData, date) {
     /*
         Takes ~ 1 week for each quarter, so between 2 - 4 days after start of quarter, we use intermediate phases
     */
@@ -329,7 +329,7 @@ function getMoonPhase(moonPhaseData, date) {
     return res;
 }
 
-function getOverallWeatherRating(moonPhase, cloudRatingClass, visibilityRatingClass, precipitationPercentage) {
+export function getOverallWeatherRating(moonPhase, cloudRatingClass, visibilityRatingClass, precipitationPercentage) {
     let score = 0;
     switch(moonPhase) {
         case moonPhases.NEW_MOON:

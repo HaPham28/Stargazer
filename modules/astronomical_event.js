@@ -1,6 +1,6 @@
 
 // Upcoming Astronomical events
-var events = [{"date":"10/21/2020", "event_name":"Orionid Meteor Shower", "event_description":"The Orionids are the second meteor shower in October. The shower peaks on October 21-22 but usually remains active between October 2 and November 7. The best time to see these shooting stars is just after midnight and before the Sun rises.", "event_link":"https://www.timeanddate.com/astronomy/meteor-shower/orionid.html"},
+const events = [{"date":"10/21/2020", "event_name":"Orionid Meteor Shower", "event_description":"The Orionids are the second meteor shower in October. The shower peaks on October 21-22 but usually remains active between October 2 and November 7. The best time to see these shooting stars is just after midnight and before the Sun rises.", "event_link":"https://www.timeanddate.com/astronomy/meteor-shower/orionid.html"},
 {"date":"10/31/2020", "event_name":"Blue Moon", "event_description":"October has two Full Moons, which makes this Full Moon a Blue Moon. This Blue Moon is also a Micro Full Moon.", "event_link":"https://www.timeanddate.com/astronomy/moon/blue-moon.html"},
 {"date":"11/15/2020", "event_name":"Super New Moon", "event_description":"This New Moon takes place very close to its perigee—the point on its orbit closest to the Earth.", "event_link":"https://www.timeanddate.com/astronomy/moon/super-full-moon.html"},
 {"date":"11/17/2020", "event_name":"Leonid Meteor Shower", "event_description":"The Leonids' shooting stars are visible between November 6 and 30, and peak on the night of November 17 and early morning of November 18, 2020 with up to 15 meteors per hour.", "event_link":"https://www.timeanddate.com/astronomy/meteor-shower/leonids.html"},
@@ -26,7 +26,7 @@ var events = [{"date":"10/21/2020", "event_name":"Orionid Meteor Shower", "event
 {"date":"05/5/2021", "event_name":"Eta Aquarid Meteors", "event_description":"Use our handy Interactive Meteor Shower Sky Map to increase your chances of seeing shooting stars from the Eta Aquarids.", "event_link":"https://www.timeanddate.com/astronomy/meteor-shower/eta-aquarids.html"}
 ];
 
-function getNextAstronomicalEvent(){
+export function getNextAstronomicalEvent(){
     for (let i = 0; i < events.length; i++){
         var curEvent = events[i];
         var curDate = new Date(curEvent["date"]);

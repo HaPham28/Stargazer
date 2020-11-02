@@ -1,5 +1,5 @@
-// get 20 most relevant nearby parks (as ranked by google)
-function getNearbyParks() {
+/** get 20 most relevant nearby parks (as ranked by google) **/
+export function getNearbyParks() {
     const map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: SearchLocation.latitude, lng: SearchLocation.longitude },
         zoom: 15,
@@ -73,13 +73,13 @@ function getNearbyParks() {
 /**
  * Clears all weather cards from the HTML
  */
-function clearLocationCards() {
+export function clearLocationCards() {
     let top_location = document.querySelector(".top-location-container");
     top_location.innerHTML = '';
     let cards = document.querySelector(".location-container");
     cards.innerHTML = '';
 }
-function makeLocationTemplate (park, lpt, position) {
+export function makeLocationTemplate (park, lpt, position) {
     let name = park.name;
     let address = park.formatted_address;
     let website = park.website;

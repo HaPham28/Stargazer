@@ -1,5 +1,5 @@
 //light pollution info --- return a STRING
-function getLightPollution(lat , lng) {
+export function getLightPollution(lat , lng) {
     const apiKey = '45pZnF8eF3ak9ixj'
     let url = 'https://www.lightpollutionmap.info/QueryRaster/?ql=viirs_2019&qt=point&qd=' + lng + ','+ lat + '&key=' + apiKey;
     console.log(url);

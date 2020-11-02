@@ -15,7 +15,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "client_side": "file:./back-end/client_side/pkg"
+    "client_side": "file:./back-end/client_side/pkg",
+    "load-google-maps-api": "2.0.2"
   },
   "devDependencies": {
     "hello-wasm-pack": "^0.1.0",
