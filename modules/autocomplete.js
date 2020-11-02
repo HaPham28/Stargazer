@@ -1,12 +1,15 @@
+import {getWeatherForecast} from "./weather";
+import {getLightPollution} from "./light_pollution";
+import {getConstellationData} from "./constellation";
+import {getNearbyParks} from "./location";
+
 const load_google_maps = require('load-google-maps-api');
 
 /********* Google Maps Autocomplete ********/
 
-let placeName = null;
-let latitude = null;
-let longitude = null;
-
-let google = null;
+export let placeName = null;
+export let latitude = null;
+export let longitude = null;
 
 export async function init_google_maps(document){
     await load_google_maps({
@@ -73,7 +76,7 @@ async function initMap(google, document) {
       getLightPollution(latitude , longitude);
 
       getConstellationData();
-      getNearbyParks();
+      getNearbyParks(google);
 
       // Set place title
       document.querySelector('.place-title').innerHTML = place.name;

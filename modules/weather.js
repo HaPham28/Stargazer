@@ -1,4 +1,6 @@
 // Aeris Weather info (moon phase)
+import {latitude, longitude} from "./autocomplete";
+
 const AccessID = 'cruQcmMBbu2IWxTzBpQxF';
 const SecretKey = 'ZclnNemymt1nOKIUsB37ci2U5ydvua6e6OAla33f';
 // request format: https://api.aerisapi.com//sunmoon/moonphases?limit={NUMDAYS}&client_id=cruQcmMBbu2IWxTzBpQxF&client_secret=ZclnNemymt1nOKIUsB37ci2U5ydvua6e6OAla33f
@@ -22,7 +24,7 @@ export function getWeatherForecast(){
     const SecretKey = 'ZclnNemymt1nOKIUsB37ci2U5ydvua6e6OAla33f';
 
     const aeris = new AerisWeather(AccessID, SecretKey)
-    const loc = SearchLocation.latitude + ',' + SearchLocation.longitude
+    const loc = latitude + ',' + longitude
 
     const moonphaseRequest = aeris.api().endpoint('sunmoon/moonphases').place(loc).limit(7).from(new Date(new Date().getTime() - 2592000000)).get();
     const forecastRequest = aeris.api().endpoint('forecasts').place(loc).limit(7).get();
