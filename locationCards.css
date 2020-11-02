@@ -4,7 +4,7 @@
     margin: 15px 0;
 
     width: 100%;
-    height: 330px;
+    height: 295px;
     background-color: whitesmoke;
     box-shadow: 0px 0px 4px 4px rgba(0, 0, 0, 0.3);
 }
@@ -17,16 +17,16 @@
 
     /*background-image: url("./assets/central-park.jpg");*/
     background-size: cover;
-    height: 330px;
-    width: 330px;
+    height: 295px;
+    width: 295px;
 }
 
 /*********RIGHT*********/
 
 .location-card-right{
     flex-direction: row;
-    height: 250px;
-    padding: 20px;
+    height: 230px;
+    padding: 15px;
     width: calc(100% - 330px);
     color: black;
 }
@@ -41,9 +41,12 @@
     box-shadow: 0px 4px 4px -4px rgba(0, 0, 0, 0.3);
 }
 
-span.location-location{
-    height: 20px;
+.location-location{
+    display: inline-block;
+    height: 30px;
+    width: (100% - 140px);
     color: black;
+    overflow: auto;
 }
 
 span.location-name{
@@ -64,22 +67,6 @@ span.location-address{
 }
 
 .location-distance{
-    height: 20px;
-    justify-content: flex-end;
-    font-weight: bold;
-    overflow: hidden;
-}
-
-span.location-dist {
-    font-size: 18px;
-    color: rgba(150, 150, 150);
-    height: 20px;
-    justify-content: flex-end;
-    font-weight: bold;
-    overflow: hidden;
-}
-
-.location-icon {
     text-decoration: none;
     cursor: pointer;
     justify-content: flex-end;
@@ -87,7 +74,17 @@ span.location-dist {
     margin-right: 5px;
     font-size: 30px !important;
     transition: 0.2s all;
+    width: 100px;
 }
+
+span.location-dist {
+    font-size: 15px;
+    color: rgba(150, 150, 150);
+    height: 20px;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+
 span.location-icon a {
     text-decoration: none;
     cursor: pointer;
@@ -108,9 +105,9 @@ span.location-icon a {
 .location-card-right-middle{
     display: flex;
     justify-content: space-between;
-    margin: 5px;
+    margin: 5px 5px 0px 5px;
     width: 100%;
-    height: 145px;
+    height: 140px;
     color: black;
 }
 
@@ -118,6 +115,7 @@ span.location-icon a {
     font-size: 14px;
     color: black;
     width: 710px;
+    overflow: auto;
 }
 
 .location-rating-stars-group{
@@ -133,7 +131,7 @@ span.location-icon a {
 }
 .rating-star-25 i{
     font-size: 25px;
-    background: linear-gradient(to right, #7289da 40%, white 0%);
+    background: linear-gradient(to right, #7289da 25%, white 0%);
     -webkit-text-stroke: 1px #2c2f33c2;
     -webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
@@ -147,7 +145,7 @@ span.location-icon a {
 }
 .rating-star-75 i{
     font-size: 25px;
-    background: linear-gradient(to right, #7289da 60%, white 0%);
+    background: linear-gradient(to right, #7289da 75%, white 0%);
     -webkit-text-stroke: 1px #2c2f33c2;
     -webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
@@ -162,15 +160,15 @@ span.location-icon a {
 
     /***RIGHT-BOTTOM***/
 .location-card-right-bottom{
-    margin: 5px 0;
     color: rgba(150, 150, 150);
     height: 80px;
 }
 
 .pollution-title{
-    font-size: 20px;
+    font-size: 18px;
     color: rgba(150, 150, 150);
     font-weight: bold;
+    margin-bottom: 7px;
 
 }
 .pollution-value{
@@ -181,6 +179,7 @@ span.location-icon a {
 .rating-bar{
     background:#2c2f33c2;
     padding: 3px;
+    margin-top: 5px;
   }
 
 .rating-bar span{
@@ -232,7 +231,126 @@ a{
     }
 }
 */
+@media only screen and (max-width: 1550px) {
+    .location-card-right{
+        flex-direction: row;
+        height: 230px;
+        padding: 12px;
+        width: calc(100% - 330px);
+        color: black;
+    }
+    .location-card-right-top{
+        flex-direction: column;
+        height: 70px;
+    }
+    
+    .location-location{
+        display: inline-block;
+        height: 50px;
+        width: (100% - 70px);
+        color: black;
+        overflow: auto;
+    }
+    
+    span.location-name{
+        font-size: 19px;
+        color: #7289da;
+        height: 50px;
+        width: 200px;
+        font-weight: bold;
+        overflow: hidden;
+    }
+    
+    span.location-address{
+        font-size: 12px;
+        color: rgba(150, 150, 150);
+        height: 50px;
+        font-weight: bold;
+        overflow: hidden;
+    }
+    .location-distance{
+        text-decoration: none;
+        cursor: pointer;
+        justify-content: flex-end;
+        float: right;
+        margin-right: 5px;
+        font-size: 20px !important;
+        transition: 0.2s all;
+        width: 70px;
+        height: 40px;
+    }
+    span.location-dist {
+        font-size: 10px;
+        color: rgba(150, 150, 150);
+        height: 20px;
+        justify-content: flex-end;
+        overflow: hidden;
+    }
+    span.location-icon a {
+        text-decoration: none;
+        cursor: pointer;
+        justify-content: flex-end;
+        float: right;
+        margin-right: 5px;
+        font-size: 20px !important;
+        color: rgba(255, 0, 0, 0.6);
+        height: 20px;
+        transition: 0.2s all;
+    }
+    .location-card-right-middle{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 5px 5px 0px 5px;
+        width: 100%;
+        height: 130px;
+        color: black;
+    }
+    .location-description {
+        font-size: 14px;
+        color: black;
+        width: 100%;
+        overflow: auto;
+    }
+    .location-rating-stars-group{
+        padding: 5px 0;
+    }
+    .rating-star-0 i {
+        font-size: 20px;
 
+    }
+    .rating-star-25 i{
+        font-size: 20px;
+    }
+    .rating-star-50 i{
+        font-size: 20px;
+    }
+    .rating-star-75 i{
+        font-size: 20px;
+    }
+    .rating-star-100 i{
+        font-size: 20px;
+    }
+    
+    /***RIGHT-BOTTOM***/
+    .location-card-right-bottom{
+        color: rgba(150, 150, 150);
+        height: 80px;
+    }
+
+    .pollution-title{
+        font-size: 15px;
+        color: rgba(150, 150, 150);
+        font-weight: bold;
+        margin-bottom: 7px;
+
+    }
+    .pollution-value{
+        font-size: 14px;
+        color: rgba(150, 150, 150);
+    }
+    
+}
 
 
 

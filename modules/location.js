@@ -28,7 +28,6 @@ export function getNearbyParks() {
             let lat = park.geometry.location.lat();
             let lng = park.geometry.location.lng();
             let lightPollution = parseFloat(getLightPollution(lat, lng));
-
             park.Light_Pollution = lightPollution;
         });
 
@@ -67,6 +66,23 @@ export function getNearbyParks() {
                 makeLocationTemplate (place, park.Light_Pollution, 'location-container');
             });
         });
+
+/*         top10Parks.slice(1,).forEach( park => {
+            let place_id = park.place_id;
+            let request = {
+                placeId: place_id,
+                fields: ['name', 'place_id', 'formatted_address', 'rating', 'photo', 'url', 'types', 'formatted_phone_number', 'opening_hours', 'website', 'business_status'],
+            };
+            let service = new google.maps.places.PlacesService(map);
+            const { place, status } = await new Promise(resolve => 
+                service.getDetails(
+                    request,
+                    (place, status) => resolve({place, status})
+                )
+            );
+            makeLocationTemplate (place, park.Light_Pollution, 'location-container');
+
+        }); */
         console.log(top10Parks);
 
 
@@ -85,26 +101,30 @@ export function clearLocationCards() {
 }
 
 export function makeLocationTemplate(park, lpt, position) {
+
+    console.log("level of polution ", lpt);
     let name = park.name;
     let address = park.formatted_address;
     let website = park.website;
     let place_id = park.place_id;
-
     let rating = 0;
     let lightPollution = lpt.toFixed(2);
-
     let imgLink = "./assets/central-park.jpg";
+    let status = "N/A";
+    let hours = [];
+    let phone_number = "N/A";
+    let types = [];
+    
+    //handle undefined
+    if (isNaN(lightPollution)) {
+        lightPollution = 0;
+    }
     if (typeof park.photos !== 'undefined') {
         imgLink = park.photos[0].getUrl();
     }
-
-
-    //description variable
-    let status = "N/A";
     if (typeof park.business_status !== 'undefined') {
         status = park.business_status.toLowerCase();
     }
-    let hours = [];
     if (typeof park.opening_hours !== 'undefined') {
         park.opening_hours.weekday_text.forEach(day => {
             hours.push(" " + day);
@@ -112,20 +132,17 @@ export function makeLocationTemplate(park, lpt, position) {
     } else {
         hours.push("N/A");
     }
-    let phone_number = "N/A";
     if (typeof park.formatted_phone_number !== 'undefined') {
         phone_number = park.formatted_phone_number;
     }
-    let types = [];
     park.types.forEach(type => {
+        type = type.replace(/_/g, ' ');
         types.push(" " + type);
     });
 
-
+    //update light pollution bar
     let color_rating = "";
     let width_rating = "";
-
-    //light pollution bar
     if (lightPollution > 100) {
         color_rating = "dark_red";
         width_rating = "100%";
@@ -146,6 +163,7 @@ export function makeLocationTemplate(park, lpt, position) {
         width_rating = String(lightPollution) + "%";
     }
 
+    //update rating stars
     let full_star = 0;
     let partial_star = 0;
     let partial_star_percentage = 0;
@@ -203,7 +221,7 @@ export function makeLocationTemplate(park, lpt, position) {
                     <span class="location-name"> <a href="${website}">${name}</a>,</span>
                     <span class="location-address">${address}</span>
                 </div>
-                <div class="location-icon" title="Open in Maps"> <span class="location-dist"> 30 miles </span> <span class = "location-icon"> <a href="https://www.google.com/maps/place/?q=place_id:${place_id}" target="_blank" class="material-icons">place</a> </span>
+                <div class="location-distance" title="Open in Maps"> <span class="location-dist"> 30 miles </span> <span class = "location-icon"> <a href="https://www.google.com/maps/place/?q=place_id:${place_id}" target="_blank" class="material-icons">place</a></span>
                 </div>
             </div>
         
@@ -221,7 +239,7 @@ export function makeLocationTemplate(park, lpt, position) {
             <div class ="location-card-right-bottom">
                 <div class="pollution" >
                     <div class="pollution-title">Light Pollution</div>
-                    <p class="pollution-value">${lightPollution} lpc</p>
+                    <div class="pollution-value">${lightPollution} lpc</div>
                     <div class="rating-bar">
                         <div style = "width: ${width_rating};" class="rate">
                             <span class="animate ${color_rating}"></span>
