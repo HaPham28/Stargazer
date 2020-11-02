@@ -24,7 +24,7 @@ function getWeatherForecast(){
     const aeris = new AerisWeather(AccessID, SecretKey)
     const loc = SearchLocation.latitude + ',' + SearchLocation.longitude
 
-    const moonphaseRequest = aeris.api().endpoint('sunmoon/moonphases').place(loc).limit(7).get();
+    const moonphaseRequest = aeris.api().endpoint('sunmoon/moonphases').place(loc).limit(7).from(new Date(new Date().getTime() - 2592000000)).get();
     const forecastRequest = aeris.api().endpoint('forecasts').place(loc).limit(7).get();
     const placesRequest = aeris.api().endpoint('places').place(loc).get();
 
@@ -37,6 +37,7 @@ function getWeatherForecast(){
                 const placesResults = apiResults[2].data;
 
                 //console.log(apiResults)
+                console.log(moonphaseResults);
                 addWeatherCards(forecastsResults, moonphaseResults);
             });
 }
@@ -252,52 +253,80 @@ function getMoonPhase(moonPhaseData, date) {
     /*
         Takes ~ 1 week for each quarter, so between 2 - 4 days after start of quarter, we use intermediate phases
     */
+    let flag = false;
+    let res = null;
     const dayS = 60 * 60 * 24;
-
     let PassedDateMs = date.getTime() / 1000;
     for(let i = 0; i < moonPhaseData.length - 1; i++) {
         let phaseDateMs = moonPhaseData[i].timestamp;
         let timeDifference = phaseDateMs - PassedDateMs;
-        // About midway between current quarter and next quarter
-        if(timeDifference >= 2 * dayS && timeDifference <= 4 * dayS) {
-            switch(moonPhaseData[i].name) {
-                case 'new moon':
-                    return moonPhases.WANING_CRESCENT;
-                case 'first quarter':
-                    return moonPhases.WAXING_CRESCENT;
-                case 'full moon':
-                    return moonPhases.WAXING_GIBBOUS;
-                case 'third quarter':
-                    return moonPhases.WANING_GIBBOUS;
-            }
+        console.log(date.toISOString() + " " + moonPhaseData[i].name + " " + (timeDifference / dayS));
+        if(timeDifference < 0)
+            continue;
 
         // Quarter has just started
-        } else if(timeDifference >= 0 && timeDifference < 2 * dayS) {
-            switch(moonPhaseData[i].name) {
+        if(timeDifference >= 5 * dayS) {
+            console.log("RETURN 1");
+            flag = true;
+            switch(String(moonPhaseData[i].name)) {
                 case 'new moon':
-                    return moonPhases.NEW_MOON;
+                    res = moonPhases.THIRD_QUARTER;
+                    break;
                 case 'first quarter':
-                    return moonPhases.FIRST_QUARTER;
+                    res = moonPhases.NEW_MOON;
+                    break;
                 case 'full moon':
-                    return moonPhases.FULL_MOON;
-                case 'third quarter':
-                    return moonPhases.THIRD_QUARTER;
+                    res = moonPhases.FIRST_QUARTER;
+                    break;
+                case 'last quarter':
+                    res = moonPhases.FULL_MOON;
+                    break;
+                default:
+                    console.log(String(moonPhaseData[i].name));
             }
 
-        // About to enter next quarter
-        } else if(timeDifference < moonPhaseData[i + 1].timestamp && timeDifference > 4 * dayS) {
-            switch(moonPhaseData[i].name) {
+        // About midway between current quarter and next quarter
+        } else if(timeDifference >= 3 * dayS) {
+            flag = true;
+            switch(String(moonPhaseData[i].name)) {
                 case 'new moon':
-                    return moonPhases.THIRD_QUARTER;
+                    res = moonPhases.WANING_CRESCENT;
+                    break;
                 case 'first quarter':
-                    return moonPhases.NEW_MOON;
+                    res = moonPhases.WAXING_CRESCENT;
+                    break;
                 case 'full moon':
-                    return moonPhases.FIRST_QUARTER;
-                case 'third quarter':
-                    return moonPhases.FULL_MOON;
+                    res = moonPhases.WAXING_GIBBOUS;
+                    break;
+                case 'last quarter':
+                    res = moonPhases.WANING_GIBBOUS;
+                    break;
+            } 
+        
+        // About to enter next quarter
+        } else {
+            flag = true;
+            switch(String(moonPhaseData[i].name)) {
+                case 'new moon':
+                    res = moonPhases.NEW_MOON;
+                    break;
+                case 'first quarter':
+                    res = moonPhases.FIRST_QUARTER;
+                    break;
+                case 'full moon':
+                    res = moonPhases.FULL_MOON;
+                    break;
+                case 'last quarter':
+                    res = moonPhases.THIRD_QUARTER;
+                    break;
             }
         }
+
+        if(flag)
+            break;
     }
+    
+    return res;
 }
 
 function getOverallWeatherRating(moonPhase, cloudRatingClass, visibilityRatingClass, precipitationPercentage) {
