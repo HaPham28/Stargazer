@@ -90,7 +90,7 @@ export function makeLocationTemplate(park, lpt, position) {
     let website = park.website;
     let place_id = park.place_id;
 
-    let rating = park.rating;
+    let rating = 0;
     let lightPollution = lpt.toFixed(2);
 
     let imgLink = "./assets/central-park.jpg";
@@ -146,7 +146,49 @@ export function makeLocationTemplate(park, lpt, position) {
         width_rating = String(lightPollution) + "%";
     }
 
-    console.log("width" + width_rating);
+    let full_star = 0;
+    let partial_star = 0;
+    let partial_star_percentage = 0;
+    let empty_star = 0;
+    if (typeof park.rating !== 'undefined') {
+        rating = park.rating;
+        full_star = Math.floor(rating);
+        partial_star_percentage = Math.round((rating - full_star)*100);
+        if (partial_star_percentage > 0) {
+            partial_star = 1;
+            empty_star = 5 - 1 - full_star;
+
+            if (partial_star_percentage <= 37) {
+                partial_star_percentage = 25;
+            }
+            else if (partial_star_percentage <= 62) {
+                partial_star_percentage = 50;
+            }
+            else if (partial_star_percentage <= 87) {
+                partial_star_percentage = 75;
+            }
+            else {
+                full_star += 1;
+                if (empty_star >= 1) {
+                    empty_star -= 1;
+                }
+            }
+        }
+        else {
+            empty_star = 5 - full_star;
+            partial_star = 0;
+        }
+
+    }
+    console.log("star-rating ", rating);
+
+    const make_empty_star = ' <span class="rating-star-0"><i class="material-icons">grade</i></span> ';
+    const make_full_star = ' <span class="rating-star-100"><i class="material-icons">grade</i></span> ';
+    const make_partial_star = '<span class="rating-star-' + partial_star_percentage.toString() +'"><i class="material-icons">grade</i></span>';
+    
+
+    console.log(make_partial_star);
+
 
     const template = (`
     <div class="location-card">
@@ -161,18 +203,18 @@ export function makeLocationTemplate(park, lpt, position) {
                     <span class="location-name"> <a href="${website}">${name}</a>,</span>
                     <span class="location-address">${address}</span>
                 </div>
-                <div class="location-icon" title="Open in Maps"><a href="https://www.google.com/maps/place/?q=place_id:${place_id}" target="_blank" class="material-icons">place</a></div>
+                <div class="location-icon" title="Open in Maps"> <span class="location-dist"> 30 miles </span> <span class = "location-icon"> <a href="https://www.google.com/maps/place/?q=place_id:${place_id}" target="_blank" class="material-icons">place</a> </span>
+                </div>
             </div>
+        
 
             <!-- Show desciption of location & rating star-->
             <div class="location-card-right-middle">
                 <div class="location-description">Hours: ${hours}<br><br>Contact: ${phone_number}<br><br>Business status: ${status}<br><br>Types: ${types}</div>
                 <div class="location-rating-stars-group">
-                    <span class="rating-star-100"><i class="material-icons">grade</i></span>
-                    <span class="rating-star-100"><i class="material-icons">grade</i></span>
-                    <span class="rating-star-100"><i class="material-icons">grade</i></span>
-                    <span class="rating-star-75"><i class="material-icons">grade</i></span>
-                    <span class="rating-star-0"><i class="material-icons">grade</i></span>
+                    ${make_full_star.repeat(full_star)}
+                    ${make_partial_star.repeat(partial_star)}
+                    ${make_empty_star.repeat(empty_star)}
                 </div>
             </div>
             <!-- Show light pollution -->

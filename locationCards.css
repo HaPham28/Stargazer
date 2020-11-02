@@ -41,7 +41,7 @@
     box-shadow: 0px 4px 4px -4px rgba(0, 0, 0, 0.3);
 }
 
-.location-location{
+span.location-location{
     height: 20px;
     color: black;
 }
@@ -63,13 +63,32 @@ span.location-address{
     overflow: hidden;
 }
 
-.location-address p{
-    color: black;
+.location-distance{
+    height: 20px;
+    justify-content: flex-end;
+    font-weight: bold;
     overflow: hidden;
 }
 
+span.location-dist {
+    font-size: 18px;
+    color: rgba(150, 150, 150);
+    height: 20px;
+    justify-content: flex-end;
+    font-weight: bold;
+    overflow: hidden;
+}
 
-.location-icon a {
+.location-icon {
+    text-decoration: none;
+    cursor: pointer;
+    justify-content: flex-end;
+    float: right;
+    margin-right: 5px;
+    font-size: 30px !important;
+    transition: 0.2s all;
+}
+span.location-icon a {
     text-decoration: none;
     cursor: pointer;
     justify-content: flex-end;
@@ -109,7 +128,7 @@ span.location-address{
 }
 .rating-star-0 i {
     font-size: 25px;
-    color: white;
+    background: white;
     -webkit-text-stroke: 1px #2c2f33c2;
 }
 .rating-star-25 i{
