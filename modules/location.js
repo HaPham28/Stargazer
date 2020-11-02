@@ -121,6 +121,7 @@ export function makeLocationTemplate(park, lpt, position) {
     }
     if (typeof park.photos !== 'undefined') {
         imgLink = park.photos[0].getUrl();
+        console.log("IMG: " + imgLink);
     }
     if (typeof park.business_status !== 'undefined') {
         status = park.business_status.toLowerCase();

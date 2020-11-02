@@ -9,7 +9,7 @@ export let placeName = null;
 export let latitude = null;
 export let longitude = null;
 
-export async function init_google_map(document) {
+export async function init_google_map(google, document) {
     const map = new google.maps.Map(document.getElementById("map"), {
       center: { lat: -33.8688, lng: 151.2195 },
       zoom: 13,
