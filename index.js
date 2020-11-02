@@ -7,7 +7,7 @@ import {init_google_map} from "./modules/autocomplete";
 *********************************/
 
 function initMap(){
-    init_google_map(document);
+    init_google_map(google, document);
 }
 
 initMap();
