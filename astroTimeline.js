@@ -39,7 +39,9 @@ function makeCircles() {
     var lastInt = ((lastMonth - firstMonth) * 30) + (lastDay - firstDay);
 
     //Draw first date circle
-    document.getElementById('astro-line').append('<div class="astro-circle" id="astro-circle0" style="left: ' + 0 + '%;"><div class="popupSpan">' + dateSpan(dates[0]) + '</div></div>');
+    console.log(document.querySelector('#astro-line'));
+
+    $('astro-line').append('<div class="astro-circle" id="astro-circle0" style="left: ' + 0 + '%;"><div class="popupSpan">' + dateSpan(dates[0]) + '</div></div>');
     
     $("#astro-mainCont").append('<span id="astro-span0" class="center">' + dateSpan(dates[0]) + '</span>');
 

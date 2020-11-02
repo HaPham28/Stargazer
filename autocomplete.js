@@ -65,7 +65,7 @@ async function initMap() {
 
       getConstellationData();
       getNearbyParks();
-
+      
       // Set place title
       document.querySelector('.place-title').innerHTML = place.name;
 

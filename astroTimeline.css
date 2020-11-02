@@ -95,6 +95,7 @@
   top: 30%;
   transition: all 0.2s ease-out;
 }
+
 #astro-mainCont span.right {
   left: 200%;
 }
