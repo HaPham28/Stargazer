@@ -44,7 +44,7 @@
 .location-location{
     display: inline-block;
     height: 30px;
-    width: (100% - 140px);
+    width: 89%;
     color: black;
     overflow: auto;
 }
@@ -74,11 +74,12 @@ span.location-address{
     margin-right: 5px;
     font-size: 30px !important;
     transition: 0.2s all;
-    width: 100px;
+    width: 90px;
 }
 
 span.location-dist {
-    font-size: 15px;
+    font-size: 12px;
+    cursor: pointer;
     color: rgba(150, 150, 150);
     height: 20px;
     justify-content: flex-end;
@@ -114,46 +115,54 @@ span.location-icon a {
 .location-description {
     font-size: 14px;
     color: black;
-    width: 710px;
+    width: 83%;
     overflow: auto;
 }
 
 .location-rating-stars-group{
-    width: 155px;
+    width: 150px;
     justify-content: flex-end;
     padding: 0px 0px 0px 10px;
     align-items: center;
+    float: right;
 }
 .rating-star-0 i {
     font-size: 25px;
     background: white;
     -webkit-text-stroke: 1px #2c2f33c2;
+    float: right;
 }
 .rating-star-25 i{
     font-size: 25px;
     background: linear-gradient(to right, #7289da 25%, white 0%);
     -webkit-text-stroke: 1px #2c2f33c2;
     -webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;
+    float: right;
 }
 .rating-star-50 i{
     font-size: 25px;
     background: linear-gradient(to right, #7289da 50%, white 0%);
     -webkit-text-stroke: 1px #2c2f33c2;
     -webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;
+    float: right;
+
 }
 .rating-star-75 i{
     font-size: 25px;
     background: linear-gradient(to right, #7289da 75%, white 0%);
     -webkit-text-stroke: 1px #2c2f33c2;
     -webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;
+    float: right;
+
 }
 .rating-star-100 i{
     font-size: 25px;
     color: #7289da;
     -webkit-text-stroke: 1px #2c2f33c2;
+    float: right;
 }
 
 
@@ -231,7 +240,133 @@ a{
     }
 }
 */
-@media only screen and (max-width: 1550px) {
+
+@media only screen and (max-width: 1400px) {
+    .location-card-right{
+        flex-direction: row;
+        height: 230px;
+        padding: 12px;
+        width: calc(100% - 330px);
+        color: black;
+    }
+    .location-card-right-top{
+        flex-direction: column;
+        height: 50px;
+    }
+
+    .location-location{
+        display: inline-block;
+        height: 40px;
+        width: 100%;
+        color: black;
+        overflow: auto;
+    }
+
+    span.location-name{
+        font-size: 19px;
+        color: #7289da;
+        height: 40px;
+        width: 200px;
+        font-weight: bold;
+        overflow: hidden;
+    }
+
+    span.location-address{
+        font-size: 12px;
+        color: rgba(150, 150, 150);
+        height: 40px;
+        font-weight: bold;
+        overflow: hidden;
+    }
+    .location-distance{
+        text-decoration: none;
+        cursor: pointer;
+        justify-content: flex-end;
+        float: left;
+        margin-right: 5px;
+        font-size: 20px !important;
+        transition: 0.2s all;
+        width: 65px;
+        height: 30px;
+    }
+    span.location-dist {
+        font-size: 10px;
+        color: rgba(150, 150, 150);
+        height: 20px;
+        overflow: hidden;
+    }
+    span.location-icon a {
+        text-decoration: none;
+        cursor: pointer;
+        float: right;
+        justify-content: flex-end;
+        margin-right: 5px;
+        font-size: 20px !important;
+        color: rgba(255, 0, 0, 0.6);
+        height: 20px;
+        transition: 0.2s all;
+    }
+    /* .location-card-right-middle{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 5px 5px 0px 5px;
+        width: 100%;
+        height: 130px;
+        color: black;
+    } */
+    .location-description {
+        font-size: 14px;
+        color: black;
+        width: (85%);
+        overflow: auto;
+        margin-bottom: 2px;;
+    }
+    .location-rating-stars-group{
+        float: right;
+        padding: 5px 0;
+        width: 125px;
+    }
+    .rating-star-0 i, .rating-star-25 i, .rating-star-50 i, .rating-star-75 i,.rating-star-100 i {
+        float: right;
+        font-size: 20px;
+
+    }
+    /* .rating-star-25 i{
+        font-size: 20px;
+    }
+    .rating-star-50 i{
+        font-size: 20px;
+    }
+    .rating-star-75 i{
+        font-size: 20px;
+    }
+    .rating-star-100 i{
+        font-size: 20px;
+    } */
+    
+    /***RIGHT-BOTTOM***/
+    .location-card-right-bottom{
+        color: rgba(150, 150, 150);
+        height: 80px;
+        margin-top: 3px;
+    }
+
+    .pollution-title{
+        font-size: 15px;
+        color: rgba(150, 150, 150);
+        font-weight: bold;
+        margin-bottom: 7px;
+
+    }
+    .pollution-value{
+        font-size: 14px;
+        color: rgba(150, 150, 150);
+    }
+    
+}
+
+@media only screen and (max-width: 1000px) {
     .location-card-right{
         flex-direction: row;
         height: 230px;
@@ -243,7 +378,7 @@ a{
         flex-direction: column;
         height: 70px;
     }
-    
+
     .location-location{
         display: inline-block;
         height: 50px;
@@ -251,7 +386,7 @@ a{
         color: black;
         overflow: auto;
     }
-    
+
     span.location-name{
         font-size: 19px;
         color: #7289da;
@@ -260,7 +395,7 @@ a{
         font-weight: bold;
         overflow: hidden;
     }
-    
+
     span.location-address{
         font-size: 12px;
         color: rgba(150, 150, 150);
@@ -276,8 +411,119 @@ a{
         margin-right: 5px;
         font-size: 20px !important;
         transition: 0.2s all;
-        width: 70px;
+        width: 65px;
         height: 40px;
+    }
+    span.location-dist {
+        font-size: 10px;
+        color: rgba(150, 150, 150);
+        height: 40px;
+        justify-content: flex-end;
+        overflow: hidden;
+    }
+    span.location-icon a {
+        text-decoration: none;
+        cursor: pointer;
+        justify-content: flex-end;
+        float: right;
+        margin-right: 5px;
+        font-size: 20px !important;
+        color: rgba(255, 0, 0, 0.6);
+        height: 20px;
+        transition: 0.2s all;
+    }
+    .location-card-right-middle{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+        margin: 5px 5px 0px 5px;
+        width: 100%;
+        height: 130px;
+        color: black;
+    }
+    .location-description {
+        font-size: 14px;
+        color: black;
+        width: 100%;
+        overflow: auto;
+    }
+    .location-rating-stars-group{
+        width: 100%;
+        padding: 5px 0;
+    }
+    .rating-star-0 i, .rating-star-25 i, .rating-star-50 i, .rating-star-75 i,.rating-star-100 i {
+        float: right;
+        font-size: 20px;
+
+    }
+    .location-card-right-bottom{
+        color: rgba(150, 150, 150);
+        height: 80px;
+    }
+
+    .pollution-title{
+        font-size: 15px;
+        color: rgba(150, 150, 150);
+        font-weight: bold;
+        margin-bottom: 7px;
+
+    }
+    .pollution-value{
+        font-size: 14px;
+        color: rgba(150, 150, 150);
+    }
+    
+}
+
+@media only screen and (max-width: 768px) {
+    .location-card-right{
+        flex-direction: row;
+        height: 230px;
+        padding: 12px;
+        width: calc(100% - 330px);
+        color: black;
+    }
+    .location-card-right-top{
+        flex-direction: column;
+        height: 73px;
+    }
+
+    .location-location{
+        display: inline-block;
+        height: 64px;
+        width: (100% - 70px);
+        color: black;
+        overflow: auto;
+    }
+
+    span.location-name{
+        /*  */
+        font-size: 16px;  
+        color: #7289da;
+        height: 30px;
+        width: 200px;
+        font-weight: bold;
+        overflow: hidden;
+    }
+
+    span.location-address{
+        /*  */
+        font-size: 12px;
+        color: rgba(150, 150, 150);
+        height: 30px;
+        font-weight: bold;
+        overflow: hidden;
+    }
+    .location-distance{
+        text-decoration: none;
+        cursor: pointer;
+        justify-content: flex-end;
+        float: right;
+        margin-right: 5px;
+        font-size: 20px !important;
+        transition: 0.2s all;
+        width: 65px;
+        height: 20px;
     }
     span.location-dist {
         font-size: 10px;
@@ -299,55 +545,57 @@ a{
     }
     .location-card-right-middle{
         display: flex;
-        flex-direction: column;
+        flex-direction: column-reverse;
         justify-content: space-between;
         margin: 5px 5px 0px 5px;
         width: 100%;
-        height: 130px;
+        height: 140px;
         color: black;
     }
     .location-description {
-        font-size: 14px;
+        /*  */
+        font-size: 11px;
         color: black;
         width: 100%;
         overflow: auto;
     }
     .location-rating-stars-group{
+        width: 100%;
         padding: 5px 0;
     }
-    .rating-star-0 i {
-        font-size: 20px;
+    .rating-star-0 i, .rating-star-25 i, .rating-star-50 i, .rating-star-75 i,.rating-star-100 i {
+        float: right;
+        /*  */
+        font-size: 15px;
 
     }
-    .rating-star-25 i{
-        font-size: 20px;
-    }
-    .rating-star-50 i{
-        font-size: 20px;
-    }
-    .rating-star-75 i{
-        font-size: 20px;
-    }
-    .rating-star-100 i{
-        font-size: 20px;
-    }
-    
-    /***RIGHT-BOTTOM***/
     .location-card-right-bottom{
         color: rgba(150, 150, 150);
-        height: 80px;
+        height: 70px;
     }
 
     .pollution-title{
-        font-size: 15px;
+        /*  */
+        font-size: 12px;
         color: rgba(150, 150, 150);
         font-weight: bold;
         margin-bottom: 7px;
 
     }
     .pollution-value{
-        font-size: 14px;
+        /*  */
+        font-size: 11px;
         color: rgba(150, 150, 150);
+    }
+    .rating-bar{
+        background:#2c2f33c2;
+        padding: 2px;
+        margin-top: 5px;
+      }
+    
+    .rating-bar span{
+        display:block;
+        height:12px;
     }
     
 }

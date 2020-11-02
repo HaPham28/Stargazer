@@ -222,7 +222,7 @@ export function makeLocationTemplate(park, lpt, position) {
                     <span class="location-name"> <a href="${website}">${name}</a>,</span>
                     <span class="location-address">${address}</span>
                 </div>
-                <div class="location-distance" title="Open in Maps"> <span class="location-dist"> 30 miles </span> <span class = "location-icon"> <a href="https://www.google.com/maps/place/?q=place_id:${place_id}" target="_blank" class="material-icons">place</a></span>
+                <div class="location-distance" title="Open in Maps"> <span class="location-dist">30 miles</span><span class = "location-icon"> <a href="https://www.google.com/maps/place/?q=place_id:${place_id}" target="_blank" class="material-icons">place</a></span>
                 </div>
             </div>
         
@@ -231,9 +231,9 @@ export function makeLocationTemplate(park, lpt, position) {
             <div class="location-card-right-middle">
                 <div class="location-description">Hours: ${hours}<br><br>Contact: ${phone_number}<br><br>Business status: ${status}<br><br>Types: ${types}</div>
                 <div class="location-rating-stars-group">
-                    ${make_full_star.repeat(full_star)}
-                    ${make_partial_star.repeat(partial_star)}
                     ${make_empty_star.repeat(empty_star)}
+                    ${make_partial_star.repeat(partial_star)}
+                    ${make_full_star.repeat(full_star)}
                 </div>
             </div>
             <!-- Show light pollution -->
