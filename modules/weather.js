@@ -79,7 +79,7 @@ export function addWeatherCards(weatherData, moonData) {
         'Sunday',
         'Monday',
         'Tuesday',
-        'Wednes...',
+        'Wednesday',
         'Thursday',
         'Friday',
         'Saturday'
