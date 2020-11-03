@@ -1,15 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Stargazer</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="weatherCards.css">
-    <link rel="stylesheet" href="locationCards.css">
-    <link rel="stylesheet" href="astroTimeline.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600&display=swap" rel="stylesheet">
 </head>
-<body>
+<body onload="init_index()">
     <div class="container">
         <div class="navigation">
             <div class="title">
@@ -22,7 +19,7 @@
             </div>
         </div>
         <div class="input-container">
-            <a class="material-icons" onclick="import {clearWeatherCards} from './modules/weather'; clearWeatherCards()">search</a>
+            <a class="material-icons" id="search-button">search</a>
             <input id="location-input" class="location-input" placeholder="Enter a location..."/>
         </div>
         
@@ -86,13 +83,15 @@
     </div>
 
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<<<<<<< HEAD:index.html
     <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6kxrVKGQ0WmQRB393p9Vr12ifrtBDJ_o&libraries=places&v=weekly"
     ></script>
+=======
+    <script async src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6kxrVKGQ0WmQRB393p9Vr12ifrtBDJ_o&libraries=places&v=weekly"></script>
+>>>>>>> refs/remotes/origin/master:src/index.html
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script async defer src="index.js"></script>
     <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
     <script defer src="https://cdn.aerisapi.com/sdk/js/latest/aerisweather.min.js"></script>
-    <script src="astroTimeline.js"></script>
 </body>
 </html>

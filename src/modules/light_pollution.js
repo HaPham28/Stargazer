@@ -14,6 +14,7 @@ export function getLightPollution(lat , lng) {
     }
 
     request.send();
+    console.log("light in request ", request.onload());
     document.querySelector(".animate").classList.toggle("rate-8");
 
     return request.onload();

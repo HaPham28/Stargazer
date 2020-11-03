@@ -1,0 +1,603 @@
+.location-card {
+    display: flex;
+    flex-direction: row;
+    margin: 15px 0;
+
+    width: 100%;
+    height: 295px;
+    background-color: whitesmoke;
+    box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.3);
+}
+
+/*********LEFT*********/
+.location-card-left, .location-card-left img {
+    outline: none;
+    flex-direction: column;
+    align-items: center;
+
+    background-size: cover;
+    height: 295px;
+    width: 295px;
+}
+
+/*********RIGHT*********/
+
+.location-card-right{
+    flex-direction: row;
+    height: 230px;
+    padding: 15px;
+    width: calc(100% - 330px);
+    color: black;
+}
+    /***RIGHT-TOP***/
+.location-card-right-top{
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: rgb(150, 150, 150);
+    width: 100%;
+    height: 40px;
+    box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.3);
+}
+
+.location-location{
+    display: inline-block;
+    height: 30px;
+    width: 89%;
+    color: black;
+    overflow: auto;
+}
+
+span.location-name{
+    font-size: 25px;
+    color: #7289da;
+    height: 20px;
+    width: 200px;
+    font-weight: bold;
+    overflow: hidden;
+}
+
+span.location-address{
+    font-size: 18px;
+    color: rgb(150, 150, 150);
+    height: 20px;
+    font-weight: bold;
+    overflow: hidden;
+}
+
+.location-distance{
+    text-decoration: none;
+    cursor: pointer;
+    justify-content: flex-end;
+    float: right;
+    margin-right: 5px;
+    font-size: 30px !important;
+    transition: 0.2s all;
+    width: 90px;
+}
+
+span.location-dist {
+    font-size: 12px;
+    cursor: pointer;
+    color: rgba(150, 150, 150);
+    height: 20px;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+
+span.location-icon a {
+    text-decoration: none;
+    cursor: pointer;
+    justify-content: flex-end;
+    float: right;
+    margin-right: 5px;
+    font-size: 30px !important;
+    color: rgba(255, 0, 0, 0.6);
+    height: 20px;
+    transition: 0.2s all;
+}
+
+.location-icon a:hover {
+    color: red;
+}
+
+    /***RIGHT-MIDDLE***/
+.location-card-right-middle{
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 5px 0 5px;
+    width: 100%;
+    height: 140px;
+    color: black;
+}
+
+.location-description {
+    font-size: 14px;
+    color: black;
+    width: 83%;
+    overflow: auto;
+}
+
+.location-rating-stars-group{
+    width: 150px;
+    justify-content: flex-end;
+    padding: 0 0 0 10px;
+    align-items: center;
+    float: right;
+}
+.rating-star-0 i {
+    font-size: 25px;
+    background: white;
+    -webkit-text-stroke: 1px #2c2f33c2;
+    float: right;
+}
+.rating-star-25 i{
+    font-size: 25px;
+    background: linear-gradient(to right, #7289da 25%, white 0%);
+    -webkit-text-stroke: 1px #2c2f33c2;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    float: right;
+}
+.rating-star-50 i{
+    font-size: 25px;
+    background: linear-gradient(to right, #7289da 50%, white 0%);
+    -webkit-text-stroke: 1px #2c2f33c2;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    float: right;
+
+}
+.rating-star-75 i{
+    font-size: 25px;
+    background: linear-gradient(to right, #7289da 75%, white 0%);
+    -webkit-text-stroke: 1px #2c2f33c2;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    float: right;
+
+}
+.rating-star-100 i{
+    font-size: 25px;
+    color: #7289da;
+    -webkit-text-stroke: 1px #2c2f33c2;
+    float: right;
+}
+
+
+
+    /***RIGHT-BOTTOM***/
+.location-card-right-bottom{
+    color: rgb(150, 150, 150);
+    height: 80px;
+}
+
+.pollution-title{
+    font-size: 18px;
+    color: rgb(150, 150, 150);
+    font-weight: bold;
+    margin-bottom: 7px;
+
+}
+.pollution-value{
+    font-size: 15px;
+    color: rgb(150, 150, 150);
+}
+
+.rating-bar{
+    background:#2c2f33c2;
+    padding: 3px;
+    margin-top: 5px;
+  }
+
+.rating-bar span{
+    display:block;
+    height:15px;
+}
+
+.rating-bar, .rating-bar span {
+    border-radius:4px; 
+}
+
+  /* .rate-n, n being the rating from 1 to 10 */
+.rate-1{ width:10%; }
+.rate-2{ width:20%; }
+.rate-3{ width:30%; }
+.rate-4{ width:40%; }
+.rate-5{ width:50%; }
+.rate-6{ width:60%; }
+.rate-7{ width:70%; }
+.rate-8{ width:80%; }
+.rate-9{ width:90%; }
+.rate-10{ width:100%; }
+
+/* Used to color the bars */
+.dark_red{ background: #990000; }
+.red{ background:red; }
+.orange{ background: orange; }
+.yellow{ background: yellow; }
+.green{ background: greenyellow; }
+.dark_green{ background:darkgreen; }
+
+.animate{
+    animation: progress 2s linear;
+    -moz-animation: progress 2s linear;
+    -webkit-animation: progress 2s linear;
+    /*-ms-animation: progress 2s linear; TODO: -ms-animation doesn't exist*/
+    -o-animation: progress 2s linear;
+  }
+
+/* unvisited link */
+a{
+    color: #7289da;
+}
+
+/*
+@media only screen and (max-width: 768px) {
+    .location-card {
+        flex-direction: column;
+    }
+}
+*/
+
+@media only screen and (max-width: 1400px) {
+    .location-card-right{
+        flex-direction: row;
+        height: 230px;
+        padding: 12px;
+        width: calc(100% - 330px);
+        color: black;
+    }
+    .location-card-right-top{
+        flex-direction: column;
+        height: 50px;
+    }
+
+    .location-location{
+        display: inline-block;
+        height: 40px;
+        width: 100%;
+        color: black;
+        overflow: auto;
+    }
+
+    span.location-name{
+        font-size: 19px;
+        color: #7289da;
+        height: 40px;
+        width: 200px;
+        font-weight: bold;
+        overflow: hidden;
+    }
+
+    span.location-address{
+        font-size: 12px;
+        color: rgba(150, 150, 150);
+        height: 40px;
+        font-weight: bold;
+        overflow: hidden;
+    }
+    .location-distance{
+        text-decoration: none;
+        cursor: pointer;
+        justify-content: flex-end;
+        float: left;
+        margin-right: 5px;
+        font-size: 20px !important;
+        transition: 0.2s all;
+        width: 65px;
+        height: 30px;
+    }
+    span.location-dist {
+        font-size: 10px;
+        color: rgb(150, 150, 150);
+        height: 20px;
+        overflow: hidden;
+    }
+    span.location-icon a {
+        text-decoration: none;
+        cursor: pointer;
+        float: right;
+        justify-content: flex-end;
+        margin-right: 5px;
+        font-size: 20px !important;
+        color: rgba(255, 0, 0, 0.6);
+        height: 20px;
+        transition: 0.2s all;
+    }
+    /* .location-card-right-middle{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: 5px 5px 0 5px;
+        width: 100%;
+        height: 130px;
+        color: black;
+    } */
+    .location-description {
+        font-size: 14px;
+        color: black;
+        width: (85%);
+        overflow: auto;
+        margin-bottom: 2px;;
+    }
+    .location-rating-stars-group{
+        float: right;
+        padding: 5px 0;
+        width: 125px;
+    }
+    .rating-star-0 i, .rating-star-25 i, .rating-star-50 i, .rating-star-75 i,.rating-star-100 i {
+        float: right;
+        font-size: 20px;
+
+    }
+    /* .rating-star-25 i{
+        font-size: 20px;
+    }
+    .rating-star-50 i{
+        font-size: 20px;
+    }
+    .rating-star-75 i{
+        font-size: 20px;
+    }
+    .rating-star-100 i{
+        font-size: 20px;
+    } */
+    
+    /***RIGHT-BOTTOM***/
+    .location-card-right-bottom{
+        color: rgb(150, 150, 150);
+        height: 80px;
+        margin-top: 3px;
+    }
+
+    .pollution-title{
+        font-size: 15px;
+        color: rgb(150, 150, 150);
+        font-weight: bold;
+        margin-bottom: 7px;
+
+    }
+    .pollution-value{
+        font-size: 14px;
+        color: rgb(150, 150, 150);
+    }
+    
+}
+
+@media only screen and (max-width: 1000px) {
+    .location-card-right{
+        flex-direction: row;
+        height: 230px;
+        padding: 12px;
+        width: calc(100% - 330px);
+        color: black;
+    }
+    .location-card-right-top{
+        flex-direction: column;
+        height: 70px;
+    }
+
+    .location-location{
+        display: inline-block;
+        height: 50px;
+        /*width: (100% - 70px); TODO: Fix this line*/
+        color: black;
+        overflow: auto;
+    }
+
+    span.location-name{
+        font-size: 19px;
+        color: #7289da;
+        height: 50px;
+        width: 200px;
+        font-weight: bold;
+        overflow: hidden;
+    }
+
+    span.location-address{
+        font-size: 12px;
+        color: rgb(150, 150, 150);
+        height: 50px;
+        font-weight: bold;
+        overflow: hidden;
+    }
+    .location-distance{
+        text-decoration: none;
+        cursor: pointer;
+        justify-content: flex-end;
+        float: right;
+        margin-right: 5px;
+        font-size: 20px !important;
+        transition: 0.2s all;
+        width: 65px;
+        height: 40px;
+    }
+    span.location-dist {
+        font-size: 10px;
+        color: rgba(150, 150, 150);
+        height: 40px;
+        justify-content: flex-end;
+        overflow: hidden;
+    }
+    span.location-icon a {
+        text-decoration: none;
+        cursor: pointer;
+        justify-content: flex-end;
+        float: right;
+        margin-right: 5px;
+        font-size: 20px !important;
+        color: rgba(255, 0, 0, 0.6);
+        height: 20px;
+        transition: 0.2s all;
+    }
+    .location-card-right-middle{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+        margin: 5px 5px 0 5px;
+        width: 100%;
+        height: 130px;
+        color: black;
+    }
+    .location-description {
+        font-size: 14px;
+        color: black;
+        width: 100%;
+        overflow: auto;
+    }
+    .location-rating-stars-group{
+        width: 100%;
+        padding: 5px 0;
+    }
+    .rating-star-0 i, .rating-star-25 i, .rating-star-50 i, .rating-star-75 i,.rating-star-100 i {
+        float: right;
+        font-size: 20px;
+
+    }
+    .location-card-right-bottom{
+        color: rgba(150, 150, 150);
+        height: 80px;
+    }
+
+    .pollution-title{
+        font-size: 15px;
+        color: rgba(150, 150, 150);
+        font-weight: bold;
+        margin-bottom: 7px;
+
+    }
+    .pollution-value{
+        font-size: 14px;
+        color: rgba(150, 150, 150);
+    }
+    
+}
+
+@media only screen and (max-width: 768px) {
+    .location-card-right{
+        flex-direction: row;
+        height: 230px;
+        padding: 12px;
+        width: calc(100% - 330px);
+        color: black;
+    }
+    .location-card-right-top{
+        flex-direction: column;
+        height: 73px;
+    }
+
+    .location-location{
+        display: inline-block;
+        height: 64px;
+        width: (100% - 70px);
+        color: black;
+        overflow: auto;
+    }
+
+    span.location-name{
+        /*  */
+        font-size: 16px;  
+        color: #7289da;
+        height: 30px;
+        width: 200px;
+        font-weight: bold;
+        overflow: hidden;
+    }
+
+    span.location-address{
+        /*  */
+        font-size: 12px;
+        color: rgba(150, 150, 150);
+        height: 30px;
+        font-weight: bold;
+        overflow: hidden;
+    }
+    .location-distance{
+        text-decoration: none;
+        cursor: pointer;
+        justify-content: flex-end;
+        float: right;
+        margin-right: 5px;
+        font-size: 20px !important;
+        transition: 0.2s all;
+        width: 65px;
+        height: 20px;
+    }
+    span.location-dist {
+        font-size: 10px;
+        color: rgba(150, 150, 150);
+        height: 20px;
+        justify-content: flex-end;
+        overflow: hidden;
+    }
+    span.location-icon a {
+        text-decoration: none;
+        cursor: pointer;
+        justify-content: flex-end;
+        float: right;
+        margin-right: 5px;
+        font-size: 20px !important;
+        color: rgba(255, 0, 0, 0.6);
+        height: 20px;
+        transition: 0.2s all;
+    }
+    .location-card-right-middle{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+        margin: 5px 5px 0px 5px;
+        width: 100%;
+        height: 140px;
+        color: black;
+    }
+    .location-description {
+        /*  */
+        font-size: 11px;
+        color: black;
+        width: 100%;
+        overflow: auto;
+    }
+    .location-rating-stars-group{
+        width: 100%;
+        padding: 5px 0;
+    }
+    .rating-star-0 i, .rating-star-25 i, .rating-star-50 i, .rating-star-75 i,.rating-star-100 i {
+        float: right;
+        /*  */
+        font-size: 15px;
+
+    }
+    .location-card-right-bottom{
+        color: rgba(150, 150, 150);
+        height: 70px;
+    }
+
+    .pollution-title{
+        /*  */
+        font-size: 12px;
+        color: rgba(150, 150, 150);
+        font-weight: bold;
+        margin-bottom: 7px;
+
+    }
+    .pollution-value{
+        /*  */
+        font-size: 11px;
+        color: rgba(150, 150, 150);
+    }
+    .rating-bar{
+        background:#2c2f33c2;
+        padding: 2px;
+        margin-top: 5px;
+      }
+    
+    .rating-bar span{
+        display:block;
+        height:12px;
+    }
+    
+}
+
+
+

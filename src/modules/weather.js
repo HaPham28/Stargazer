@@ -1,5 +1,14 @@
 // Aeris Weather info (moon phase)
 import {latitude, longitude} from "./autocomplete";
+import {
+    crescent_waning,
+    crescent_waxing,
+    full_moon,
+    gibbous_waning,
+    gibbous_waxing,
+    new_moon, quarter_waning,
+    quarter_waxing
+} from "../assets/assets";
 
 const AccessID = 'cruQcmMBbu2IWxTzBpQxF';
 const SecretKey = 'ZclnNemymt1nOKIUsB37ci2U5ydvua6e6OAla33f';
@@ -72,7 +81,7 @@ export function clearWeatherCards() {
 /**
  * Adds weather cards to DOM based on data returned from weather query
  */
-export function addWeatherCards(weatherData, moonData) {
+export async function addWeatherCards(weatherData, moonData) {
     clearWeatherCards();
     weatherData[0].periods.reverse();
     const weekdayNames = [
@@ -100,7 +109,7 @@ export function addWeatherCards(weatherData, moonData) {
         'Dec'
     ];
 
-    weatherData[0].periods.forEach(period => {
+    for (const period of weatherData[0].periods){
         const JSDate = new Date(period.dateTimeISO);
         const JSSunset = new Date(period.sunsetISO);
         const dayName = weekdayNames[JSDate.getDay()];
@@ -112,41 +121,44 @@ export function addWeatherCards(weatherData, moonData) {
 
         // Get moonphase picture/title
         const moonPhase = getMoonPhase(moonData, JSDate);
-        let moonPhaseImage = './assets/';
+        let moonPhaseImage = null;
         let moonPhaseTitle = 'N/A';
         switch(moonPhase) {
             case moonPhases.NEW_MOON:
-                moonPhaseImage += 'new.png';
+                moonPhaseImage = new_moon;
                 moonPhaseTitle = "New Moon";
                 break;
             case moonPhases.WAXING_CRESCENT:
-                moonPhaseImage += 'crescent_waxing.png';
+                moonPhaseImage = crescent_waxing;
                 moonPhaseTitle = "Waxing Crescent";
                 break;
             case moonPhases.FIRST_QUARTER:
-                moonPhaseImage += 'quarter_waxing.png';
+                moonPhaseImage = quarter_waxing;
                 moonPhaseTitle = "First Quarter";
                 break;
             case moonPhases.WAXING_GIBBOUS:
-                moonPhaseImage += 'gibbous_waxing.png';
+                moonPhaseImage = gibbous_waxing;
                 moonPhaseTitle = "Waxing Gibbous";
                 break;
             case moonPhases.FULL_MOON:
-                moonPhaseImage += 'full.png';
+                moonPhaseImage = full_moon;
                 moonPhaseTitle = "Full Moon";
                 break;
             case moonPhases.WANING_GIBBOUS:
-                moonPhaseImage += 'gibbous_waning.png';
+                moonPhaseImage = gibbous_waning;
                 moonPhaseTitle = "Waning Gibbous";
                 break;
             case moonPhases.THIRD_QUARTER:
-                moonPhaseImage += 'quarter_waning.png';
+                moonPhaseImage = quarter_waning;
                 moonPhaseTitle = "Third Quarter";
                 break;
             case moonPhases.WANING_CRESCENT:
-                moonPhaseImage += 'crescent_waning.png';
+                moonPhaseImage = crescent_waning;
                 moonPhaseTitle = "Waning Crescent";
                 break;
+        }
+        if (moonPhaseImage == null){
+            throw "Unknown Moon phase " + moonPhase + "!";
         }
 
         // Get cloud and visibility rating
@@ -196,12 +208,13 @@ export function addWeatherCards(weatherData, moonData) {
         const overallRating = getOverallWeatherRating(moonPhase, cloudRatingClass, visibilityRatingClass);
         const overallRatingClass = 'rate-' + Math.max(1, overallRating);
 
+
         const template = (`
         <div class="weather-card">
             <div class="weather-top">
                 <!-- Show moon phase icon, temperature -->
                 <div class="weather-top-left">
-                    <img title="${moonPhaseTitle}" class="weather-moon" src="${moonPhaseImage}"/>
+                    <img title="${moonPhaseTitle}" class="weather-moon" src="${await moonPhaseImage}"/>
                     <p class="weather-temperature">${maxTempF}&#176;F</p>
                 </div>
                 <!-- Show day/date, sunset time, precip chance -->
@@ -232,7 +245,7 @@ export function addWeatherCards(weatherData, moonData) {
         `);
 
         document.querySelector('.weather-container').insertAdjacentHTML('afterbegin', template);
-    });
+    }
 }
 
 /**
