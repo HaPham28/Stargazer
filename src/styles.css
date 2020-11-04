@@ -178,6 +178,7 @@ body {
 }
 
 .light-pollution-aggregate {
+    display: flex;
     font-size: 108px;
     margin:0;
 }
@@ -198,7 +199,7 @@ body {
     background-color: whitesmoke !important;
 }
 
-.light-pollution-bar{
+.light-pollution-bar {
     background: #2c2f33c2;
 }
 
@@ -213,6 +214,11 @@ body {
 
 .light-pollution-bar .fill {
     background-color: #2c2f33;
+}
+
+.inner-light-pollution-bar {
+    transition-delay: 1s;
+    transition: 2.5s cubic-bezier(.56,.89,.32,.88);
 }
 
 /********* Light Pollution Map **********/

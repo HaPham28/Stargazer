@@ -102,10 +102,16 @@ function getBoundingBox(lat, lon, dist) {
     return boundingBox;
 }
 
+$(window).scroll(scrollCount);
+let viewed = false;
+let lightPollutionBarWidth = '100';
 function updateAverageLightPollutionTemplate(avgLightPollution) {
-    document.querySelector('.light-pollution-aggregate').innerHTML = Math.round(avgLightPollution) + " nW/cm<sup>2</sup>/sr";
+    document.querySelector('.light-pollution-aggregate').innerHTML = '<h1 class="light-pollution-aggregate value">' + Math.round(avgLightPollution) + "</h1>&nbsp;nW/cm<sup>2</sup>/sr";
     let fraction = avgLightPollution / 9.0;
-    document.querySelector('.inner-light-pollution-bar').style.width = Math.min(100, (100 * fraction)) + "%";
+    lightPollutionBarWidth = Math.min(100, (100 * fraction))
+    viewed = false;
+    document.querySelector('.inner-light-pollution-bar').style.maxWidth = '0%';
+    document.querySelector('.inner-light-pollution-bar').style.width = lightPollutionBarWidth + "%";
 }
 
 function degToRad(deg) {
@@ -114,4 +120,22 @@ function degToRad(deg) {
 
 function radToDeg(rad) {
     return rad * (180.0 / Math.PI); 
+}
+
+// Fired on scroll to check if we should animate the light pollution bar yet
+function isInView(element) {
+    var docViewTop = $(window).scrollTop();
+    var docViewBottom = docViewTop + $(window).height();
+
+    var elemTop = $(element).offset().top;
+    var elemBottom = elemTop + $(element).height();
+
+    return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+}
+
+function scrollCount() {
+    if(isInView(document.querySelector(".light-pollution-bar")) && !viewed) {
+        viewed = true;
+        document.querySelector('.inner-light-pollution-bar').style.maxWidth = lightPollutionBarWidth + '%';
+    }
 }
