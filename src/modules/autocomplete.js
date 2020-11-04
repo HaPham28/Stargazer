@@ -61,10 +61,10 @@ export async function init_google_map(google, document) {
 
       updateAverageLightPollution(latitude, longitude);
       getWeatherForecast();
-      //getLightPollution(latitude , longitude);
+      getLightPollution(latitude , longitude);
 
       getConstellationData();
-      //getNearbyParks(google);
+      getNearbyParks(google);
 
       // Set place title
       document.querySelector('.place-title').innerHTML = place.name;
