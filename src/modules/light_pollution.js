@@ -104,7 +104,7 @@ function getBoundingBox(lat, lon, dist) {
 
 function updateAverageLightPollutionTemplate(avgLightPollution) {
     document.querySelector('.light-pollution-aggregate').innerHTML = Math.round(avgLightPollution) + " nW/cm<sup>2</sup>/sr";
-    let fraction = avgLightPollution / 14.0;
+    let fraction = avgLightPollution / 9.0;
     document.querySelector('.inner-light-pollution-bar').style.width = Math.min(100, (100 * fraction)) + "%";
 }
 
