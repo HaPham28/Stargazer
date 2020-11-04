@@ -240,6 +240,30 @@ a{
 }
 */
 
+.container *::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+.container *::-webkit-scrollbar-track {
+    background: white;
+}
+
+/* Handle */
+.container *::-webkit-scrollbar-thumb {
+    background:#0000002c;
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+.container *::-webkit-scrollbar-thumb:hover {
+    background: #0000002c;
+}
+
+.container *::-webkit-scrollbar-corner {
+    background: #7289da;
+}
+
 @media only screen and (max-width: 1400px) {
     .location-card-right{
         flex-direction: row;
