@@ -1,5 +1,5 @@
 import {getWeatherForecast} from "./weather";
-import {getLightPollution} from "./light_pollution";
+import {getLightPollution, updateAverageLightPollution} from "./light_pollution";
 import {getConstellationData} from "./constellation";
 import {getNearbyParks} from "./location";
 
@@ -59,6 +59,7 @@ export async function init_google_map(google, document) {
       placeName = place.name;
 
 
+      updateAverageLightPollution(latitude, longitude);
       getWeatherForecast();
       getLightPollution(latitude , longitude);
 
