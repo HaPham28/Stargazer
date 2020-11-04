@@ -246,7 +246,7 @@ a{
 
 /* Track */
 .container *::-webkit-scrollbar-track {
-    background: white;
+    background: whitesmoke;
 }
 
 /* Handle */
