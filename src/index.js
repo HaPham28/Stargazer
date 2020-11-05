@@ -21,6 +21,10 @@ window.init_index = () => {
     console.log("Index Loaded");
 }
 
+window.scroll_to_content = () => {
+    $(".content-container").get(0).scrollIntoView({behavior: 'smooth'});
+}
+
 // real_promise(initMap)
 //     .then(
 //         () => console.log("Maps loaded")

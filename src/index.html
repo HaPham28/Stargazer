@@ -8,19 +8,27 @@
 </head>
 <body onload="init_index()">
     <div class="container">
-        <div class="navigation">
-            <div class="title">
-                <h1>Stargazer</h1>
+        <div class="search-container">
+            <div id='stars'></div>
+            <div id='stars2'></div>
+            <div id='stars3'></div>
+            <div class="navigation">
+                <div class="title">
+                    <h1>Stargazer</h1>
+                </div>
+                <div class="nav-links">
+                    <a class="nav-link active-link">Home</a>
+                    <a class="nav-link">Profile</a>
+                    <a class="nav-link">About</a>
+                </div>
             </div>
-            <div class="nav-links">
-                <a class="nav-link active-link">Home</a>
-                <a class="nav-link" href="profile.html">Profile</a>
-                <a class="nav-link" href="about.html">About</a>
+            <div class="input-container">
+                <span>
+                    <a class="material-icons" id="search-button">search</a>
+                    <input id="location-input" class="location-input" placeholder="Enter a location..."/>
+                </span>
             </div>
-        </div>
-        <div class="input-container">
-            <a class="material-icons" id="search-button">search</a>
-            <input id="location-input" class="location-input" placeholder="Enter a location..."/>
+            <p class="material-icons show-more" onclick="scroll_to_content()">expand_more</p>
         </div>
         
         <div class="content-container">
