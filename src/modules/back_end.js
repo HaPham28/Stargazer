@@ -22,6 +22,7 @@ export async function set_token(token){
 
 export async function login(username, password){
     const module = await loaded;
+    // noinspection JSUnresolvedFunction
     return await module.login(username, password);
 }
 
