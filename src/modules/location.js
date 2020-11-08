@@ -23,9 +23,13 @@ export function getNearbyParks() {
         const num_Location = 3;  // 3 is just for debug, maybe 10 for demo
         let top10Parks = results.slice(0,num_Location);
 
+
+
+
+
+        
         // add light pollution element to each Park
         top10Parks.forEach(park => {
-
             let lat = park.geometry.location.lat();
             let lng = park.geometry.location.lng();
             let lightPollution = parseFloat(getLightPollution(lat, lng));
@@ -45,12 +49,12 @@ export function getNearbyParks() {
         console.log("place id " + place_id);
         let request = {
             placeId: place_id,
-            fields: ['name', 'place_id', 'opening_hours', 'formatted_address','rating', 'photo', 'url', 'types', 'formatted_phone_number', 'website', 'business_status'],
+            fields: ['name', 'place_id', 'opening_hours', 'formatted_address', 'geometry', 'rating', 'photo', 'url', 'types', 'formatted_phone_number', 'website', 'business_status'],
         };
         let service = new google.maps.places.PlacesService(map);
-        service.getDetails(request, async function(place, status) {
+        service.getDetails(request, function(place, status) {
             console.log(place);
-            await makeLocationTemplate (place, top10Parks[0].Light_Pollution, 'top-location-container');
+            makeLocationTemplate (place, top10Parks[0].Light_Pollution, 'top-location-container');
         });
 
 
@@ -59,12 +63,12 @@ export function getNearbyParks() {
             let place_id = park.place_id;
             let request = {
                 placeId: place_id,
-                fields: ['name', 'place_id', 'formatted_address', 'rating', 'photo', 'url', 'types', 'formatted_phone_number', 'opening_hours', 'website', 'business_status'],
+                fields: ['name', 'place_id', 'formatted_address', 'geometry', 'rating', 'photo', 'url', 'types', 'formatted_phone_number', 'opening_hours', 'website', 'business_status'],
             };
             let service = new google.maps.places.PlacesService(map);
-            service.getDetails(request, async function(place, status) {
+            service.getDetails(request, function(place, status) {
                 console.log(place);
-                await makeLocationTemplate (place, park.Light_Pollution, 'location-container');
+                makeLocationTemplate (place, park.Light_Pollution, 'location-container');
             });
         });
 
@@ -101,7 +105,7 @@ export function clearLocationCards() {
     cards.innerHTML = '';
 }
 
-export async function makeLocationTemplate(park, lpt, position) {
+export function makeLocationTemplate(park, lpt, position) {
 
     console.log("level of polution ", lpt);
     let name = park.name;
@@ -115,11 +119,22 @@ export async function makeLocationTemplate(park, lpt, position) {
     let hours = [];
     let phone_number = "N/A";
     let types = [];
-    
+    let lat1 = park.geometry.location.lat();
+    let lon1 = park.geometry.location.lng();
+    console.log(lat1, lon1, latitude, longitude);
+    let dist = getDistanceFromLatLonInKm(lat1,lon1,latitude,longitude);
+    let distance = "";
+
+    console.log("make dist distance111 ", dist, distance);
     //handle undefined
     if (isNaN(lightPollution)) {
         lightPollution = 0;
+    }if (isNaN(dist)) {
+        distance = "";
     }
+    else distance = Math.round(dist).toString()+ " miles";
+    console.log("make dist distance222 ", dist, distance);
+
     if (typeof park.photos !== 'undefined') {
         imgLink = park.photos[0].getUrl();
         console.log("IMG: " + imgLink);
@@ -213,7 +228,7 @@ export async function makeLocationTemplate(park, lpt, position) {
     const template = (`
     <div class="location-card">
         <!-- Show picture of location -->
-        <div class="location-card-left"><img src='${await imgLink}'/></div>
+        <div class="location-card-left"><img src='${imgLink}'/></div>
 
         <div class="location-card-right">
 
@@ -223,7 +238,7 @@ export async function makeLocationTemplate(park, lpt, position) {
                     <span class="location-name"> <a href="${website}">${name}</a>,</span>
                     <span class="location-address">${address}</span>
                 </div>
-                <div class="location-distance" title="Open in Maps"> <span class="location-dist">30 miles</span><span class = "location-icon"> <a href="https://www.google.com/maps/place/?q=place_id:${place_id}" target="_blank" class="material-icons">place</a></span>
+                <div class="location-distance" title="Open in Maps"> <span class="location-dist">${distance}</span><span class = "location-icon"> <a href="https://www.google.com/maps/place/?q=place_id:${place_id}" target="_blank" class="material-icons">place</a></span>
                 </div>
             </div>
         
@@ -254,4 +269,26 @@ export async function makeLocationTemplate(park, lpt, position) {
     `);
 
     document.querySelector('.' + position).insertAdjacentHTML('beforeend', template);
+}
+
+export function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
+    console.log("distance lat lon ", lat1,lon1,lat2,lon2)
+
+    var R = 6371; // Radius of the earth in km
+    var dLat = deg2rad(lat2-lat1);  // deg2rad below
+    var dLon = deg2rad(lon2-lon1); 
+    var a = 
+      Math.sin(dLat/2) * Math.sin(dLat/2) +
+      Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+      Math.sin(dLon/2) * Math.sin(dLon/2)
+      ; 
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    var d = R * c * 0.621371; // Distance in mile
+    console.log("distance d ", d);
+    return d;
+}
+  
+export function deg2rad(deg) {
+    console.log("degree ", deg, deg * (Math.PI/180));
+    return deg * (Math.PI/180);
 }
