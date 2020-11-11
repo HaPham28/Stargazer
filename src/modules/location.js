@@ -212,7 +212,7 @@ export function makeLocationTemplate(park, lpt, position) {
             <!-- Show name, address, and location icon -->
             <div class="location-card-right-top">
                 <div class="location-location">
-                    <span class="location-name"> <a href="${website}">${name}</a>,</span>
+                    <span class="location-name"> <a target="_blank" href="${website}">${name}</a>,</span>
                     <span class="location-address">${address}</span>
                 </div>
                 <div class="location-distance" title="Open in Maps"> <span class="location-dist">${distance}</span><span class = "location-icon"> <a href="https://www.google.com/maps/place/?q=place_id:${place_id}" target="_blank" class="material-icons">place</a></span>
