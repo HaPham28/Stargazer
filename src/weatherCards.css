@@ -30,12 +30,14 @@
 
 .weather-moon {
     outline: none;
+    padding: 0;
     width: 88px;
     height: 88px
 }
 
 .weather-temperature {
     color: rgba(150, 150, 150);
+    padding: 0;
     font-size: 32px;
 }
 
@@ -44,7 +46,14 @@
     color: rgba(150, 150, 150);
 }
 
+.weather-date {
+    padding: 0;
+    margin-top: 0;
+}
+
 .weather-day {
+    padding: 0;
+    margin: 0;
     font-size: 29px;
 }
 
@@ -52,46 +61,51 @@
     display: flex;
     align-items: center;
     margin: 1px 1px;
+    padding: 0;
+    margin-top: 0;
 }
 
 .weather-sunset p, .weather-precipitation p{
     margin: 1px 1px;
     font-size: 14px;
+    padding: 0;
+    margin-top: 0;
 }
 
 .weather-sunset i {
     margin-right: 5px;
     font-size: 20px !important;
     background: -webkit-linear-gradient(red, yellow);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 0;
+    margin-top: 0;
 }
 
 .weather-precipitation i {
     margin-right: 5px;
     font-size: 20px !important;
     color: lightskyblue;
+    padding: 0;
+    margin-top: 0;
 }
 
 /*********** BOTTOM ***********/
 .weather-bottom {
     display: flex;
     flex-direction: column;
-    align-items: center;
     width: 100%;
-    margin-top: 15px;
 }
 
 .weather-rating {
     display: flex;
     align-items: center;
 
-    width: 90%;
+    width: 100%;
     height: 8px;
     border: 1px solid #2c2f33;
     border-radius: 5px;
     background: linear-gradient(to right, rgba(255,0,0,0.7) 0%, rgba(255,0,0,0.7) 33%, rgba(255, 255, 0, 0.7) 33%,  rgba(255, 255, 0, 0.7) 66%, rgba(0, 120, 0, 0.7) 66%);
-    margin-bottom: 20px;
 }
 
 .weather-marker {
@@ -131,13 +145,13 @@
 }
 
 .weather-separator {
-    width: 90%;
+    width: 100%;
     height: 3px;
     background-color: rgba(0, 0, 0, 0.1);
 }
 
 .weather-rating-title {
-    width: 90%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
 }
@@ -148,16 +162,19 @@
     text-align: left;
 }
 
-.weather-rating-span {
-    display: flex;
-    width: 100%;
-}
-
 .weather-label {
-    margin: 0 5px;
+    margin: 0;
+    margin-bottom: 5px;
     padding: 0;
     color: rgb(150, 150, 150);
     font-size: 14px;
+    font-weight: bold;
+}
+
+.weather-rating-span {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .poor {

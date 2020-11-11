@@ -17,7 +17,6 @@ export function getLightPollution(lat , lng) {
 
     request.send();
     console.log("light in request ", request.onload());
-    document.querySelector(".animate").classList.toggle("rate-8");
 
     return request.onload();
 }
@@ -106,7 +105,7 @@ $(window).scroll(scrollCount);
 let viewed = false;
 let lightPollutionBarWidth = '100';
 function updateAverageLightPollutionTemplate(avgLightPollution) {
-    document.querySelector('.light-pollution-aggregate').innerHTML = '<h1 class="light-pollution-aggregate value">' + Math.round(avgLightPollution) + "</h1>&nbsp;nW/cm<sup>2</sup>/sr";
+    document.querySelector('.light-pollution-aggregate-container').innerHTML = '<div><div class="light-pollution-unit-tooltip-container"><a class="light-pollution-unit-tooltip" target="_blank" href="https://en.wikipedia.org/wiki/Radiance"><p class="material-icons" title="Units measure radiance. Click for more information.">help</p></a></div><h1 class="light-pollution-aggregate value">' + Math.round(avgLightPollution) + ' &nbsp;nW/cm<sup style="font-size: 32px;">2</sup>/sr</h1></div>';
     let fraction = avgLightPollution / 9.0;
     lightPollutionBarWidth = Math.min(100, (100 * fraction))
     viewed = false;

@@ -229,9 +229,11 @@ export async function addWeatherCards(weatherData, moonData) {
             <!-- Show rating bars -->
             <div class="weather-bottom">
                 <p class="weather-label">Cloud Cover</p>
-                <span class="weather-rating-span"><p class="weather-label poor">Poor</p><div class="weather-rating cloud-rating"><div class="material-icons weather-marker ${cloudRatingClass}" title="Cloud Cover">wb_cloudy</div></div><p class="weather-label good">Good</p></span>
+                <div class="weather-rating cloud-rating"><div class="material-icons weather-marker ${cloudRatingClass}" title="Cloud Cover">wb_cloudy</div></div>
+                <span class="weather-rating-span"><p class="weather-label poor">Poor</p><p class="weather-label good">Good</p></span>
                 <p class="weather-label">Visibility</p>
-                <span class="weather-rating-span"><p class="weather-label poor">Poor</p><div class="weather-rating visibility-rating"><div class="material-icons weather-marker ${visibilityRatingClass}" title="Visibility">visibility</div></div><p class="weather-label good">Good</p></span>
+                <div class="weather-rating visibility-rating"><div class="material-icons weather-marker ${visibilityRatingClass}" title="Visibility">visibility</div></div>
+                <span class="weather-rating-span"><p class="weather-label poor">Poor</p><p class="weather-label good">Good</p></span>
 
                 <div class="weather-separator"></div>
 
