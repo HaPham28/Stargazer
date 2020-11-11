@@ -10,7 +10,6 @@
     margin: 15px;
 }
 
-
 /************ TOP ************/
 .weather-top {
     display: flex;
@@ -149,6 +148,25 @@
     text-align: left;
 }
 
+.weather-rating-span {
+    display: flex;
+    width: 100%;
+}
+
+.weather-label {
+    margin: 0 5px;
+    padding: 0;
+    color: rgb(150, 150, 150);
+    font-size: 14px;
+}
+
+.poor {
+    color: red;
+}
+
+.good {
+    color:  rgba(0, 120, 0, 0.7);
+}
 
 
 

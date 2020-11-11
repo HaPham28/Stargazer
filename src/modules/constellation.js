@@ -23,7 +23,7 @@ export function getConstellationData() {
         let request = new XMLHttpRequest();
         request.open('GET', url, true);
         request.onload = function() {
-            //console.log(this.response);
+            console.log(this.response);
             if(constellationIsVisible(this.response)) {
                 visibleConstellations.push(this.response);
             }
