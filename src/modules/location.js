@@ -16,18 +16,13 @@ export function getNearbyParks() {
         type: ['park'],
     };
     let service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, function(results, status) {
+    service.nearbySearch(request, async function(results, status) {
         console.log(results);
 
         // Get top # of parks (the first # parks in the list)
         const num_Location = 3;  // 3 is just for debug, maybe 10 for demo
         let top10Parks = results.slice(0,num_Location);
 
-
-
-
-
-        
         // add light pollution element to each Park
         top10Parks.forEach(park => {
             let lat = park.geometry.location.lat();
@@ -59,35 +54,17 @@ export function getNearbyParks() {
 
 
         //add location cards
-        top10Parks.slice(1,).forEach( park => {
+        for (const park of top10Parks.slice(1,) ) {
             let place_id = park.place_id;
             let request = {
                 placeId: place_id,
                 fields: ['name', 'place_id', 'formatted_address', 'geometry', 'rating', 'photo', 'url', 'types', 'formatted_phone_number', 'opening_hours', 'website', 'business_status'],
             };
             let service = new google.maps.places.PlacesService(map);
-            service.getDetails(request, function(place, status) {
-                console.log(place);
-                makeLocationTemplate (place, park.Light_Pollution, 'location-container');
+            const detail = await service.getDetails(request, async function(place, status) {
+                const make = await makeLocationTemplate (place, park.Light_Pollution, 'location-container');
             });
-        });
-
-/*         top10Parks.slice(1,).forEach( park => {
-            let place_id = park.place_id;
-            let request = {
-                placeId: place_id,
-                fields: ['name', 'place_id', 'formatted_address', 'rating', 'photo', 'url', 'types', 'formatted_phone_number', 'opening_hours', 'website', 'business_status'],
-            };
-            let service = new google.maps.places.PlacesService(map);
-            const { place, status } = await new Promise(resolve => 
-                service.getDetails(
-                    request,
-                    (place, status) => resolve({place, status})
-                )
-            );
-            makeLocationTemplate (place, park.Light_Pollution, 'location-container');
-
-        }); */
+        };
         console.log(top10Parks);
 
 
