@@ -1,5 +1,4 @@
 /node_modules
-/package-lock.json
 /back-end/server_side/src/password/pepper.rs
 /dist
 /dist_prod
