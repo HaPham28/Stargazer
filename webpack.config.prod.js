@@ -5,7 +5,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 module.exports = {
     mode: "production",
     entry: {
-        index: "./src/index.ts",
+        index: "./src/index.js",
         astro_timeline: "./src/astroTimeline.js",
     },
     output: {
@@ -16,7 +16,11 @@ module.exports = {
         rules: [
             {test: /\.css$/, use: ["style-loader", "css-loader"]},
             {test: /\.(png|svg|jpe?g|gif)$/i, loader: 'file-loader', options: {name: "assets/[hash].[ext]"}},
+            {test: /\.tsx?$/, use: 'ts-loader', exclude: /node_modules/},
         ]
+    },
+    resolve: {
+        extensions: [".ts", ".tsx", ".js"]
     },
     plugins: [
         new CleanWebpackPlugin(),
@@ -24,5 +28,26 @@ module.exports = {
             title: "Stargazer",
             template: "./src/index.html",
         }),
+        new HtmlWebpackPlugin({
+            title: "Stargazer",
+            template: "./src/index.html",
+            excludeChunks: [],
+            filename: "index.html",
+        }),
+        new HtmlWebpackPlugin({
+            title: "Profile",
+            template: "./src/profile.html",
+            excludeChunks: ["index"],
+            filename: "profile.html"
+        }),
+        new HtmlWebpackPlugin({
+            title: "About",
+            template: "./src/about.html",
+            excludeChunks: ["index"],
+            filename: "about.html"
+        }),
     ],
+    experiments: {
+        asyncWebAssembly: true,
+    },
 };
