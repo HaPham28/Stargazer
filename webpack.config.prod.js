@@ -5,12 +5,12 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 module.exports = {
     mode: "production",
     entry: {
-        index: "./src/index.js",
+        index: "./src/index.ts",
         astro_timeline: "./src/astroTimeline.js",
     },
     output: {
         filename: "[name].bundle.js",
-        path: path.resolve(__dirname, "dist_prod"),
+        path: path.resolve(__dirname, "dist"),
     },
     module: {
         rules: [

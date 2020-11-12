@@ -186,7 +186,7 @@ function fillFutureEvents() {
     return future_events;
 }
 
-const future_events = fillFutureEvents(future_events);
+const future_events = fillFutureEvents();
 //For the purpose of stringifying MM/DD/YYYY date format
 const monthSpan = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
