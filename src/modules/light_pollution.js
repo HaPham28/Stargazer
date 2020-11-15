@@ -4,10 +4,10 @@ import { makeLocationTemplate } from "./location";
 export function getLightPollution(lat , lng) {
     const apiKey = '45pZnF8eF3ak9ixj'
     let url = 'https://www.lightpollutionmap.info/QueryRaster/?ql=viirs_2019&qt=point&qd=' + lng + ','+ lat + '&key=' + apiKey;
-    console.log(url);
+    //console.log(url);
     let request = new XMLHttpRequest();
     request.open('GET', url, false);
-    console.log("Request opened");
+    //console.log("Request opened");
 
     request.onload = function () {
         if (request.readyState == 4 && request.status == 200) {
@@ -16,14 +16,14 @@ export function getLightPollution(lat , lng) {
     }
 
     request.send();
-    console.log("light in request ", request.onload());
+    //console.log("light in request ", request.onload());
 
     return request.onload();
 }
 
 export function updateAverageLightPollution(lat, lng) {
     const boundingBox = getBoundingBox(lat, lng, 50);
-    console.log(boundingBox);
+    //console.log(boundingBox);
 
     let qd = 'LINESTRING(';
     qd += boundingBox.minLon + '%20' + boundingBox.maxLat + ',';
@@ -34,10 +34,10 @@ export function updateAverageLightPollution(lat, lng) {
 
     const apiKey = '45pZnF8eF3ak9ixj'
     let url = 'https://www.lightpollutionmap.info/QueryRaster/?ql=viirs_2019&qt=area&qd=' + qd + '&key=' + apiKey;
-    console.log(url);
+    //console.log(url);
     let request = new XMLHttpRequest();
     request.open('GET', url, false);
-    console.log("Request opened");
+    //console.log("Request opened");
 
     request.onload = function () {
         if (request.readyState == 4 && request.status == 200) {
@@ -47,7 +47,7 @@ export function updateAverageLightPollution(lat, lng) {
     }
 
     request.send();
-    console.log("light in request ", request.onload());
+    //console.log("light in request ", request.onload());
     document.querySelector(".animate").classList.toggle("rate-8");
 
     return request.onload();
@@ -67,7 +67,7 @@ function getBoundingBox(lat, lon, dist) {
     const FULL_CIRCLE_RAD = 2 * Math.PI;
 
     let rad = 6371.0; // Approximate radius of Earth
-    console.log("Lat: " + lat);
+    //console.log("Lat: " + lat);
     let radDist = dist / rad;
     let minLat = degToRad(lat) - radDist;
     let maxLat = degToRad(lat) + radDist;

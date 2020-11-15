@@ -48,7 +48,7 @@ export function getWeatherForecast(){
                 const placesResults = apiResults[2].data;
 
                 //console.log(apiResults)
-                console.log(moonphaseResults);
+                //console.log(moonphaseResults);
                 addWeatherCards(forecastsResults, moonphaseResults);
             });
 }
@@ -279,7 +279,7 @@ export function getMoonPhase(moonPhaseData, date) {
     for(let i = 0; i < moonPhaseData.length - 1; i++) {
         let phaseDateMs = moonPhaseData[i].timestamp;
         let timeDifference = phaseDateMs - PassedDateMs;
-        console.log(date.toISOString() + " " + moonPhaseData[i].name + " " + (timeDifference / dayS));
+        //console.log(date.toISOString() + " " + moonPhaseData[i].name + " " + (timeDifference / dayS));
         if(timeDifference < 0)
             continue;
 

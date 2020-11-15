@@ -41,14 +41,14 @@ export function getNearbyParks() {
 
         //get more details
         let place_id = top10Parks[0].place_id;
-        console.log("place id " + place_id);
+        //console.log("place id " + place_id);
         let request = {
             placeId: place_id,
             fields: ['name', 'place_id', 'opening_hours', 'formatted_address', 'geometry', 'rating', 'photo', 'url', 'types', 'formatted_phone_number', 'website', 'business_status'],
         };
         let service = new google.maps.places.PlacesService(map);
         service.getDetails(request, function(place, status) {
-            console.log(place);
+            //console.log(place);
             makeLocationTemplate (place, top10Parks[0].Light_Pollution, 'top-location-container');
         });
 
@@ -65,7 +65,7 @@ export function getNearbyParks() {
                 const make = await makeLocationTemplate (place, park.Light_Pollution, 'location-container');
             });
         };
-        console.log(top10Parks);
+        //console.log(top10Parks);
 
 
     });
@@ -84,7 +84,7 @@ export function clearLocationCards() {
 
 export function makeLocationTemplate(park, lpt, position) {
 
-    console.log("level of polution ", lpt);
+    //console.log("level of polution ", lpt);
     let name = park.name;
     let address = park.formatted_address;
     let website = park.website;
@@ -98,11 +98,11 @@ export function makeLocationTemplate(park, lpt, position) {
     let types = [];
     let lat1 = park.geometry.location.lat();
     let lon1 = park.geometry.location.lng();
-    console.log(lat1, lon1, latitude, longitude);
+    //console.log(lat1, lon1, latitude, longitude);
     let dist = getDistanceFromLatLonInKm(lat1,lon1,latitude,longitude);
     let distance = "";
 
-    console.log("make dist distance111 ", dist, distance);
+    //console.log("make dist distance111 ", dist, distance);
     //handle undefined
     if (isNaN(lightPollution)) {
         lightPollution = 0;
@@ -110,11 +110,11 @@ export function makeLocationTemplate(park, lpt, position) {
         distance = "";
     }
     else distance = Math.round(dist).toString()+ " miles";
-    console.log("make dist distance222 ", dist, distance);
+    //console.log("make dist distance222 ", dist, distance);
 
     if (typeof park.photos !== 'undefined') {
         imgLink = park.photos[0].getUrl();
-        console.log("IMG: " + imgLink);
+        //console.log("IMG: " + imgLink);
     }
     if (typeof park.business_status !== 'undefined') {
         status = park.business_status.toLowerCase();
@@ -192,14 +192,14 @@ export function makeLocationTemplate(park, lpt, position) {
         }
 
     }
-    console.log("star-rating ", rating);
+    //console.log("star-rating ", rating);
 
     const make_empty_star = ' <span class="rating-star-0"><i class="material-icons">grade</i></span> ';
     const make_full_star = ' <span class="rating-star-100"><i class="material-icons">grade</i></span> ';
     const make_partial_star = '<span class="rating-star-' + partial_star_percentage.toString() +'"><i class="material-icons">grade</i></span>';
     
 
-    console.log(make_partial_star);
+    //console.log(make_partial_star);
 
 
     const template = (`
@@ -249,7 +249,7 @@ export function makeLocationTemplate(park, lpt, position) {
 }
 
 export function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
-    console.log("distance lat lon ", lat1,lon1,lat2,lon2)
+    //console.log("distance lat lon ", lat1,lon1,lat2,lon2)
 
     var R = 6371; // Radius of the earth in km
     var dLat = deg2rad(lat2-lat1);  // deg2rad below
@@ -261,11 +261,11 @@ export function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
       ; 
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
     var d = R * c * 0.621371; // Distance in mile
-    console.log("distance d ", d);
+    //console.log("distance d ", d);
     return d;
 }
   
 export function deg2rad(deg) {
-    console.log("degree ", deg, deg * (Math.PI/180));
+    //console.log("degree ", deg, deg * (Math.PI/180));
     return deg * (Math.PI/180);
 }
