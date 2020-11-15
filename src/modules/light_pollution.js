@@ -21,7 +21,7 @@ export function getLightPollution(lat , lng) {
     return request.onload();
 }
 
-export function updateAverageLightPollution(lat, lng) {
+export async function updateAverageLightPollution(lat, lng) {
     const boundingBox = getBoundingBox(lat, lng, 50);
     //console.log(boundingBox);
 

@@ -28,7 +28,7 @@ SC	Partly cloudy	    Cloud coverage is 32-70% of the sky.
 BK	Mostly Cloudy	    Cloud coverage is 70-95% of the sky.
 OV	Cloudy/Overcast	    Cloud coverage is 95-100% of the sky.
 */
-export function getWeatherForecast(){
+export async function getWeatherForecast(){
     const AccessID = 'cruQcmMBbu2IWxTzBpQxF';
     const SecretKey = 'ZclnNemymt1nOKIUsB37ci2U5ydvua6e6OAla33f';
 
@@ -42,7 +42,7 @@ export function getWeatherForecast(){
     const aerisResults = Promise.all([moonphaseRequest, forecastRequest, placesRequest]);
 
     aerisResults
-            .then((apiResults) => {
+            .then(function(apiResults) {
                 const moonphaseResults = apiResults[0].data;
                 const forecastsResults = apiResults[1].data;
                 const placesResults = apiResults[2].data;

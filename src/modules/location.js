@@ -2,9 +2,10 @@
 import {latitude, longitude} from "./autocomplete";
 import {getLightPollution} from "./light_pollution";
 import {central_park} from "../assets/assets";
+//import { resolve } from "../../webpack.config.dev";
 
 // get 20 most relevant nearby parks (as ranked by google)
-export function getNearbyParks() {
+export async function getNearbyParks() {
     const map = new google.maps.Map(document.getElementById("map"), {
         center: { lat: latitude, lng: longitude },
         zoom: 15,
@@ -15,7 +16,9 @@ export function getNearbyParks() {
         radius: '50000',
         type: ['park'],
     };
+
     let service = new google.maps.places.PlacesService(map);
+
     service.nearbySearch(request, async function(results, status) {
         console.log(results);
 
@@ -47,7 +50,8 @@ export function getNearbyParks() {
             fields: ['name', 'place_id', 'opening_hours', 'formatted_address', 'geometry', 'rating', 'photo', 'url', 'types', 'formatted_phone_number', 'website', 'business_status'],
         };
         let service = new google.maps.places.PlacesService(map);
-        service.getDetails(request, function(place, status) {
+
+        service.getDetails(request, async function(place, status) {
             //console.log(place);
             makeLocationTemplate (place, top10Parks[0].Light_Pollution, 'top-location-container');
         });
@@ -62,14 +66,13 @@ export function getNearbyParks() {
             };
             let service = new google.maps.places.PlacesService(map);
             const detail = await service.getDetails(request, async function(place, status) {
-                const make = await makeLocationTemplate (place, park.Light_Pollution, 'location-container');
+                const make =  makeLocationTemplate (place, park.Light_Pollution, 'location-container');
             });
         };
-        //console.log(top10Parks);
-
+        
+        console.log("PARKS DONE");
 
     });
-
 }
 
 /**

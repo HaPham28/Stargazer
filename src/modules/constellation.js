@@ -36,7 +36,7 @@ export async function getConstellationData(latitude, longitude) {
             } else {
                 //console.log("Not visible");
             }
-            //console.log("Constellation resolved");
+            console.log("Constellation resolved");
             resolvePromise(requestPromises[index]);
             console.log(requestPromises[index]);
         }
@@ -47,7 +47,7 @@ export async function getConstellationData(latitude, longitude) {
     //console.log("REQ");
     console.log(requestPromises);
     await Promise.all(requestPromises);
-    //console.log("All constellations finished");
+    console.log("All constellations finished");
     showConstellations(visibleConstellations);
 
 }
