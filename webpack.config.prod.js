@@ -7,6 +7,7 @@ module.exports = {
     entry: {
         index: "./src/index.js",
         astro_timeline: "./src/astroTimeline.js",
+        profile: "./src/profile.js"
     },
     output: {
         filename: "[name].bundle.js",
