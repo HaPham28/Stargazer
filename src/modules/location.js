@@ -233,9 +233,7 @@ export function makeLocationTemplate(park, lpt, position) {
             }
             else {
                 full_star += 1;
-                if (empty_star >= 1) {
-                    empty_star -= 1;
-                }
+                partial_star = 0;
             }
         }
         else {
