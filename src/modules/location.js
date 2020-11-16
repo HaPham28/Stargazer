@@ -104,6 +104,61 @@ export function makeLocationTemplate(park, lpt, position) {
     //console.log(lat1, lon1, latitude, longitude);
     let dist = getDistanceFromLatLonInKm(lat1,lon1,latitude,longitude);
     let distance = "";
+    let opening_template = "";
+    var width = window.innerWidth;
+
+    //tenple for opening hours
+    let hour_template = (``)
+        if (typeof park.opening_hours !== 'undefined') {
+            park.opening_hours.weekday_text.forEach(day => {
+                let index = day.search(":");
+                hours.push(day.substring(index+2));
+                opening_template = opening_template + "<td>" + day.substring(index+2) + "</td>" ;
+            });
+            if (width > 758) {
+
+                hour_template = (`
+                <table style="width:100%; color: black;">
+                <tr>
+                <th>Monday</th>
+                <th>Tuesday</th>
+                <th>Wednesday</th>
+                <th>Thursday</th>
+                <th>Friday</th>
+                <th>Saturday</th>
+                <th>Sunday</th>
+                </tr>
+                <tr>
+                ${opening_template}
+                </tr>
+                </table>
+                `);
+            }
+            else {
+                hour_template = (`
+                <table style="width:100%; color: black;">
+                <tr> <th>Monday</th> <td>${hours[0]}</td> </tr>
+                <tr> <th>Tuesday</th> <td>${hours[1]}</td> </tr>
+                <tr> <th>Wednesday</th> <td>${hours[2]}</td> </tr>
+                <tr> <th>Thursday</th> <td>${hours[3]}</td> </tr>
+                <tr> <th>Friday</th> <td>${hours[4]}</td> </tr>
+                <tr> <th>Saturday</th> <td>${hours[5]}</td> </tr>
+                <tr> <th>Sunday</th> <td>${hours[6]}</td> </tr>
+                </table>
+                `);
+            }
+        } else {
+            hour_template = (`Hours: N/A<br>`);
+        }
+
+
+    // if (typeof park.opening_hours !== 'undefined') {
+    //     park.opening_hours.weekday_text.forEach(day => {
+    //         hours.push(" " + day);
+    //     });
+    // } else {
+    //     hours.push("N/A");
+    // }
 
     //console.log("make dist distance111 ", dist, distance);
     //handle undefined
@@ -122,13 +177,7 @@ export function makeLocationTemplate(park, lpt, position) {
     if (typeof park.business_status !== 'undefined') {
         status = park.business_status.toLowerCase();
     }
-    if (typeof park.opening_hours !== 'undefined') {
-        park.opening_hours.weekday_text.forEach(day => {
-            hours.push(" " + day);
-        });
-    } else {
-        hours.push("N/A");
-    }
+
     if (typeof park.formatted_phone_number !== 'undefined') {
         phone_number = park.formatted_phone_number;
     }
@@ -204,7 +253,6 @@ export function makeLocationTemplate(park, lpt, position) {
 
     //console.log(make_partial_star);
 
-
     const template = (`
     <div class="location-card">
         <!-- Show picture of location -->
@@ -225,7 +273,9 @@ export function makeLocationTemplate(park, lpt, position) {
 
             <!-- Show desciption of location & rating star-->
             <div class="location-card-right-middle">
-                <div class="location-description">Hours: ${hours}<br><br>Contact: ${phone_number}<br><br>Business status: ${status}<br><br>Types: ${types}</div>
+                <div class="location-description">
+                ${hour_template}
+                Contact: ${phone_number}<br>Business status: ${status}<br>Types: ${types}</div>
                 <div class="location-rating-stars-group">
                     ${make_empty_star.repeat(empty_star)}
                     ${make_partial_star.repeat(partial_star)}
