@@ -162,6 +162,25 @@ body {
   overflow: hidden;
 }
 
+.leftButton{
+  width:200px;
+  display:inline-block;
+  overflow: auto;
+  white-space: nowrap;
+  margin:0px auto;
+  border:1px red solid;
+}
+
+.rightButton {
+  float: left;
+  position: relative;
+  display: inline-block;
+  right: 100px;
+  height: 200px;
+  width: 100px;
+  overflow: hidden;
+}
+
 /*object-fit: cover; */
 /*object-position: center; */
 img.left {
