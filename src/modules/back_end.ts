@@ -1,15 +1,15 @@
 import {get_cookie, set_cookie} from "./cookie";
-import {JsAuthToken, JsPlace, JsReview, JsUserFull, JsUserPublic} from "client_side";
 import {real_promise} from "./real_promise";
+import {import_client_side} from "./back_end_bootstrap";
 
 const cookie_name = "auth_token";
 
 const loaded: Promise<typeof import("client_side")> = real_promise(async () => {
-    const module = await import("client_side");
+    const module = await import_client_side();
     await module.init();
     const cookie_val = get_cookie(cookie_name);
     if(cookie_val != null){
-        module.set_token(JsAuthToken.from_string(cookie_val));
+        module.set_token(module.JsAuthToken.from_string(cookie_val));
     }
     return module;
 }).catch(r => {
@@ -25,11 +25,11 @@ export async function save_token(){
     }
 }
 
-export async function get_token(): Promise<JsAuthToken>{
+export async function get_token(): Promise<import("client_side").JsAuthToken>{
     const module = await loaded;
     return module.get_token();
 }
-export async function set_token(token: JsAuthToken): Promise<void>{
+export async function set_token(token: import("client_side").JsAuthToken): Promise<void>{
     const module = await loaded;
     return module.set_token(token);
 }
@@ -50,24 +50,24 @@ export async function change_password(username: string, old_password: string, ne
     await save_token();
 }
 
-export async function get_user_public_username(username: string): Promise<JsUserPublic>{
+export async function get_user_public_username(username: string): Promise<import("client_side").JsUserPublic>{
     const module = await loaded;
     return await module.get_user_public_username(username);
 }
-export async function get_user_public_id(id: number): Promise<JsUserPublic>{
+export async function get_user_public_id(id: number): Promise<import("client_side").JsUserPublic>{
     const module = await loaded;
     return await module.get_user_public_id(id);
 }
-export async function get_user_full(): Promise<JsUserFull>{
+export async function get_user_full(): Promise<import("client_side").JsUserFull>{
     const module = await loaded;
     return await module.get_user_full();
 }
-export async function search_user(search_string: string, limit: number, offset: number): Promise<Array<JsUserPublic>>{
+export async function search_user(search_string: string, limit: number, offset: number): Promise<Array<import("client_side").JsUserPublic>>{
     const module = await loaded;
     return await module.search_user(search_string, limit, offset);
 }
 
-export async function get_place(place_id: string): Promise<JsPlace>{
+export async function get_place(place_id: string): Promise<import("client_side").JsPlace>{
     const module = await loaded;
     return await module.get_place(place_id);
 }
@@ -80,19 +80,19 @@ export async function delete_review(review_id: number): Promise<void>{
     const module = await loaded;
     return await module.delete_review(review_id);
 }
-export async function get_review(review_id: number): Promise<JsReview>{
+export async function get_review(review_id: number): Promise<import("client_side").JsReview>{
     const module = await loaded;
     return await module.get_review(review_id);
 }
-export async function get_reviews_for_user_username(username: string, limit: number, offset: number): Promise<Array<JsReview>>{
+export async function get_reviews_for_user_username(username: string, limit: number, offset: number): Promise<Array<import("client_side").JsReview>>{
     const module = await loaded;
     return await module.get_reviews_for_user_username(username, limit, offset);
 }
-export async function get_reviews_for_user_id(id: number, limit: number, offset: number): Promise<Array<JsReview>>{
+export async function get_reviews_for_user_id(id: number, limit: number, offset: number): Promise<Array<import("client_side").JsReview>>{
     const module = await loaded;
     return await module.get_reviews_for_user_id(id, limit, offset);
 }
-export async function get_reviews_for_place(place_id: string, limit: number, offset: number): Promise<Array<JsReview>>{
+export async function get_reviews_for_place(place_id: string, limit: number, offset: number): Promise<Array<import("client_side").JsReview>>{
     const module = await loaded;
     return await module.get_reviews_for_place(place_id, limit, offset);
 }
