@@ -28,6 +28,15 @@ body {
 
 }
 
+/* Applied to iframe when color blindness filter active */
+.grayscale-iframe {
+    -webkit-filter: grayscale(100%) contrast(1.75);
+    -moz-filter: grayscale(100%) contrast(1.75);
+     -ms-filter: grayscale(100%) contrast(1.75);
+      -o-filter: grayscale(100%) contrast(1.75);
+         filter: grayscale(100%) contrast(1.75);
+}
+
 .search-container {
     background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
     display: flex;
