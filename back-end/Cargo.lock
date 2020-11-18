@@ -223,6 +223,7 @@ dependencies = [
  "parking_lot",
  "rand 0.7.3",
  "rsa",
+ "serde",
  "serde_cbor",
  "serde_json",
  "wasm-bindgen",

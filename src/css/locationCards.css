@@ -99,6 +99,7 @@ span.location-icon a {
 
 .location-icon a:hover {
     color: red;
+    height: 30px;
 }
 
     /***RIGHT-MIDDLE***/
