@@ -36,17 +36,17 @@ window.scroll_to_content = function() {
 }
 
 window.register_user = async function() {
-    let userName = document.getElementById("register-username").value;
-    let password = document.getElementById("register-password").value;
-    let confirmPassword = document.getElementById("register-password-confirm").value;
+    const username = document.getElementById("register-username").value;
+    const password = document.getElementById("register-password").value;
+    const confirm_password = document.getElementById("register-password-confirm").value;
 
-    if(password != confirmPassword) {
+    if(password != confirm_password) {
         alert("Make sure passwords match.");
         return;
     }
 
-    await register_user(userName, "testEmail@test.com", password);
-    alert("Registered user " + userName);
+    await back_end.register_user(username, "testEmail@test.com", password);
+    alert("Registered user " + username);
 }
 
 window.close_modals = function() {
