@@ -29,7 +29,7 @@ body {
 }
 
 /* Applied to iframe when color blindness filter active */
-.grayscale-iframe {
+iframe {
     -webkit-filter: grayscale(100%) contrast(1.75);
     -moz-filter: grayscale(100%) contrast(1.75);
      -ms-filter: grayscale(100%) contrast(1.75);

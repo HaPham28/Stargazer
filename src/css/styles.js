@@ -1,4 +1,5 @@
 import './styles.css'
+import './modals.css'
 import './parallaxStars.css'
 import './weatherCards.css'
 import './locationCards.css'
