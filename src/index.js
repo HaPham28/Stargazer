@@ -1,8 +1,12 @@
 import {init_google_map} from "./modules/autocomplete";
 import './css/styles'
 import {clearWeatherCards} from "./modules/weather";
+<<<<<<< HEAD
 import "./modules/back_end";
 import { register_user } from "./modules/back_end";
+=======
+import * as back_end from "./modules/back_end";
+>>>>>>> 670ecb06c830d63d8d42e3472d48d0943dafecdd
 
 /********************************
 *
@@ -21,7 +25,15 @@ window.init_index = function() {
     console.log("Index Loading...");
     document.getElementById("search-button").addEventListener("click", () => clearWeatherCards());
     initMap();
-    console.log("Index Loaded");
+    const username = "cool";
+    const password = "password";
+    back_end.register_user(username, "dude@dude.com", password).then(async () => {
+        await back_end.delete_user(username, password);
+    }).then(() => {
+        console.log("Index Loaded");
+    }).catch(r => {
+        throw r;
+    });
 }
 
 window.scroll_to_content = function() {

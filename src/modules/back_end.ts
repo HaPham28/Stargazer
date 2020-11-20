@@ -49,6 +49,10 @@ export async function change_password(username: string, old_password: string, ne
     await module.change_password(username, old_password, new_password);
     await save_token();
 }
+export async function delete_user(username: string, password: string): Promise<void>{
+    const module = await loaded;
+    await module.delete_user(username, password);
+}
 
 export async function get_user_public_username(username: string): Promise<import("client_side").JsUserPublic>{
     const module = await loaded;
