@@ -262,9 +262,6 @@ a{
     background: #0000002c;
 }
 
-.container *::-webkit-scrollbar-corner {
-    background: #7289da;
-}
 .location-color-expand {
     color: #0000ff !important ;
 }
