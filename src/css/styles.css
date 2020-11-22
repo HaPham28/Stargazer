@@ -448,7 +448,7 @@ iframe {
 }
 
 ::-webkit-scrollbar-corner {
-    background: #7289da;
+    background: transparent;
 }
 
 /******** MOBILE *********/
