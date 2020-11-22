@@ -59,7 +59,7 @@ span.location-name{
 
 span.location-address{
     font-size: 18px;
-    color: rgb(150, 150, 150);
+    color: rgba(54, 49, 49, 0.596);
     height: 20px;
     font-weight: bold;
     overflow: hidden;
@@ -73,7 +73,7 @@ span.location-address{
     margin-right: 5px;
     font-size: 30px !important;
     transition: 0.2s all;
-    width: 90px;
+    width: 97px;
 }
 
 span.location-dist {
@@ -301,7 +301,7 @@ a{
 
     span.location-address{
         font-size: 12px;
-        color: rgba(150, 150, 150);
+        color:rgba(54, 49, 49, 0.596);
         height: 40px;
         font-weight: bold;
         overflow: hidden;
@@ -314,12 +314,12 @@ a{
         margin-right: 5px;
         font-size: 20px !important;
         transition: 0.2s all;
-        width: 65px;
+        width: 72px;
         height: 30px;
     }
     span.location-dist {
-        font-size: 10px;
-        color: rgb(150, 150, 150);
+        font-size: 11px;
+        color:rgba(54, 49, 49, 0.596);
         height: 20px;
         overflow: hidden;
     }
@@ -375,21 +375,21 @@ a{
     
     /***RIGHT-BOTTOM***/
     .location-card-right-bottom{
-        color: rgb(150, 150, 150);
+        color: rgba(54, 49, 49, 0.596);
         height: 80px;
         margin-top: 3px;
     }
 
     .pollution-title{
         font-size: 15px;
-        color: rgb(150, 150, 150);
+        color: rgba(54, 49, 49, 0.596);
         font-weight: bold;
         margin-bottom: 7px;
 
     }
     .pollution-value{
         font-size: 14px;
-        color: rgb(150, 150, 150);
+        color: rgba(54, 49, 49, 0.596);
     }
     
 }
@@ -416,7 +416,7 @@ a{
     }
 
     span.location-name{
-        font-size: 19px;
+        font-size: 17px;
         color: #7289da;
         height: 50px;
         width: 200px;
@@ -425,8 +425,8 @@ a{
     }
 
     span.location-address{
-        font-size: 12px;
-        color: rgb(150, 150, 150);
+        font-size: 13px;
+        color: rgba(54, 49, 49, 0.596);
         height: 50px;
         font-weight: bold;
         overflow: hidden;
@@ -439,12 +439,12 @@ a{
         margin-right: 5px;
         font-size: 20px !important;
         transition: 0.2s all;
-        width: 65px;
+        width: 72px;
         height: 40px;
     }
     span.location-dist {
-        font-size: 10px;
-        color: rgba(150, 150, 150);
+        font-size: 11px;
+        color: rgba(150, 150, 150, 0.596);
         height: 40px;
         justify-content: flex-end;
         overflow: hidden;
@@ -485,20 +485,20 @@ a{
 
     }
     .location-card-right-bottom{
-        color: rgba(150, 150, 150);
+        color: rgba(54, 49, 49, 0.596);
         height: 80px;
     }
 
     .pollution-title{
         font-size: 15px;
-        color: rgba(150, 150, 150);
+        color: rgba(54, 49, 49, 0.596);
         font-weight: bold;
         margin-bottom: 7px;
 
     }
     .pollution-value{
         font-size: 14px;
-        color: rgba(150, 150, 150);
+        color:  rgba(54, 49, 49, 0.596);
     }
     
 }

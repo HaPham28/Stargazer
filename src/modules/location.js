@@ -106,6 +106,7 @@ export function makeLocationTemplate(park, lpt, position) {
     let distance = "";
     let opening_template = "";
     var width = window.innerWidth;
+    let level = "";
 
     //tenple for opening hours
     let hour_template = (``)
@@ -186,7 +187,7 @@ export function makeLocationTemplate(park, lpt, position) {
         types.push(" " + type);
     });
 
-    //update light pollution bar
+    //update light pollution bar - including color ratine code for future develop
     let color_rating = "";
     let width_rating = "";
     if (lightPollution > 100) {
@@ -195,18 +196,23 @@ export function makeLocationTemplate(park, lpt, position) {
     } else if (lightPollution <= 100 && lightPollution >= 70) {
         color_rating = "red";
         width_rating = String(lightPollution) + "%";
+        level = "High";
     } else if (lightPollution < 70 && lightPollution > 40) {
         color_rating = "orange";
         width_rating = String(lightPollution) + "%";
+        level = "Medium";
     } else if (lightPollution <= 40 && lightPollution > 20) {
         color_rating = "yellow";
         width_rating = String(lightPollution) + "%";
+        level = "Low";
     } else if (lightPollution <= 20 && lightPollution > 5) {
         color_rating = "green";
         width_rating = String(lightPollution) + "%";
+        level = "Very low";
     } else {
         color_rating = "dark_green";
         width_rating = String(lightPollution) + "%";
+        level = "Very low";
     }
 
     //update rating stars
@@ -284,7 +290,7 @@ export function makeLocationTemplate(park, lpt, position) {
             <div class ="location-card-right-bottom">
                 <div class="pollution" >
                     <div class="pollution-title">Light Pollution</div>
-                    <div class="pollution-value">${lightPollution} lpc</div>
+                    <div class="pollution-value">${lightPollution} unit <div class="material-icons" style = "font-size: 16px; color: #7289da;" title="nano wats/cm^2">help</div> - ${level}</div>
                     <div class="rating-bar">
                         <div style = "width: ${width_rating};" class="rate">
                             <span class="animate blue"></span>
