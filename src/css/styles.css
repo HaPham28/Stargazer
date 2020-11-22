@@ -165,7 +165,18 @@ body {
     justify-content: center;
     width: 100%;
 }
+
+.switch-label {
+    color: white;
+    font-weight: 400;
+    font-size: 18px;
+    margin: 0 5px;
+    padding: 0;
+    vertical-align: center;
+}
+
 .switch {
+    cursor: pointer;
     position: relative;
     display: inline-block;
     width: 62px;

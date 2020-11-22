@@ -305,6 +305,7 @@ li {
 
 .fabR {
   position: absolute;
+  cursor: pointer;
   right: 10px;
   bottom: -420px;
   box-sizing: border-box;
@@ -333,6 +334,7 @@ li {
 
 .fabL {
   position: absolute;
+  cursor: pointer;
   left: 10px;
   bottom: -420px;
   box-sizing: border-box;
