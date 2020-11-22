@@ -220,6 +220,7 @@ span.location-icon a {
 .green{ background: greenyellow; }
 .dark_green{ background:darkgreen; }
 
+
 .animate{
     animation: progress 2s linear;
     -moz-animation: progress 2s linear;
@@ -263,6 +264,9 @@ a{
 
 .container *::-webkit-scrollbar-corner {
     background: #7289da;
+}
+.location-color-expand {
+    color: #0000ff !important ;
 }
 
 @media only screen and (max-width: 1400px) {
@@ -500,72 +504,22 @@ a{
 }
 
 @media only screen and (max-width: 768px) {
-    .location-card-right{
-        flex-direction: row;
-        height: 230px;
-        padding: 12px;
-        width: calc(100% - 330px);
-        color: black;
-    }
     .location-card-right-top{
-        flex-direction: column;
         height: 73px;
     }
-
     .location-location{
-        display: inline-block;
         height: 64px;
         width: (100% - 70px);
-        color: black;
-        overflow: auto;
     }
 
     span.location-name{
-        /*  */
-        font-size: 16px;  
-        color: #7289da;
         height: 30px;
-        width: 200px;
-        font-weight: bold;
-        overflow: hidden;
     }
-
     span.location-address{
-        /*  */
-        font-size: 12px;
-        color: rgba(150, 150, 150);
         height: 30px;
-        font-weight: bold;
-        overflow: hidden;
     }
     .location-distance{
-        text-decoration: none;
-        cursor: pointer;
-        justify-content: flex-end;
-        float: right;
-        margin-right: 5px;
-        font-size: 20px !important;
-        transition: 0.2s all;
-        width: 65px;
         height: 20px;
-    }
-    span.location-dist {
-        font-size: 10px;
-        color: rgba(150, 150, 150);
-        height: 20px;
-        justify-content: flex-end;
-        overflow: hidden;
-    }
-    span.location-icon a {
-        text-decoration: none;
-        cursor: pointer;
-        justify-content: flex-end;
-        float: right;
-        margin-right: 5px;
-        font-size: 20px !important;
-        color: rgba(255, 0, 0, 0.6);
-        height: 20px;
-        transition: 0.2s all;
     }
     .location-card-right-middle{
         display: flex;
@@ -576,40 +530,26 @@ a{
         height: 140px;
         color: black;
     }
-    .location-description {
-        /*  */
-        font-size: 11px;
-        color: black;
-        width: 100%;
-        overflow: auto;
-    }
     .location-rating-stars-group{
         width: 100%;
         padding: 5px 0;
     }
     .rating-star-0 i, .rating-star-25 i, .rating-star-50 i, .rating-star-75 i,.rating-star-100 i {
         float: right;
-        /*  */
-        font-size: 15px;
+        font-size: 17px;
 
     }
     .location-card-right-bottom{
-        color: rgba(150, 150, 150);
         height: 70px;
     }
 
     .pollution-title{
-        /*  */
-        font-size: 12px;
-        color: rgba(150, 150, 150);
-        font-weight: bold;
-        margin-bottom: 7px;
+        font-size: 15px;
 
     }
     .pollution-value{
         /*  */
-        font-size: 11px;
-        color: rgba(150, 150, 150);
+        font-size: 13px;
     }
     .rating-bar{
         background:#2c2f33c2;

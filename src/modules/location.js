@@ -5,9 +5,9 @@ import {central_park} from "../assets/assets";
 //import { resolve } from "../../webpack.config.dev";
 
 // get 20 most relevant nearby parks (as ranked by google)
-export async function getNearbyParks() {
+export function getNearbyParks() {
     const map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: latitude, lng: longitude },
+        center : {  lat : latitude ,  lng : longitude  } ,
         zoom: 15,
     });
 
@@ -30,7 +30,7 @@ export async function getNearbyParks() {
         top10Parks.forEach(park => {
             let lat = park.geometry.location.lat();
             let lng = park.geometry.location.lng();
-            let lightPollution = parseFloat(getLightPollution(lat, lng));
+            let  lightPollution  =  parseFloat ( getLightPollution ( lat ,  lng ) ) ;
             park.Light_Pollution = lightPollution;
         });
 
@@ -287,7 +287,7 @@ export function makeLocationTemplate(park, lpt, position) {
                     <div class="pollution-value">${lightPollution} lpc</div>
                     <div class="rating-bar">
                         <div style = "width: ${width_rating};" class="rate">
-                            <span class="animate ${color_rating}"></span>
+                            <span class="animate blue"></span>
                         </div>
                     </div>
                 </div>
