@@ -52,7 +52,7 @@ body {
     height: 100%;
     padding: 0 10%;
     z-index: 10;
-    background: linear-gradient(to bottom, #2c2f3373 0%, #2c2f33bb 100px, #2c2f33ee 250px, #2c2f33ee 100%);
+    background: linear-gradient(to bottom, #2c2f3373 0%, #2c2f33bb 100px, #2c2f33ee 250px, #2c2f33ee 95%, transparent 100%);
 }
 
 /*************** Navigation Bar **************/
