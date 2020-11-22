@@ -294,6 +294,32 @@ $(".astro-circle").click(function () {
     selectDate(spanNum);
 });
 
+$(".rightButton").mouseenter(function () {
+    $(this).addClass("hover");
+});
+
+$(".rightButton").mouseleave(function () {
+    $(this).removeClass("hover");
+});
+
+$(".rightButton").click(function () {
+    const spanNum = $(this).attr("id");
+    selectDate(spanNum);
+});
+
+$(".leftButton").mouseenter(function () {
+    $(this).addClass("hover");
+});
+
+$(".leftButton").mouseleave(function () {
+    $(this).removeClass("hover");
+});
+
+$(".leftButton").click(function () {
+    const spanNum = $(this).attr("id");
+    selectDate(spanNum);
+});
+
 function selectDate(selector) {
     const $selector = "#" + selector;
     const $spanSelector = $selector.replace("astro-circle", "astro-span");

@@ -289,3 +289,58 @@ li {
   box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
 }
 
+.fabR {
+  position: absolute;
+  right: 20px;
+  bottom: -490px;
+  box-sizing: border-box;
+  padding-top: 18px;
+  background-color: #3e5061;
+  font-size: larger;
+  width: 80px;
+  height: 160px;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 20%;
+  -webkit-box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
+}
+
+.fabR:hover {
+  background-color: #527494;
+  padding-top: 28px;
+  width: 90px;
+  height: 180px;
+  right: 15px;
+  bottom: -500px;
+}
+
+.fabL {
+  position: absolute;
+  left: 20px;
+  bottom: -490px;
+  box-sizing: border-box;
+  padding-top: 18px;
+  background-color: #3e5061;
+  font-size: larger;
+  width: 80px;
+  height: 160px;
+  color: white;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 20%;
+  -webkit-box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
+}
+
+.fabL:hover {
+  background-color: #527494;
+  padding-top: 28px;
+  width: 90px;
+  height: 180px;
+  left: 15px;
+  bottom: -500px;
+}
