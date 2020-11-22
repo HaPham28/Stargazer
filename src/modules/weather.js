@@ -29,9 +29,9 @@ BK	Mostly Cloudy	    Cloud coverage is 70-95% of the sky.
 OV	Cloudy/Overcast	    Cloud coverage is 95-100% of the sky.
 */
 export async function getWeatherForecast(){
-    const AccessID = 'cruQcmMBbu2IWxTzBpQxF';
-    const SecretKey = 'ZclnNemymt1nOKIUsB37ci2U5ydvua6e6OAla33f';
-
+    const AccessID = 'BYlBpiH6hC2mKajXXRnoQ';
+    const SecretKey = 'VWOdIbeMQw8LmICGUnTXOXWh8v5tGTe0UR2dx7kL';
+    console.log("WEATEHR: " + latitude + " " + longitude);
     const aeris = new AerisWeather(AccessID, SecretKey)
     const loc = latitude + ',' + longitude
 
@@ -47,8 +47,9 @@ export async function getWeatherForecast(){
                 const forecastsResults = apiResults[1].data;
                 const placesResults = apiResults[2].data;
 
-                //console.log(apiResults)
+                console.log(apiResults)
                 //console.log(moonphaseResults);
+                //console.log(forecastsResults);
                 addWeatherCards(forecastsResults, moonphaseResults);
             });
 }

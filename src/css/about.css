@@ -1,0 +1,170 @@
+.container {
+    max-width: 100vw;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.content-container {
+    overflow: hidden;
+}
+
+.about-title {
+    margin-bottom: 7px;
+    color: #7289da;
+    font-size: 48px;
+}
+
+.section-header-container {
+    margin-top: 50px;
+    margin-bottom: 7px;
+    display: flex;
+    overflow: hidden;
+}
+
+.section-header-bar {
+    position: relative;
+    height: stretch;
+    width: 3px;
+    z-index: 99;
+    background-color: #7289da;
+}
+
+.section-header {
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+    color: rgb(150, 150, 150);
+    padding-left: 10px;
+    vertical-align: center;
+    font-size: 32px;
+    animation: 1s slide-right;
+    animation-fill-mode: forwards;
+}
+
+.section-content-text {
+    opacity: 0;
+    color: rgb(120, 120, 120);
+    font-size: 18px;
+    margin: 0;
+    animation: 1s content-slide-left;
+    animation-fill-mode: forwards;
+}
+
+.how-container {
+    margin-bottom: 45px;
+}
+
+.team-container {
+    width: 130%;
+    padding: 20px 15%;
+    background-color: #7289da;
+    margin: 50px -15%;
+}
+
+.team-header {
+    color: white;
+}
+
+.team-profiles-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+    width: 80%;
+
+}
+
+.profile {
+    opacity: 0;
+    margin: 15px;
+    animation: 1s fade-in;
+    animation-fill-mode: forwards;
+}
+
+.profile-pic {
+    width: 275px;
+    height: 275px;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+    margin: 0;
+}
+
+.profile-name {
+    font-size: 20px;
+    color: white;
+    opacity: 1;
+    margin: 10px 0;
+}
+
+.sep {
+    width: 100%;
+    height: 5px;
+    background-color: rgba(255,255, 255, 0.1);
+}
+
+.mission-header {
+    animation-delay: 0s;
+}
+
+.mission-content-text {
+    animation-delay: 0s;
+}
+
+.use-header {
+    animation-delay: 0.5s;
+}
+
+.use-content-text {
+    animation-delay: 0.5s;
+}
+
+.team-header {
+    animation-delay: 1s;
+}
+
+.profile {
+    animation-delay: 1s;
+}
+
+.how-header {
+    animation-delay: 1.5s;
+}
+
+.how-content-text {
+    animation-delay: 1.5s;
+}
+
+@keyframes slide-right {
+    from {
+        opacity: 0;
+        margin-left: -5%;
+    }
+
+    to {
+        opacity: 1;
+        margin-left: 0%;
+    }
+}
+
+@keyframes content-slide-left {
+    from {
+        opacity: 0;
+        margin-left: 3%;
+        width: 100%; 
+    }
+
+    to {
+        opacity: 1;
+        margin-left: 0%;
+        width: 100%;
+    }
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}

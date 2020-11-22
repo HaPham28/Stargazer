@@ -1,8 +1,6 @@
-import './css/styles'
+import './css/about_styles'
 
 window.init_profile = function() {
-    console.log("Index Loading...");
-    document.getElementById("search-button").addEventListener("click", () => clearWeatherCards());
-    initMap();
-    console.log("Index Loaded");
+    console.log("Profile Loading...");
+    console.log("Profile Loaded");
 }

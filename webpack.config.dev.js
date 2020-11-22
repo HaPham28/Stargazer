@@ -7,7 +7,8 @@ module.exports = {
     entry: {
         index: "./src/index.js",
         astro_timeline: "./src/astroTimeline.js",
-        profile: "./src/profile.js"
+        profile: "./src/profile.js",
+        about: "./src/about.js"
     },
     devtool: "inline-source-map",
     devServer: {

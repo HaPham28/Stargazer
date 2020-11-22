@@ -20,7 +20,7 @@
 body {
     padding: 0;
     margin: 0;
-    background-color: #2c2f33;
+    background-color: #2c2f33ee;
 }
 
 .map-container {
@@ -52,6 +52,7 @@ iframe {
     align-items: center;
     overflow-x: visible;
     overflow-y: visible;
+    background-color: #2c2f33ee;
 }
 
 .content-container {
