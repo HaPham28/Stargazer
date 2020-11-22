@@ -5,13 +5,13 @@ import {central_park} from "../assets/assets";
 //import { resolve } from "../../webpack.config.dev";
 
 // get 20 most relevant nearby parks (as ranked by google)
-export function getNearbyParks() {
+export async function getNearbyParks() {
     const map = new google.maps.Map(document.getElementById("map"), {
         center : {  lat : latitude ,  lng : longitude  } ,
         zoom: 15,
     });
 
-    let request = {
+    let request_parks = {
         location: new google.maps.LatLng(latitude, longitude),
         radius: '50000',
         type: ['park'],
@@ -19,61 +19,79 @@ export function getNearbyParks() {
 
     let service = new google.maps.places.PlacesService(map);
 
-    service.nearbySearch(request, async function(results, status) {
-        console.log(results);
+    let list = [];
 
-        list.push(results);
-        console.log("list len in request", list.length);
-
-        // Get top # of parks (the first # parks in the list)
-        const num_Location = 3;  // 3 is just for debug, maybe 10 for demo
-        let top10Parks = results.slice(0,num_Location);
-
-        // add light pollution element to each Park
-        top10Parks.forEach(park => {
-            let lat = park.geometry.location.lat();
-            let lng = park.geometry.location.lng();
-            let  lightPollution  =  parseFloat ( getLightPollution ( lat ,  lng ) ) ;
-            park.Light_Pollution = lightPollution;
+    const getPlaces =  places => {
+        return new Promise ((resolve, reject) => {
+            service.nearbySearch(request_parks, (results, status) => {
+                if (status == 'OK') {
+                    resolve(results);
+                }
+                else {
+                    reject(status);
+                }
+            });
         });
+    };
 
-        // sort the list of Parks by light pollution level from low to high
-        top10Parks.sort(function(a,b)
-        {
-            return a.Light_Pollution - b.Light_Pollution;
-        });
-
-        clearLocationCards();
-
-        //get more details
-        let place_id = top10Parks[0].place_id;
-        //console.log("place id " + place_id);
-        let request = {
+    const getDetails =  place_id => {
+        return new Promise ((resolve, reject) => {
+            let request_details = {
             placeId: place_id,
             fields: ['name', 'place_id', 'opening_hours', 'formatted_address', 'geometry', 'rating', 'photo', 'url', 'types', 'formatted_phone_number', 'website', 'business_status'],
-        };
-        let service = new google.maps.places.PlacesService(map);
-
-        service.getDetails(request, async function(place, status) {
-            //console.log(place);
-            makeLocationTemplate (place, top10Parks[0].Light_Pollution, 'top-location-container');
-        });
-
-        //add location cards
-        for (const park of top10Parks.slice(1,) ) {
-            let place_id = park.place_id;
-            let request = {
-                placeId: place_id,
-                fields: ['name', 'place_id', 'formatted_address', 'geometry', 'rating', 'photo', 'url', 'types', 'formatted_phone_number', 'opening_hours', 'website', 'business_status'],
             };
             let service = new google.maps.places.PlacesService(map);
-            const detail = await service.getDetails(request, async function(place, status) {
-                const make =  makeLocationTemplate (place, park.Light_Pollution, 'location-container');
+            service.getDetails(request_details, (place, status) => {
+                if (status == 'OK') {
+                    resolve(place);
+                }
+                else {
+                    reject(status);
+                }
             });
-        };
-        
-        console.log("PARKS DONE");
-    });
+        });
+    };
+
+    const printPlace = async () => {
+       try {
+           let location = await getPlaces();
+            // Get top # of parks (the first # parks in the list)
+            const num_Location = 3;  // 3 is just for debug, maybe 10 for demo
+            let top10Parks = location.slice(0,num_Location);
+
+            // add light pollution element to each Park
+            top10Parks.forEach(park => {
+                let lat = park.geometry.location.lat();
+                let lng = park.geometry.location.lng();
+                let  lightPollution  =  parseFloat ( getLightPollution ( lat ,  lng ) ) ;
+                park.Light_Pollution = lightPollution;
+            });
+
+            // sort the list of Parks by light pollution level from low to high
+            top10Parks.sort(function(a,b)
+            {
+                return a.Light_Pollution - b.Light_Pollution;
+            });
+
+            clearLocationCards();
+
+            //get more details
+            let place_id = top10Parks[0].place_id;
+            let detail0 = await getDetails(place_id);
+            makeLocationTemplate (detail0, top10Parks[0].Light_Pollution, 'top-location-container');
+
+            for (const park of top10Parks.slice(1,) ) {
+                let place_id = park.place_id;
+                let detail = await getDetails(place_id);
+                const make =  await makeLocationTemplate (detail, park.Light_Pollution, 'location-container');
+            };
+
+       } catch (err) {
+           console.warn(err);
+       }
+    };
+    printPlace();
+
 }
 
 /**
@@ -117,7 +135,7 @@ export function makeLocationTemplate(park, lpt, position) {
                 hours.push(day.substring(index+2));
                 opening_template = opening_template + "<td>" + day.substring(index+2) + "</td>" ;
             });
-            if (width > 758) {
+            if (width > 768) {
 
                 hour_template = (`
                 <table style="width:100%; color: black;">
@@ -194,7 +212,7 @@ export function makeLocationTemplate(park, lpt, position) {
     if (lightPollution > 100) {
         color_rating = "dark_red";
         width_rating = "100%";
-        level = "Extremely High";
+        level = "Extremely high";
     } else if (lightPollution <= 100 && lightPollution >= 70) {
         color_rating = "red";
         width_rating = String(lightPollution) + "%";
