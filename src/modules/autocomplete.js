@@ -90,17 +90,11 @@ export async function init_google_map(google, document) {
       }
 
       let heat_src = 'https://www.lightpollutionmap.info/#zoom=10.00&lat=' + latitude + '&lon=' + longitude + '&layers=B0FFFFFTFFFFFFFFFF';
-      // document.querySelector('#light-pollution-map-iframe').attributes('src', heat_src);
       document.querySelector('.light-pollution-map-container').innerHTML = '';
       document.querySelector('.light-pollution-map-container').insertAdjacentHTML('afterbegin','<iframe id="light-pollution-map-iframe" src="' + heat_src + '"></iframe>');
 
-      //document.getElementById('light-pollution-map-iframe').src = heat_src;
-      //document.getElementById('​light-pollution-map-iframe').contentDocument.location.reload(true);
-
-
-
       console.log(heat_src);
-
+      color_expand();
       Promise.all(dataPromises);
       window.scroll_to_content();
     });
