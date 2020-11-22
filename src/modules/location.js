@@ -22,6 +22,9 @@ export function getNearbyParks() {
     service.nearbySearch(request, async function(results, status) {
         console.log(results);
 
+        list.push(results);
+        console.log("list len in request", list.length);
+
         // Get top # of parks (the first # parks in the list)
         const num_Location = 3;  // 3 is just for debug, maybe 10 for demo
         let top10Parks = results.slice(0,num_Location);
@@ -56,7 +59,6 @@ export function getNearbyParks() {
             makeLocationTemplate (place, top10Parks[0].Light_Pollution, 'top-location-container');
         });
 
-
         //add location cards
         for (const park of top10Parks.slice(1,) ) {
             let place_id = park.place_id;
@@ -71,7 +73,6 @@ export function getNearbyParks() {
         };
         
         console.log("PARKS DONE");
-
     });
 }
 
@@ -193,6 +194,7 @@ export function makeLocationTemplate(park, lpt, position) {
     if (lightPollution > 100) {
         color_rating = "dark_red";
         width_rating = "100%";
+        level = "Extremely High";
     } else if (lightPollution <= 100 && lightPollution >= 70) {
         color_rating = "red";
         width_rating = String(lightPollution) + "%";
