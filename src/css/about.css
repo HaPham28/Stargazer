@@ -1,3 +1,5 @@
+
+/*********** GENERAL ***********/
 .about-container {
     max-width: 100vw;
     min-height: 100vh;
@@ -14,6 +16,34 @@
     font-size: 48px;
 }
 
+/*********** NAVIGATION *************/
+.about-title-container {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 45px;
+    margin-bottom: 10px;
+}
+
+.secondary-nav-link {
+    text-decoration: none;
+    margin: 0 5px;
+    padding: 5px 0;
+    font-size: 32px;
+    transition: box-shadow 0.3s;
+}
+
+.secondary-nav-link:hover {
+    box-shadow: inset 0 -5px 0 0 #7289da;
+}
+
+.secondary-active-link {
+    color: #7289da;
+}
+
+
+/*********** CONTENT LAYOUT ***********/
 .section-header-container {
     margin-top: 50px;
     margin-bottom: 7px;
@@ -45,6 +75,7 @@
     opacity: 0;
     color: rgb(120, 120, 120);
     font-size: 18px;
+    line-height: 1.75em;
     margin: 0;
     animation: 1s content-slide-left;
     animation-fill-mode: forwards;
@@ -100,6 +131,8 @@
     height: 5px;
     background-color: rgba(255,255, 255, 0.1);
 }
+
+/*********** CONTENT ANIMATIONS ***********/
 
 .mission-header {
     animation-delay: 0s;
@@ -166,5 +199,13 @@
 
     to {
         opacity: 1;
+    }
+}
+
+/********** MOBILE ***********/
+@media only screen and (max-width: 768px) {
+    .about-title-container {
+        flex-direction: column;
+        align-items: center;
     }
 }
