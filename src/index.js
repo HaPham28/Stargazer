@@ -111,7 +111,6 @@ window.close_modals = function() {
     document.querySelector('.login-modal').style.display = "none";
     document.querySelector('.register-modal').style.display = "none";
 }
-<<<<<<< HEAD
 
 function createLoggedInElements() {
     const profileElement = document.createElement('a');
@@ -142,5 +141,3 @@ function removeGuestElements() {
     document.getElementById('login').remove();
     document.getElementById('register').remove();
 }
-=======
->>>>>>> 34912c15acc71abb2109ac7215357f171e548562
