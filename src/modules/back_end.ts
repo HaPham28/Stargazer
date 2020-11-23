@@ -1,4 +1,4 @@
-import {get_cookie, set_cookie} from "./cookie";
+import {delete_cookie, get_cookie, set_cookie} from "./cookie";
 import {real_promise} from "./real_promise";
 import {import_client_side} from "./back_end_bootstrap";
 
@@ -10,6 +10,12 @@ const loaded: Promise<typeof import("client_side")> = real_promise(async () => {
     const cookie_val = get_cookie(cookie_name);
     if(cookie_val != null){
         module.set_token(module.JsAuthToken.from_string(cookie_val));
+        try{
+            await module.get_favorite_places(1, 0);
+        }
+        catch (e){
+            module.set_token(null);
+        }
     }
     return module;
 }).catch(r => {
@@ -22,6 +28,9 @@ export async function save_token(){
     const token = await get_token();
     if(token != undefined){
         set_cookie(cookie_name, token.to_string());
+    }
+    else{
+        delete_cookie(cookie_name);
     }
 }
 
@@ -66,7 +75,9 @@ export async function get_user_public_id(id: number): Promise<import("client_sid
 }
 export async function get_user_full(): Promise<import("client_side").JsUserFull>{
     const module = await loaded;
-    return await module.get_user_full();
+    const out = await module.get_user_full();
+    await save_token();
+    return out;
 }
 export async function search_user(search_string: string, limit: number, offset: number): Promise<Array<import("client_side").JsUserPublic>>{
     const module = await loaded;
@@ -80,25 +91,56 @@ export async function get_place(place_id: string): Promise<import("client_side")
 
 export async function add_review(place_id: string, review: number, review_text: string): Promise<number>{
     const module = await loaded;
-    return await module.add_review(place_id, review, review_text);
+    const out = await module.add_review(place_id, review, review_text);
+    await save_token();
+    return out;
 }
 export async function delete_review(review_id: number): Promise<void>{
     const module = await loaded;
-    return await module.delete_review(review_id);
+    const out = await module.delete_review(review_id);
+    await save_token();
+    return out;
 }
 export async function get_review(review_id: number): Promise<import("client_side").JsReview>{
     const module = await loaded;
-    return await module.get_review(review_id);
+    const out = await module.get_review(review_id);
+    await save_token();
+    return out;
 }
 export async function get_reviews_for_user_username(username: string, limit: number, offset: number): Promise<Array<import("client_side").JsReview>>{
     const module = await loaded;
-    return await module.get_reviews_for_user_username(username, limit, offset);
+    const out = await module.get_reviews_for_user_username(username, limit, offset);
+    await save_token();
+    return out;
 }
 export async function get_reviews_for_user_id(id: number, limit: number, offset: number): Promise<Array<import("client_side").JsReview>>{
     const module = await loaded;
-    return await module.get_reviews_for_user_id(id, limit, offset);
+    const out = await module.get_reviews_for_user_id(id, limit, offset);
+    await save_token();
+    return out;
 }
 export async function get_reviews_for_place(place_id: string, limit: number, offset: number): Promise<Array<import("client_side").JsReview>>{
     const module = await loaded;
-    return await module.get_reviews_for_place(place_id, limit, offset);
+    const out = await module.get_reviews_for_place(place_id, limit, offset);
+    await save_token();
+    return out;
+}
+
+export async function add_favorite_place(place_id: string): Promise<void>{
+    const module = await loaded;
+    const out = await module.add_favorite_place(place_id);
+    await save_token();
+    return out;
+}
+export async function remove_favorite_place(place_id: string): Promise<void>{
+    const module = await loaded;
+    const out = await module.remove_favorite_place(place_id);
+    await save_token();
+    return out;
+}
+export async function get_favorite_places(limit: number, offset: number): Promise<void>{
+    const module = await loaded;
+    const out = await module.get_favorite_places(limit, offset);
+    await save_token();
+    return out;
 }

@@ -23,9 +23,8 @@
                     <h1>Stargazer</h1>
                 </div>
                 <div class="nav-links">
-                    <a class="nav-link active-link" href="index.html">Home</a>
-                    <a class="nav-link" href="profile.html">Profile</a>
-                    <a class="nav-link" href="about.html">About</a>
+                    <a id="home" class="nav-link active-link" href="index.html">Home</a>
+                    <a id="about" class="nav-link" href="about.html">About</a>
                 </div>
             </div>
             <div class="input-container">
@@ -99,8 +98,8 @@
             <h3 class="section-title">Upcoming Astronomical Events</h3>
             
             <div id="astro-mainCont">
-                <div class="fabR" id = "rightButton" onclick="rightButton()"><i class="fa fa-arrow-down fa-3x material-icons" style="font-size: 64px;transform: scaleY(2); color: lightgray">></i></div>
-                <div class="fabL" id = "leftButton"><i class="fa fa-arrow-down fa-3x material-icons" style="font-size: 64px;transform: scaleY(2); color: lightgray"><</i></div>
+                <div class="fabR" id = "rightButton" onclick="rightButton()"><i class="fa fa-arrow-down fa-3x material-icons" style="font-size: 64px;transform: scaleY(2); color: lightgray">&gt</i></div>
+                <div class="fabL" id = "leftButton"><i class="fa fa-arrow-down fa-3x material-icons" style="font-size: 64px;transform: scaleY(2); color: lightgray">&lt</i></div>
             </div>
         </div>
     </div>
@@ -108,6 +107,7 @@
         <div class="modal-content register-modal-content">
             <h2>Register</h2>
             <input id="register-username" class="modal-input" placeholder="Enter username..."/>
+            <input id="register-email" class="modal-input" placeholder="Enter email..."/>
             <input id="register-password" class="modal-input" placeholder="Enter password..." type="password"/>
             <input id="register-password-confirm" class="modal-input" placeholder="Confirm password..." type="password"/>
             <div class="modal-button-container">
@@ -120,8 +120,8 @@
     <div class="modal login-modal">
         <div class="modal-content register-modal-content">
             <h2>Login</h2>
-            <input id="login-username" class="modal-input"/>
-            <input id="login-password" class="modal-input" type="password"/>
+            <input id="login-username" placeholder="Enter username..." class="modal-input"/>
+            <input id="login-password" placeholder="Enter password..." class="modal-input" type="password"/>
             <div class="modal-button-container">
                 <button class="modal-button" onclick="login_user()">Login</button>
                 <button class="modal-button" onclick="close_modals()">Cancel</button>
