@@ -338,6 +338,18 @@ export function makeLocationTemplate(park, lpt, position) {
 window.open_review_modals = function() {
     document.querySelector('.review-modal').style.display = "block";
 }
+var stars_amount = -1;
+
+var place_id = "";
+
+window.set_review_stars = function(stars) {
+    stars_amount = stars;
+}
+
+window.set_place_id = function(id){
+    place_id = id;
+}
+
 
 export function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
     //console.log("distance lat lon ", lat1,lon1,lat2,lon2)
