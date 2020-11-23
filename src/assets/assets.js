@@ -11,6 +11,7 @@ import scott_img from "./scott.jpg";
 import alex_img from "./alex.jpg"
 import ha_img from "./ha.jpg"
 import brett_img from "./brett.jpg";
+import vinay_img from "./vinay.jpg"
 
 import aquarius_img from "./Aquarius.JPG";
 import aries_img from "./Aries.JPG";
@@ -40,6 +41,7 @@ export const alex = alex_img;
 export const scott = scott_img;
 export const ha = ha_img;
 export const brett = brett_img;
+export const vinay = vinay_img;
 
 export const aquarius = aquarius_img;
 export const aries = aries_img;
