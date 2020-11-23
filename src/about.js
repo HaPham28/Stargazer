@@ -1,3 +1,4 @@
+import './css/about_styles';
 import { alex, scott, ha, central_park } from "./assets/assets";
 
 window.init_about = function() {
