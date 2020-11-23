@@ -1727,7 +1727,6 @@ dependencies = [
  "mysql",
  "once_cell",
  "packet",
- "parking_lot",
  "pbkdf2",
  "publicsuffix",
  "rand 0.7.3",
