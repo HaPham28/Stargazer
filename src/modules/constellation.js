@@ -111,7 +111,7 @@ export function showConstellations(constellations, visibleConstellations) {
     console.log("Visible constellations");
     console.log(constellations);
     console.log(visibleConstellations);
-
+    document.querySelector('.constellation-container').innerHTML = '';
     for(let i = 0; i < constellations.length; i++) {
         let constellation = constellations[i];
         console.log(constellation);

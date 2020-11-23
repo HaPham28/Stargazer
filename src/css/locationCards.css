@@ -119,48 +119,19 @@ span.location-icon a {
     overflow: auto;
 }
 
-.review-button{
-    position: relative;
-    flex-direction: column;
+.review-button {
+    margin-left: 5px;
     cursor: pointer;
-    display: flex;
-    right: 0px;
-    bottom: 0px;
-    box-sizing: border-box;
-    padding-top: 18px;
-    background-color: #3e5061;
-    width: 80px;
-    height: 20px;
-    font-size: 12px;
-    color: white;
-    text-align: center;
-    vertical-align: middle;
-    border-radius: 10px;
-    -webkit-box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
-    z-index: 1;
+    border: 1px solid #7289da;
+    color: #7289da;
+    outline: none;
+    padding: 10px;
+    transition: all 0.1s;
 }
 
-.leave-review-button {
-    position: absolute;
-    cursor: pointer;
-    right: 10px;
-    bottom: -420px;
-    box-sizing: border-box;
-    padding-top: 18px;
-    background-color: #3e5061;
-    font-size: larger;
-    width: 80px;
-    height: 160px;
+.review-button:hover {
+    background-color: #7289da;
     color: white;
-    text-align: center;
-    vertical-align: middle;
-    border-radius: 10px;
-    -webkit-box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
-    box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
-    z-index: 1;
 }
 
 .location-rating-stars-group{
@@ -227,6 +198,16 @@ span.location-icon a {
 .pollution-value{
     font-size: 15px;
     color: rgb(150, 150, 150);
+}
+
+.pollution-top {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.pollution-top-right {
+    display: flex;
 }
 
 .rating-bar{
@@ -436,7 +417,35 @@ a{
 }
 
 /************* Review slider ************/
+.review-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;  
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
   
+  .review-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%; 
+    background: #7289da;
+    cursor: pointer;
+  }
+  
+  .review-slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #7289da;
+    cursor: pointer;
+  }
 
 /*********** MOBILE ***********/
 
@@ -528,6 +537,7 @@ a{
     .rating-star-0 i, .rating-star-25 i, .rating-star-50 i, .rating-star-75 i,.rating-star-100 i {
         float: right;
         font-size: 20px;
+        color: whitesmoke;
 
     }
     .location-card-right-bottom{

@@ -2,6 +2,7 @@
 import {latitude, longitude} from "./autocomplete";
 import {getLightPollution} from "./light_pollution";
 import {central_park} from "../assets/assets";
+import * as back_end from "./back_end";
 //import { resolve } from "../../webpack.config.dev";
 
 // get 20 most relevant nearby parks (as ranked by google)
@@ -79,7 +80,7 @@ export async function getNearbyParks() {
                  //get more details
                  let place_id = top10Parks[0].place_id;
                  let detail0 = await getDetails(place_id);
-                 makeLocationTemplate (detail0, top10Parks[0].Light_Pollution, 'top-location-container');
+                 await makeLocationTemplate (detail0, top10Parks[0].Light_Pollution, 'top-location-container');
      
                  for (const park of top10Parks.slice(1,) ) {
                      let place_id = park.place_id;
@@ -95,8 +96,55 @@ export async function getNearbyParks() {
         });
     };
     await printPlace();
+}
+
+export async function displayFavorite(array) { //array of favorites
+    const map = new google.maps.Map(document.getElementById("map"), {
+        center : {  lat : 0 ,  lng : 0  } ,
+        zoom: 15,
+    });
+
+    const getDetails =  place_id => {
+        return new Promise ((resolve, reject) => {
+            let request_details = {
+            placeId: place_id,
+            fields: ['name', 'place_id', 'opening_hours', 'formatted_address', 'geometry', 'rating', 'photo', 'url', 'types', 'formatted_phone_number', 'website', 'business_status'],
+            };
+            let service = new google.maps.places.PlacesService(map);
+            service.getDetails(request_details, (place, status) => {
+                if (status == 'OK') {
+                    resolve(place);
+                }
+                else {
+                    reject(status);
+                }
+            });
+        });
+    };
+
+    const printPlace = async () => {
+        return new Promise(async function(resolve, reject) {
+            try {
+                let location = array;
+     
+                 //get details  
+                 for (const id of array) {
+                     let place_id = id;
+                     let detail = await getDetails(place_id);
+                     const make =  await makeLocationTemplate (detail, 0/*park.Light_Pollution*/, 'favorite-location-cards');
+                 };
+     
+            } catch (err) {
+                console.warn(err);
+                reject();
+            }
+            resolve();
+        });
+    };
+    await printPlace();
 
 }
+
 
 /**
  * Clears all weather cards from the HTML
@@ -108,7 +156,7 @@ export function clearLocationCards() {
     cards.innerHTML = '';
 }
 
-export function makeLocationTemplate(park, lpt, position) {
+export async function makeLocationTemplate(park, lpt, position) {
 
     //console.log("level of polution ", lpt);
     let name = park.name;
@@ -244,8 +292,8 @@ export function makeLocationTemplate(park, lpt, position) {
     let partial_star = 0;
     let partial_star_percentage = 0;
     let empty_star = 0;
-    if (typeof park.rating !== 'undefined') {
-        rating = park.rating;
+    rating = (await back_end.get_place(place_id)).average_review();
+    if (rating != null) {
         full_star = Math.floor(rating);
         partial_star_percentage = Math.round((rating - full_star)*100);
         if (partial_star_percentage > 0) {
@@ -280,6 +328,20 @@ export function makeLocationTemplate(park, lpt, position) {
     
 
     //console.log(make_partial_star);
+    let toggleFavoriteText = "Add Favorite";
+    const favPlaces = await back_end.get_favorite_places(999, 0);
+
+    let isFav = false;
+    for(let i = 0; i < favPlaces.length; i++) {
+        const place = favPlaces[i];
+        if(place.place_id() == place_id)
+            isFav = true;
+    }
+    if(isFav) {
+        toggleFavoriteText = "Remove Favorite";
+    }
+
+
 
     const template = (`
     <div class="location-card">
@@ -303,14 +365,13 @@ export function makeLocationTemplate(park, lpt, position) {
             <div class="location-card-right-middle">
                 <div class="location-description">
                 ${hour_template}
-                Contact: ${phone_number}<br>Business status: ${status}<br>Types: ${types}</div>
+                Contact: ${phone_number}<br>Business status: ${status}<br>Types: ${types}
+                </div>
                 <div class="location-rating-stars-group">
                     ${make_empty_star.repeat(empty_star)}
                     ${make_partial_star.repeat(partial_star)}
                     ${make_full_star.repeat(full_star)}
                 </div>
-                <div class="review-button" onclick="open_review_modals()">Leave Review</div>
-                
 
             </div>
             
@@ -318,14 +379,23 @@ export function makeLocationTemplate(park, lpt, position) {
             <div class ="location-card-right-bottom">
             
                 <div class="pollution" >
-                    <div class="pollution-title">Light Pollution</div>
-                    <div class="pollution-value">${lightPollution} unit <div class="material-icons" style = "font-size: 16px; color: #7289da;" title="nano wats/cm^2">help</div> - ${level}</div>
+                    <div class="pollution-top">
+                        <div class="pollution-top-left">
+                            <div class="pollution-title">Light Pollution</div>
+                            <div class="pollution-value">${lightPollution} unit <div class="material-icons" style = "font-size: 16px; color: #7289da;" title="nano wats/cm^2">help</div> - ${level}</div>
+                        </div>
+                        <div class="pollution-top-right">
+                            <button class="review-button" value="${place_id}" onclick="open_review_modal(this)">Leave Review</button>
+                            <button class="review-button" value="${place_id}" onclick="toggle_favorite(this)">${toggleFavoriteText}</button>
+                        </div>
+                    </div>
                     <div class="rating-bar">
                         <div style = "width: ${width_rating};" class="rate">
                             <span class="animate blue"></span>
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
@@ -333,23 +403,6 @@ export function makeLocationTemplate(park, lpt, position) {
 
     document.querySelector('.' + position).insertAdjacentHTML('beforeend', template);
 }
-
-
-window.open_review_modals = function() {
-    document.querySelector('.review-modal').style.display = "block";
-}
-var stars_amount = -1;
-
-var place_id = "";
-
-window.set_review_stars = function(stars) {
-    stars_amount = stars;
-}
-
-window.set_place_id = function(id){
-    place_id = id;
-}
-
 
 export function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {
     //console.log("distance lat lon ", lat1,lon1,lat2,lon2)

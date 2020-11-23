@@ -123,6 +123,9 @@ function radToDeg(rad) {
 
 // Fired on scroll to check if we should animate the light pollution bar yet
 function isInView(element) {
+    if(element == null)
+        return;
+
     var docViewTop = $(window).scrollTop();
     var docViewBottom = docViewTop + $(window).height();
 

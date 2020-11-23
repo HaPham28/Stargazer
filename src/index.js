@@ -3,6 +3,8 @@ import './css/styles'
 import {clearWeatherCards} from "./modules/weather";
 import * as back_end from "./modules/back_end";
 import {verify_token} from "./modules/back_end";
+import {displayFavorite} from "./modules/location";
+
 
 /********************************
 *
@@ -26,6 +28,9 @@ window.init_index = async function() {
     console.log("Index Loading...");
     document.getElementById("search-button").addEventListener("click", () => clearWeatherCards());
     initMap();
+    document.querySelector('.review-slider').oninput = function() {
+        document.querySelector('.review-slider-title').innerHTML = "Leave Review (" + this.value + "/5)";
+    }
 
     await verify_token();
     const user = await back_end.get_token();
@@ -37,6 +42,59 @@ window.init_index = async function() {
         console.log(JSON.parse(user.user()).user.username);
     }
     document.querySelector('.loader-container').style.display = 'none';
+
+    const favoritePlaces = await back_end.get_favorite_places(999, 0);
+
+    let favPlaceIds = [];
+    for(let i = 0; i < favoritePlaces.length; i++) {
+        let place = favoritePlaces[i];
+        favPlaceIds.push(place.place_id());
+    }
+
+    
+    let place_id = "";
+
+    window.open_review_modal = function(elem) {
+        document.querySelector('.review-modal').style.display = "block";
+        window.set_place_id(elem.value);
+    }
+
+
+    window.set_place_id = function(id){
+        place_id = id;
+    }
+
+    window.leave_review = async function() {
+        const reviewNumber = document.querySelector('.review-slider').value;
+        const result = await back_end.add_review(place_id, reviewNumber, "N/A");
+        console.log(result);
+        document.querySelector('.review-modal').style.display = "none";
+    }
+
+    window.toggle_favorite = async function(elem) {
+        if(await is_favorite(elem.value)) {
+            await back_end.remove_favorite_place(elem.value);
+            elem.innerHTML = "Add Favorite";
+        } else {
+            await back_end.add_favorite_place(elem.value);
+            elem.innerHTML = "Remove Favorite";
+        }
+
+        console.log((await back_end.get_favorite_places(999, 0)));
+    }
+
+    window.is_favorite = async function(id) {
+        const favPlaces = await back_end.get_favorite_places(999, 0);
+
+        let isFav = false;
+        for(let i = 0; i < favPlaces.length; i++) {
+            const place = favPlaces[i];
+            if(place.place_id() == id)
+                isFav = true;
+        }
+
+        return isFav;
+    }
 }
 
 window.scroll_to_content = function() {
@@ -112,6 +170,7 @@ window.logout_user = async function() {
 window.close_modals = function() {
     document.querySelector('.login-modal').style.display = "none";
     document.querySelector('.register-modal').style.display = "none";
+    document.querySelector('.review-modal').style.display = "none";
 }
 
 function createLoggedInElements() {
