@@ -10,6 +10,7 @@ import quarter_waxing_img from "./quarter_waxing.png";
 import scott_img from "./scott.jpg";
 import alex_img from "./alex.jpg"
 import ha_img from "./ha.jpg"
+import brett_img from "./brett.jpg";
 
 import aquarius_img from "./Aquarius.JPG";
 import aries_img from "./Aries.JPG";
@@ -38,6 +39,7 @@ export const quarter_waxing = quarter_waxing_img;
 export const alex = alex_img;
 export const scott = scott_img;
 export const ha = ha_img;
+export const brett = brett_img;
 
 export const aquarius = aquarius_img;
 export const aries = aries_img;
