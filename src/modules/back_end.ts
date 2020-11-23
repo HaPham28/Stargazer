@@ -1,4 +1,4 @@
-import {get_cookie, set_cookie} from "./cookie";
+import {delete_cookie, get_cookie, set_cookie} from "./cookie";
 import {real_promise} from "./real_promise";
 import {import_client_side} from "./back_end_bootstrap";
 
@@ -10,6 +10,12 @@ const loaded: Promise<typeof import("client_side")> = real_promise(async () => {
     const cookie_val = get_cookie(cookie_name);
     if(cookie_val != null){
         module.set_token(module.JsAuthToken.from_string(cookie_val));
+        try{
+            await module.get_favorite_places(1, 0);
+        }
+        catch (e){
+            module.set_token(null);
+        }
     }
     return module;
 }).catch(r => {
@@ -22,6 +28,9 @@ export async function save_token(){
     const token = await get_token();
     if(token != undefined){
         set_cookie(cookie_name, token.to_string());
+    }
+    else{
+        delete_cookie(cookie_name);
     }
 }
 
