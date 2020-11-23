@@ -151,7 +151,7 @@ export function showConstellations(constellations, visibleConstellations) {
 
                         </p>
                         <h11>Declination: ${declination}</h11><br>
-                        <h11>Right Ascenscion: ${rightAscension}</h11>
+                        <h11>Right Ascension: ${rightAscension}</h11>
                     </div>
                 </div>
             </div>
