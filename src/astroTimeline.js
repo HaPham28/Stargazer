@@ -330,4 +330,4 @@ function selectDate(selector) {
 
 selectDate("astro-span0");
 var curDateNum = 0;
-Console.log("AHHHHHHHHHHHHHH")
+console.log("AHHHHHHHHHHHHHH")

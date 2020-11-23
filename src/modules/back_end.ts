@@ -10,12 +10,6 @@ const loaded: Promise<typeof import("client_side")> = real_promise(async () => {
     const cookie_val = get_cookie(cookie_name);
     if(cookie_val != null){
         module.set_token(module.JsAuthToken.from_string(cookie_val));
-        try{
-            await module.get_favorite_places(1, 0);
-        }
-        catch (e){
-            module.set_token(null);
-        }
     }
     return module;
 }).catch(r => {
@@ -23,6 +17,21 @@ const loaded: Promise<typeof import("client_side")> = real_promise(async () => {
     alert("Could not connect to back-end server!");
     throw "Could not connect to back-end server: " + r;
 });
+
+export async function verify_token(){
+    const module = await loaded;
+    if (module.get_token() != undefined){
+        try{
+            await module.get_favorite_places(1, 0);
+            await save_token();
+        }
+        catch (e){
+            console.error(e);
+            module.set_token(null);
+            await save_token();
+        }
+    }
+}
 
 export async function save_token(){
     const token = await get_token();

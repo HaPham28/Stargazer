@@ -1,5 +1,9 @@
 export function set_cookie(cname: string, cvalue: string): void {
-    document.cookie = cname + "=" + cvalue + ";path=/";
+    const date = new Date();
+    date.setDate(new Date().getDate() + 1)
+    const cookie = cname + "=" + cvalue + ";expires=" + date + ";path=/";
+    console.log(cookie);
+    document.cookie = cookie;
 }
 export function delete_cookie(cname: string): void{
     document.cookie = cname + "=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";

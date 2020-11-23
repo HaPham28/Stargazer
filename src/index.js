@@ -2,6 +2,7 @@ import {init_google_map} from "./modules/autocomplete";
 import './css/styles'
 import {clearWeatherCards} from "./modules/weather";
 import * as back_end from "./modules/back_end";
+import {verify_token} from "./modules/back_end";
 
 /********************************
 *
@@ -26,6 +27,7 @@ window.init_index = async function() {
     document.getElementById("search-button").addEventListener("click", () => clearWeatherCards());
     initMap();
 
+    await verify_token();
     const user = await back_end.get_token();
     if(user == null) {
         console.log("Nobody logged in");
