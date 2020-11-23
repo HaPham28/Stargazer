@@ -20,21 +20,11 @@
 body {
     padding: 0;
     margin: 0;
-    background-color: #2c2f33ee;
 }
 
 .map-container {
     display: none;
 
-}
-
-/* Applied to iframe when color blindness filter active */
-iframe {
-    -webkit-filter: grayscale(100%) contrast(1.75);
-    -moz-filter: grayscale(100%) contrast(1.75);
-     -ms-filter: grayscale(100%) contrast(1.75);
-      -o-filter: grayscale(100%) contrast(1.75);
-         filter: grayscale(100%) contrast(1.75);
 }
 
 .search-container {
@@ -52,7 +42,6 @@ iframe {
     align-items: center;
     overflow-x: visible;
     overflow-y: visible;
-    background-color: #2c2f33ee;
 }
 
 .content-container {
@@ -61,7 +50,7 @@ iframe {
     height: 100%;
     padding: 0 10%;
     z-index: 10;
-    background: linear-gradient(to bottom, #2c2f3373 0%, #2c2f33bb 100px, #2c2f33ee 250px, #2c2f33ee 100%);
+    background: linear-gradient(to bottom, #2c2f3373 0%, #2c2f33bb 100px, #2c2f33ee 250px, #2c2f33ee 95%, transparent 100%);
 }
 
 /*************** Navigation Bar **************/
@@ -169,6 +158,139 @@ iframe {
     left: 50%;
 }
 
+/************** Loading Spinner ****************/
+.loader-container {
+    display: none;
+    position: fixed;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+}
+
+.loader {
+    border: 16px solid #2c2f33; /* Light grey */
+    border-top: 16px solid  #7289da;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+/****************Toggle switch for color blindness********/
+.switch-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.switch-label {
+    color: white;
+    font-weight: 400;
+    font-size: 18px;
+    margin: 0 5px;
+    padding: 0;
+    vertical-align: center;
+}
+
+.switch {
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    width: 62px;
+    height: 26px;
+  }
+
+.switch input { 
+opacity: 0;
+width: 0;
+height: 0;
+}
+
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: rgba(255, 255, 255, 0.644);
+-webkit-transition: .4s;
+transition: .4s;
+border-radius: 34px;
+}
+
+.slider:before {
+position: absolute;
+content: "";
+height: 18px;
+width: 18px;
+left: 4px;
+bottom: 4px;
+background-color: #2e3038;
+-webkit-transition: .4s;
+transition: .4s;
+border-radius: 50%;
+
+}
+
+input:checked + .slider {
+background-color:  #7289da;
+}
+
+input:checked + .slider:before {
+-webkit-transform: translateX(35px);
+-ms-transform: translateX(35px);
+transform: translateX(35px);
+background-color: white;
+}
+
+input:checked ~ .switch-label:before {
+    opacity:0;
+}
+
+input:checked ~ .switch-label:after {
+    opacity:1;
+}
+
+.switch-label:before, .switch-label:after {
+    font-size: 14px;
+    position: absolute;
+    top: 50%;
+    margin-top: -.5em;
+    line-height: 1;
+    -webkit-transition: inherit;
+    -moz-transition: inherit;
+    -o-transition: inherit;
+    transition: inherit;
+    box-sizing:content-box;
+}
+
+.switch-label:before {
+    content: attr(data-off);
+    right: 6px;
+    color: black;
+    font-weight: bold;
+    text-shadow: 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.switch-label:after {
+    content: attr(data-on);
+    left: 6px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+}
 /**************** General Content *****************/
 
 .place-title {
@@ -233,7 +355,7 @@ iframe {
 .light-pollution-aggregate {
     display: flex;
     color: white;
-    font-size: 108px;
+    font-size: 60px;
     margin:0;
 }
 
@@ -353,7 +475,7 @@ iframe {
 }
 
 ::-webkit-scrollbar-corner {
-    background: #7289da;
+    background: transparent;
 }
 
 /******** MOBILE *********/
@@ -365,4 +487,28 @@ iframe {
     .nav-link {
         font-size: 24px;
     }
+    
+}
+@media only screen and (max-width: 768px) {
+    .title h1 {
+        font-size: 72px;
+    }
+    .nav-link {
+        font-size: 24px;
+    }
+    .content-container {
+        max-width: 100%;
+        padding: 0px;
+        margin: 0px;
+    }
+    
+}
+
+/* Applied to iframe when color blindness filter active */
+.iframe-expand{
+    -webkit-filter: grayscale(100%) contrast(1.75);
+    -moz-filter: grayscale(100%) contrast(1.75);
+    -ms-filter: grayscale(100%) contrast(1.75);
+    -o-filter: grayscale(100%) contrast(1.75);
+        filter: grayscale(100%) contrast(1.75);
 }

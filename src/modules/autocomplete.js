@@ -31,7 +31,8 @@ export async function init_google_map(google, document) {
       map,
       anchorPoint: new google.maps.Point(0, -29),
     });
-    autocomplete.addListener("place_changed", () => {
+    autocomplete.addListener("place_changed", async function() {
+      document.querySelector('.loader-container').style.display = 'flex';
       // window.login("user", "pass");
       infowindow.close();
       marker.setVisible(false);
@@ -58,14 +59,11 @@ export async function init_google_map(google, document) {
       longitude = place.geometry.location.lng();
       placeName = place.name;
 
-      let dataPromises = [];
+      updateAverageLightPollution(latitude, longitude);
+      getWeatherForecast();
 
-      dataPromises.push(updateAverageLightPollution(latitude, longitude));
-      dataPromises.push(getWeatherForecast());
-      //dataPromises.push(getLightPollution(latitude, longitude));
-
-      dataPromises.push(getConstellationData(latitude, longitude));
-      dataPromises.push(getNearbyParks(google));
+      getConstellationData(latitude, longitude);
+      await getNearbyParks(google);
 
       // Set place title
       document.querySelector('.place-title').innerHTML = place.name;
@@ -90,18 +88,12 @@ export async function init_google_map(google, document) {
       }
 
       let heat_src = 'https://www.lightpollutionmap.info/#zoom=10.00&lat=' + latitude + '&lon=' + longitude + '&layers=B0FFFFFTFFFFFFFFFF';
-      // document.querySelector('#light-pollution-map-iframe').attributes('src', heat_src);
       document.querySelector('.light-pollution-map-container').innerHTML = '';
       document.querySelector('.light-pollution-map-container').insertAdjacentHTML('afterbegin','<iframe id="light-pollution-map-iframe" src="' + heat_src + '"></iframe>');
 
-      //document.getElementById('light-pollution-map-iframe').src = heat_src;
-      //document.getElementById('​light-pollution-map-iframe').contentDocument.location.reload(true);
-
-
-
       console.log(heat_src);
-
-      Promise.all(dataPromises);
+      color_expand();
+      document.querySelector('.loader-container').style.display = 'none';
       window.scroll_to_content();
     });
   }

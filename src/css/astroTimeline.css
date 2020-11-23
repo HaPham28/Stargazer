@@ -94,7 +94,7 @@
   height: 0;
   margin: 0;
   position: absolute;
-  top: 30%;
+  top: 10%;
   transition: all 0.2s ease-out;
 }
 
@@ -159,7 +159,7 @@ body {
   display: block;
   height: 450px;
   width: 900px;
-  margin: 200px auto;
+  margin: 20px auto;
 }
 
 /* Image on the left side */
@@ -305,8 +305,9 @@ li {
 
 .fabR {
   position: absolute;
-  right: 20px;
-  bottom: -490px;
+  cursor: pointer;
+  right: 10px;
+  bottom: -420px;
   box-sizing: border-box;
   padding-top: 18px;
   background-color: #3e5061;
@@ -316,10 +317,12 @@ li {
   color: white;
   text-align: center;
   vertical-align: middle;
-  border-radius: 20%;
+  border-radius: 10px;
   -webkit-box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
+  z-index: 1;
+
 }
 
 .fabR:hover {
@@ -327,14 +330,15 @@ li {
   padding-top: 28px;
   width: 90px;
   height: 180px;
-  right: 15px;
-  bottom: -500px;
+  right: 5px;
+  bottom: -430px;
 }
 
 .fabL {
   position: absolute;
-  left: 20px;
-  bottom: -490px;
+  cursor: pointer;
+  left: 10px;
+  bottom: -420px;
   box-sizing: border-box;
   padding-top: 18px;
   background-color: #3e5061;
@@ -344,10 +348,11 @@ li {
   color: white;
   text-align: center;
   vertical-align: middle;
-  border-radius: 20%;
+  border-radius: 10px;
   -webkit-box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
+  z-index: 1;
 }
 
 .fabL:hover {
@@ -355,6 +360,6 @@ li {
   padding-top: 28px;
   width: 90px;
   height: 180px;
-  left: 15px;
-  bottom: -500px;
+  left: 5px;
+  bottom: -430px;
 }
