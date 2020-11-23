@@ -43,15 +43,6 @@ window.init_index = async function() {
     }
     document.querySelector('.loader-container').style.display = 'none';
 
-    const favoritePlaces = await back_end.get_favorite_places(999, 0);
-
-    let favPlaceIds = [];
-    for(let i = 0; i < favoritePlaces.length; i++) {
-        let place = favoritePlaces[i];
-        favPlaceIds.push(place.place_id());
-    }
-
-    
     let place_id = "";
 
     window.open_review_modal = function(elem) {

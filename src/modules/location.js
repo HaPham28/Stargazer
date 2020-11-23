@@ -3,6 +3,7 @@ import {latitude, longitude} from "./autocomplete";
 import {getLightPollution} from "./light_pollution";
 import {central_park} from "../assets/assets";
 import * as back_end from "./back_end";
+import { get_user_public_id } from "client_side";
 //import { resolve } from "../../webpack.config.dev";
 
 // get 20 most relevant nearby parks (as ranked by google)
@@ -328,19 +329,25 @@ export async function makeLocationTemplate(park, lpt, position) {
     
 
     //console.log(make_partial_star);
+    const user = await back_end.get_token();
+
     let toggleFavoriteText = "Add Favorite";
-    const favPlaces = await back_end.get_favorite_places(999, 0);
+    let userDisplay = "flex";
+    if(user != null) {
+        const favPlaces = await back_end.get_favorite_places(999, 0);
 
-    let isFav = false;
-    for(let i = 0; i < favPlaces.length; i++) {
-        const place = favPlaces[i];
-        if(place.place_id() == place_id)
-            isFav = true;
+        let isFav = false;
+        for(let i = 0; i < favPlaces.length; i++) {
+            const place = favPlaces[i];
+            if(place.place_id() == place_id)
+                isFav = true;
+        }
+        if(isFav) {
+            toggleFavoriteText = "Remove Favorite";
+        }
+    } else {
+        userDisplay = "none";
     }
-    if(isFav) {
-        toggleFavoriteText = "Remove Favorite";
-    }
-
 
 
     const template = (`
@@ -384,7 +391,7 @@ export async function makeLocationTemplate(park, lpt, position) {
                             <div class="pollution-title">Light Pollution</div>
                             <div class="pollution-value">${lightPollution} unit <div class="material-icons" style = "font-size: 16px; color: #7289da;" title="nano wats/cm^2">help</div> - ${level}</div>
                         </div>
-                        <div class="pollution-top-right">
+                        <div class="pollution-top-right" style="display:${userDisplay};">
                             <button class="review-button" value="${place_id}" onclick="open_review_modal(this)">Leave Review</button>
                             <button class="review-button" value="${place_id}" onclick="toggle_favorite(this)">${toggleFavoriteText}</button>
                         </div>
