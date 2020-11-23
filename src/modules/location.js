@@ -7,11 +7,11 @@ import {central_park} from "../assets/assets";
 // get 20 most relevant nearby parks (as ranked by google)
 export async function getNearbyParks() {
     const map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: latitude, lng: longitude },
+        center : {  lat : latitude ,  lng : longitude  } ,
         zoom: 15,
     });
 
-    let request = {
+    let request_parks = {
         location: new google.maps.LatLng(latitude, longitude),
         radius: '50000',
         type: ['park'],
@@ -19,60 +19,83 @@ export async function getNearbyParks() {
 
     let service = new google.maps.places.PlacesService(map);
 
-    service.nearbySearch(request, async function(results, status) {
-        console.log(results);
+    let list = [];
 
-        // Get top # of parks (the first # parks in the list)
-        const num_Location = 3;  // 3 is just for debug, maybe 10 for demo
-        let top10Parks = results.slice(0,num_Location);
-
-        // add light pollution element to each Park
-        top10Parks.forEach(park => {
-            let lat = park.geometry.location.lat();
-            let lng = park.geometry.location.lng();
-            let lightPollution = parseFloat(getLightPollution(lat, lng));
-            park.Light_Pollution = lightPollution;
+    const getPlaces =  places => {
+        return new Promise ((resolve, reject) => {
+            service.nearbySearch(request_parks, (results, status) => {
+                if (status == 'OK') {
+                    resolve(results);
+                }
+                else {
+                    reject(status);
+                }
+            });
         });
+    };
 
-        // sort the list of Parks by light pollution level from low to high
-        top10Parks.sort(function(a,b)
-        {
-            return a.Light_Pollution - b.Light_Pollution;
-        });
-
-        clearLocationCards();
-
-        //get more details
-        let place_id = top10Parks[0].place_id;
-        //console.log("place id " + place_id);
-        let request = {
+    const getDetails =  place_id => {
+        return new Promise ((resolve, reject) => {
+            let request_details = {
             placeId: place_id,
             fields: ['name', 'place_id', 'opening_hours', 'formatted_address', 'geometry', 'rating', 'photo', 'url', 'types', 'formatted_phone_number', 'website', 'business_status'],
-        };
-        let service = new google.maps.places.PlacesService(map);
-
-        service.getDetails(request, async function(place, status) {
-            //console.log(place);
-            makeLocationTemplate (place, top10Parks[0].Light_Pollution, 'top-location-container');
-        });
-
-
-        //add location cards
-        for (const park of top10Parks.slice(1,) ) {
-            let place_id = park.place_id;
-            let request = {
-                placeId: place_id,
-                fields: ['name', 'place_id', 'formatted_address', 'geometry', 'rating', 'photo', 'url', 'types', 'formatted_phone_number', 'opening_hours', 'website', 'business_status'],
             };
             let service = new google.maps.places.PlacesService(map);
-            const detail = await service.getDetails(request, async function(place, status) {
-                const make =  makeLocationTemplate (place, park.Light_Pollution, 'location-container');
+            service.getDetails(request_details, (place, status) => {
+                if (status == 'OK') {
+                    resolve(place);
+                }
+                else {
+                    reject(status);
+                }
             });
-        };
-        
-        console.log("PARKS DONE");
+        });
+    };
 
-    });
+    const printPlace = async () => {
+        return new Promise(async function(resolve, reject) {
+            try {
+                let location = await getPlaces();
+                 // Get top # of parks (the first # parks in the list)
+                 const num_Location = 3;  // 3 is just for debug, maybe 10 for demo
+                 let top10Parks = location.slice(0,num_Location);
+     
+                 // add light pollution element to each Park
+                 top10Parks.forEach(park => {
+                     let lat = park.geometry.location.lat();
+                     let lng = park.geometry.location.lng();
+                     let  lightPollution  =  parseFloat ( getLightPollution ( lat ,  lng ) ) ;
+                     park.Light_Pollution = lightPollution;
+                 });
+     
+                 // sort the list of Parks by light pollution level from low to high
+                 top10Parks.sort(function(a,b)
+                 {
+                     return a.Light_Pollution - b.Light_Pollution;
+                 });
+     
+                 clearLocationCards();
+     
+                 //get more details
+                 let place_id = top10Parks[0].place_id;
+                 let detail0 = await getDetails(place_id);
+                 makeLocationTemplate (detail0, top10Parks[0].Light_Pollution, 'top-location-container');
+     
+                 for (const park of top10Parks.slice(1,) ) {
+                     let place_id = park.place_id;
+                     let detail = await getDetails(place_id);
+                     const make =  await makeLocationTemplate (detail, park.Light_Pollution, 'location-container');
+                 };
+     
+            } catch (err) {
+                console.warn(err);
+                reject();
+            }
+            resolve();
+        });
+    };
+    await printPlace();
+
 }
 
 /**
@@ -106,6 +129,7 @@ export function makeLocationTemplate(park, lpt, position) {
     let distance = "";
     let opening_template = "";
     var width = window.innerWidth;
+    let level = "";
 
     //tenple for opening hours
     let hour_template = (``)
@@ -115,7 +139,7 @@ export function makeLocationTemplate(park, lpt, position) {
                 hours.push(day.substring(index+2));
                 opening_template = opening_template + "<td>" + day.substring(index+2) + "</td>" ;
             });
-            if (width > 758) {
+            if (width > 768) {
 
                 hour_template = (`
                 <table style="width:100%; color: black;">
@@ -186,27 +210,33 @@ export function makeLocationTemplate(park, lpt, position) {
         types.push(" " + type);
     });
 
-    //update light pollution bar
+    //update light pollution bar - including color ratine code for future develop
     let color_rating = "";
     let width_rating = "";
     if (lightPollution > 100) {
         color_rating = "dark_red";
         width_rating = "100%";
+        level = "Extremely high";
     } else if (lightPollution <= 100 && lightPollution >= 70) {
         color_rating = "red";
         width_rating = String(lightPollution) + "%";
+        level = "High";
     } else if (lightPollution < 70 && lightPollution > 40) {
         color_rating = "orange";
         width_rating = String(lightPollution) + "%";
+        level = "Medium";
     } else if (lightPollution <= 40 && lightPollution > 20) {
         color_rating = "yellow";
         width_rating = String(lightPollution) + "%";
+        level = "Low";
     } else if (lightPollution <= 20 && lightPollution > 5) {
         color_rating = "green";
         width_rating = String(lightPollution) + "%";
+        level = "Very low";
     } else {
         color_rating = "dark_green";
         width_rating = String(lightPollution) + "%";
+        level = "Very low";
     }
 
     //update rating stars
@@ -284,10 +314,10 @@ export function makeLocationTemplate(park, lpt, position) {
             <div class ="location-card-right-bottom">
                 <div class="pollution" >
                     <div class="pollution-title">Light Pollution</div>
-                    <div class="pollution-value">${lightPollution} lpc</div>
+                    <div class="pollution-value">${lightPollution} unit <div class="material-icons" style = "font-size: 16px; color: #7289da;" title="nano wats/cm^2">help</div> - ${level}</div>
                     <div class="rating-bar">
                         <div style = "width: ${width_rating};" class="rate">
-                            <span class="animate ${color_rating}"></span>
+                            <span class="animate blue"></span>
                         </div>
                     </div>
                 </div>

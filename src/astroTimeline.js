@@ -245,7 +245,7 @@ function makeCircles() {
             const relativeInt = thisInt / lastInt;
 
             //Draw the date circle
-            $("#astro-line").append('<div class="astro-circle" id="astro-circle' + i + '" style="left: ' + relativeInt * 100 + '%;"><div class="popupSpan">' + dateSpan(future_events[i]["date"]) + '</div></div>');
+            //$("#astro-line").append('<div class="astro-circle" id="astro-circle' + i + '" style="left: ' + relativeInt * 100 + '%;"><div class="popupSpan">' + dateSpan(future_events[i]["date"]) + '</div></div>');
             var curEvent = future_events[i]["event_name"];
             var curDescription = future_events[i]["event_description"];
             var curLink = future_events[i]["event_link"];
@@ -271,28 +271,17 @@ function makeCircles() {
       `);
             $("#astro-mainCont").append('<span id="astro-span' + i + '" class="right">' + template + '</span>');
         }
-
+        $("#astro-line").hide();
         //Draw the last date circle
 
     }
 
-    $(".astro-circle:first").addClass("active");
+    //$(".astro-circle:first").addClass("active");
 }
 
 makeCircles();
 
-$(".astro-circle").mouseenter(function () {
-    $(this).addClass("hover");
-});
 
-$(".astro-circle").mouseleave(function () {
-    $(this).removeClass("hover");
-});
-
-$(".astro-circle").click(function () {
-    const spanNum = $(this).attr("id");
-    selectDate(spanNum);
-});
 
 $(".rightButton").mouseenter(function () {
     $(this).addClass("hover");
@@ -302,22 +291,19 @@ $(".rightButton").mouseleave(function () {
     $(this).removeClass("hover");
 });
 
-$(".rightButton").click(function () {
-    const spanNum = $(this).attr("id");
+$(".fabR").click(function () {
+    curDateNum += 1;
+    const spanNum = "astro-span" + curDateNum.toString();
     selectDate(spanNum);
 });
 
-$(".leftButton").mouseenter(function () {
-    $(this).addClass("hover");
-});
 
-$(".leftButton").mouseleave(function () {
-    $(this).removeClass("hover");
-});
-
-$(".leftButton").click(function () {
-    const spanNum = $(this).attr("id");
-    selectDate(spanNum);
+$(".fabL").click(function () {
+    if (curDateNum != 0) {
+        curDateNum -= 1;
+        const spanNum = "astro-span" + curDateNum.toString();
+        selectDate(spanNum);
+    }
 });
 
 function selectDate(selector) {
@@ -339,5 +325,9 @@ function selectDate(selector) {
     }
 }
 
+
+
+
 selectDate("astro-span0");
-console.log("AHHHHHHHHHHHHHH")
+var curDateNum = 0;
+Console.log("AHHHHHHHHHHHHHH")

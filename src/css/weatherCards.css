@@ -108,6 +108,8 @@
     background: linear-gradient(to right, rgba(255,0,0,0.7) 0%, rgba(255,0,0,0.7) 33%, rgba(255, 255, 0, 0.7) 33%,  rgba(255, 255, 0, 0.7) 66%, rgba(0, 120, 0, 0.7) 66%);
 }
 
+.weather-color-expand{ background: linear-gradient(to right,#800000 0%,#800000 33%, #ff0000 33%, #ff0000 66%,  #ff9999 66%) !important; }
+
 .weather-marker {
     cursor: default;
     font-size: 30px !important;
