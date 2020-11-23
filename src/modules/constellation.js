@@ -1,8 +1,10 @@
+import { aquarius, aries, cancer, capricorn, gemini, leo, libra, pisces, sagittarius, taurus, virgo } from '../assets/assets';
+
 let constellationDescriptions = {
     "Aquarius": "The Water Bearer.",
     "Aries": "The Ram.",
     "Cancer": "The Crab.",
-    "Capricon": "The Sea Goat",
+    "Capricorn": "The Sea Goat",
     "Gemini": "The Twins.",
     "Leo": "The Lion.",
     "Libra": "The Scales.",
@@ -10,6 +12,20 @@ let constellationDescriptions = {
     "Sagittarius": "The Archer.",
     "Taurus": "The Bull.",
     "Virgo": "The Virgin."
+};
+
+let constellationImages = {
+    "Aquarius": aquarius,
+    "Aries": aries,
+    "Cancer": cancer,
+    "Capricorn": capricorn,
+    "Gemini": gemini,
+    "Leo": leo,
+    "Libra": libra,
+    "Pisces": pisces,
+    "Sagittarius": sagittarius,
+    "Taurus": taurus,
+    "Virgo": virgo
 };
 
 export async function getConstellationData(latitude, longitude) {
@@ -107,7 +123,7 @@ export function showConstellations(constellations, visibleConstellations) {
         const description = constellationDescriptions[constellationName];
         const declination = constellation.dec.decimal;
         const rightAscension = constellation.ra.decimal;
-        const image = '';
+        const image = constellationImages[constellationName];
 
         const constellationTemplate = (`<div class="flip-card">
             <div class="flip-card-inner">
@@ -134,7 +150,7 @@ export function showConstellations(constellations, visibleConstellations) {
                         <p>
 
                         </p>
-                        <h11>Declination: ${declination}</h11>
+                        <h11>Declination: ${declination}</h11><br>
                         <h11>Right Ascenscion: ${rightAscension}</h11>
                     </div>
                 </div>

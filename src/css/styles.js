@@ -3,6 +3,7 @@ import './modals.css'
 import './parallaxStars.css'
 import './weatherCards.css'
 import './locationCards.css'
+import './constellation.css'
 import './astroTimeline.css'
 
 export function color_expand () {
