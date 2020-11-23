@@ -31,7 +31,9 @@ export async function get_token(): Promise<import("client_side").JsAuthToken>{
 }
 export async function set_token(token: import("client_side").JsAuthToken): Promise<void>{
     const module = await loaded;
-    return module.set_token(token);
+    const out = module.set_token(token);
+    await save_token();
+    return out;
 }
 
 export async function login(username: string, password: string): Promise<void>{
