@@ -59,7 +59,7 @@ export async function getNearbyParks() {
             try {
                 let location = await getPlaces();
                  // Get top # of parks (the first # parks in the list)
-                 const num_Location = 3;  // 3 is just for debug, maybe 10 for demo
+                 const num_Location = 6;  // 3 is just for debug, maybe 10 for demo
                  let top10Parks = location.slice(0,num_Location);
      
                  // add light pollution element to each Park
