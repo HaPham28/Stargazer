@@ -117,6 +117,26 @@
         </div>
     </div>
 
+    <div class="modal review-modal">
+        <div class="modal-content review-modal-content">
+            <h2>Leave a Review</h2>
+            <fieldset>
+                <span class="star-cb-group">
+                  <input type="radio" id="rating-5" name="rating" value="5" onclick="set_review_stars(5)"/><label for="rating-5">5</label>
+                  <input type="radio" id="rating-4" name="rating" value="4" checked="checked"  onclick="set_review_stars(4)"/><label for="rating-4">4</label>
+                  <input type="radio" id="rating-3" name="rating" value="3"  onclick="set_review_stars(3)"/><label for="rating-3">3</label>
+                  <input type="radio" id="rating-2" name="rating" value="2"  onclick="set_review_stars(2)"/><label for="rating-2">2</label>
+                  <input type="radio" id="rating-1" name="rating" value="1"  onclick="set_review_stars(1)"/><label for="rating-1">1</label>
+                  <input type="radio" id="rating-0" name="rating" value="0"  onclick="set_review_stars(0)"class="star-cb-clear" /><label for="rating-0">0</label>
+                </span>
+              </fieldset>
+            <div class="modal-button-container">
+                <button class="modal-button" onclick="leave_review()">Submit</button>
+                <button class="modal-button" onclick="close_modals()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
     <div class="modal login-modal">
         <div class="modal-content register-modal-content">
             <h2>Login</h2>
