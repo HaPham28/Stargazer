@@ -160,7 +160,7 @@ body {
 
 /************** Loading Spinner ****************/
 .loader-container {
-    display: none;
+    display: flex;
     position: fixed;
     z-index: 99;
     top: 0;
