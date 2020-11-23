@@ -88,6 +88,7 @@ body {
 
 .nav-link:hover {
     color: #7289da;
+    font-size: 38px;
 }
 
 .active-link {
@@ -111,6 +112,8 @@ body {
     font-size: 44px;
     margin-top: 8px;
 }
+
+
 
 .location-input {
     font-size: 32px;
