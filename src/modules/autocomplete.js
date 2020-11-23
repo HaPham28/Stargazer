@@ -31,7 +31,7 @@ export async function init_google_map(google, document) {
       map,
       anchorPoint: new google.maps.Point(0, -29),
     });
-    autocomplete.addListener("place_changed", () => {
+    autocomplete.addListener("place_changed", async function() {
       // window.login("user", "pass");
       infowindow.close();
       marker.setVisible(false);
@@ -58,14 +58,11 @@ export async function init_google_map(google, document) {
       longitude = place.geometry.location.lng();
       placeName = place.name;
 
-      let dataPromises = [];
+      updateAverageLightPollution(latitude, longitude);
+      getWeatherForecast();
 
-      dataPromises.push(updateAverageLightPollution(latitude, longitude));
-      dataPromises.push(getWeatherForecast());
-      //dataPromises.push(getLightPollution(latitude, longitude));
-
-      dataPromises.push(getConstellationData(latitude, longitude));
-      dataPromises.push(getNearbyParks(google));
+      getConstellationData(latitude, longitude);
+      await getNearbyParks(google);
 
       // Set place title
       document.querySelector('.place-title').innerHTML = place.name;
@@ -95,7 +92,6 @@ export async function init_google_map(google, document) {
 
       console.log(heat_src);
       color_expand();
-      Promise.all(dataPromises);
       window.scroll_to_content();
     });
   }

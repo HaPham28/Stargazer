@@ -53,44 +53,48 @@ export async function getNearbyParks() {
     };
 
     const printPlace = async () => {
-       try {
-           let location = await getPlaces();
-            // Get top # of parks (the first # parks in the list)
-            const num_Location = 3;  // 3 is just for debug, maybe 10 for demo
-            let top10Parks = location.slice(0,num_Location);
-
-            // add light pollution element to each Park
-            top10Parks.forEach(park => {
-                let lat = park.geometry.location.lat();
-                let lng = park.geometry.location.lng();
-                let  lightPollution  =  parseFloat ( getLightPollution ( lat ,  lng ) ) ;
-                park.Light_Pollution = lightPollution;
-            });
-
-            // sort the list of Parks by light pollution level from low to high
-            top10Parks.sort(function(a,b)
-            {
-                return a.Light_Pollution - b.Light_Pollution;
-            });
-
-            clearLocationCards();
-
-            //get more details
-            let place_id = top10Parks[0].place_id;
-            let detail0 = await getDetails(place_id);
-            makeLocationTemplate (detail0, top10Parks[0].Light_Pollution, 'top-location-container');
-
-            for (const park of top10Parks.slice(1,) ) {
-                let place_id = park.place_id;
-                let detail = await getDetails(place_id);
-                const make =  await makeLocationTemplate (detail, park.Light_Pollution, 'location-container');
-            };
-
-       } catch (err) {
-           console.warn(err);
-       }
+        return new Promise(async function(resolve, reject) {
+            try {
+                let location = await getPlaces();
+                 // Get top # of parks (the first # parks in the list)
+                 const num_Location = 3;  // 3 is just for debug, maybe 10 for demo
+                 let top10Parks = location.slice(0,num_Location);
+     
+                 // add light pollution element to each Park
+                 top10Parks.forEach(park => {
+                     let lat = park.geometry.location.lat();
+                     let lng = park.geometry.location.lng();
+                     let  lightPollution  =  parseFloat ( getLightPollution ( lat ,  lng ) ) ;
+                     park.Light_Pollution = lightPollution;
+                 });
+     
+                 // sort the list of Parks by light pollution level from low to high
+                 top10Parks.sort(function(a,b)
+                 {
+                     return a.Light_Pollution - b.Light_Pollution;
+                 });
+     
+                 clearLocationCards();
+     
+                 //get more details
+                 let place_id = top10Parks[0].place_id;
+                 let detail0 = await getDetails(place_id);
+                 makeLocationTemplate (detail0, top10Parks[0].Light_Pollution, 'top-location-container');
+     
+                 for (const park of top10Parks.slice(1,) ) {
+                     let place_id = park.place_id;
+                     let detail = await getDetails(place_id);
+                     const make =  await makeLocationTemplate (detail, park.Light_Pollution, 'location-container');
+                 };
+     
+            } catch (err) {
+                console.warn(err);
+                reject();
+            }
+            resolve();
+        });
     };
-    printPlace();
+    await printPlace();
 
 }
 
