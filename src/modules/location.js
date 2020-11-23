@@ -309,9 +309,14 @@ export function makeLocationTemplate(park, lpt, position) {
                     ${make_partial_star.repeat(partial_star)}
                     ${make_full_star.repeat(full_star)}
                 </div>
+                <div class="review-button" onclick="open_review_modals()">Leave Review</div>
+                
+
             </div>
+            
             <!-- Show light pollution -->
             <div class ="location-card-right-bottom">
+            
                 <div class="pollution" >
                     <div class="pollution-title">Light Pollution</div>
                     <div class="pollution-value">${lightPollution} unit <div class="material-icons" style = "font-size: 16px; color: #7289da;" title="nano wats/cm^2">help</div> - ${level}</div>
@@ -327,6 +332,11 @@ export function makeLocationTemplate(park, lpt, position) {
     `);
 
     document.querySelector('.' + position).insertAdjacentHTML('beforeend', template);
+}
+
+
+window.open_review_modals = function() {
+    document.querySelector('.review-modal').style.display = "block";
 }
 
 export function getDistanceFromLatLonInKm(lat1,lon1,lat2,lon2) {

@@ -119,6 +119,130 @@ span.location-icon a {
     overflow: auto;
 }
 
+.review-button{
+    position: relative;
+    flex-direction: column;
+    cursor: pointer;
+    display: flex;
+    right: 0px;
+    bottom: 0px;
+    box-sizing: border-box;
+    padding-top: 18px;
+    background-color: #3e5061;
+    width: 80px;
+    height: 20px;
+    font-size: 12px;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 10px;
+    -webkit-box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
+    z-index: 1;
+}
+
+.star-cb-group {
+  /* remove inline-block whitespace */
+  font-size: 0;
+  /* flip the order so we can use the + and ~ combinators */
+  unicode-bidi: bidi-override;
+  direction: rtl;
+  /* the hidden clearer */
+}
+.star-cb-group * {
+  font-size: 1rem;
+}
+.star-cb-group > input {
+  display: none;
+}
+.star-cb-group > input + label {
+  /* only enough room for the star */
+  display: inline-block;
+  overflow: hidden;
+  text-indent: 9999px;
+  width: 1em;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.star-cb-group > input + label:before {
+  display: inline-block;
+  text-indent: -9999px;
+  content: "☆";
+  color: #888;
+}
+.star-cb-group > input:checked ~ label:before, .star-cb-group > input + label:hover ~ label:before, .star-cb-group > input + label:hover:before {
+  content: "★";
+  color: #e52;
+  text-shadow: 0 0 1px #333;
+}
+.star-cb-group > .star-cb-clear + label {
+  text-indent: -9999px;
+  width: .5em;
+  margin-left: -.5em;
+}
+.star-cb-group > .star-cb-clear + label:before {
+  width: .5em;
+}
+.star-cb-group:hover > input + label:before {
+  content: "☆";
+  color: #888;
+  text-shadow: none;
+}
+.star-cb-group:hover > input + label:hover ~ label:before, .star-cb-group:hover > input + label:hover:before {
+  content: "★";
+  color: #e52;
+  text-shadow: 0 0 1px #333;
+}
+
+:root {
+  font-size: 2em;
+  font-family: Helvetica, arial, sans-serif;
+}
+
+body {
+  background: #333;
+  color: #888;
+}
+
+fieldset {
+  border: 0;
+  width: 5em;
+  border-radius: 1px;
+  padding: 1em 1.5em 0.9em;
+  margin: 1em auto;
+}
+
+#log {
+  margin: 1em auto;
+  width: 5em;
+  text-align: center;
+  background: transparent;
+}
+
+
+
+.leave-review-button {
+    position: absolute;
+    cursor: pointer;
+    right: 10px;
+    bottom: -420px;
+    box-sizing: border-box;
+    padding-top: 18px;
+    background-color: #3e5061;
+    font-size: larger;
+    width: 80px;
+    height: 160px;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 10px;
+    -webkit-box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 50px 0px rgba(0, 0, 0, 0.75);
+    z-index: 1;
+  
+  }
 .location-rating-stars-group{
     width: 150px;
     justify-content: flex-end;
