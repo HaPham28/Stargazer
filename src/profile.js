@@ -7,4 +7,5 @@ window.init_profile = async function() {
 
     const user = JSON.parse((await back_end.get_token()).user());
     document.querySelector('.profile-title').innerHTML = user.user.username;
+    document.querySelector('.stats-header').innerHTML = 'Review Count: ' + user.user.review_count;
 }
