@@ -32,6 +32,7 @@ export async function init_google_map(google, document) {
       anchorPoint: new google.maps.Point(0, -29),
     });
     autocomplete.addListener("place_changed", async function() {
+      document.querySelector('.loader-container').style.display = 'flex';
       // window.login("user", "pass");
       infowindow.close();
       marker.setVisible(false);
@@ -92,6 +93,7 @@ export async function init_google_map(google, document) {
 
       console.log(heat_src);
       color_expand();
+      document.querySelector('.loader-container').style.display = 'none';
       window.scroll_to_content();
     });
   }
